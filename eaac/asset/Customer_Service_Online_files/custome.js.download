@@ -1,0 +1,388 @@
+function onChangeBillingState() {
+	var val = $('#province').val();
+	$.ajax({
+		url : 'getCity',
+		method : 'get',
+		ContentType : 'json',
+		data : {
+			optProvince : val
+		},
+		success : function(response) {
+			var posts = JSON.parse(response);
+			var options = '';
+			if (response != null) {
+				$.each(posts, function() {
+					options = options + '<option value="' + this.id + '">'
+							+ this.name + '</option>';
+				});
+				$('#city').html(options);
+			}
+		}
+	});
+}
+
+function onChangeDeliveryState() {
+	$('#hideProvinceName2').val($("#deliveryProvince option:selected").text());
+	var val = $('#deliveryProvince').val();
+	$.ajax({
+		url : 'getCity',
+		method : 'get',
+		ContentType : 'json',
+		data : {
+			optProvince : val
+		},
+		success : function(response) {
+			var posts = JSON.parse(response);
+			var options = '';
+			if (response != null) {
+				$.each(posts, function() {
+					// 						var name = this.toString().split("|")[0];
+					// 						var id = this.toString().split("|")[1];
+					options = options + '<option value="' + this.id + '">'
+							+ this.name + '</option>';
+				});
+				$('#deliveryCity').html(options);
+			}
+		}
+	});
+}
+
+var oriPage = 1;
+var msisdnPage = 1;
+
+function nextPageMSISDN() {
+	$.ajax({
+		url : 'getNumber',
+		method : 'get',
+		ContentType : 'json',
+		data : {
+			optProvince : val
+		},
+		success : function(response) {
+			var posts = JSON.parse(response);
+			var options = '';
+			if (response != null) {
+				$.each(posts, function() {
+					options = options + '<option>' + this + '</option>';
+				});
+				$('#optCity').html(options);
+			}
+		}
+	});
+}
+
+function getAvaliableMSISDN() {
+	msisdnPage = msisdnPage + 1;
+	var msisdn = (document.registrationform.primaryMSISDN.value == "" ? "62811"
+			: document.registrationform.primaryMSISDN.value);
+	$.ajax({
+		url : 'https://my.telkomsel.com/SelfPSB/GetMSISDN.jsp?msisdn=' + msisdn
+				+ '&page=' + msisdnPage,
+		dataType : 'json',
+		success : function(data) {
+			alert("test");
+		},
+	});
+}
+
+
+function load() {
+	$("#basic").prop("checked", true);
+}
+
+function myFunction() {
+	var x = document.getElementById("optPayment").value;
+	var y = document.getElementById("simpati");
+	var y1 = document.getElementById("simpati1");
+	var z = document.getElementById("halo");
+	var z1 = document.getElementById("halo2");
+	var p = document.getElementById("halo10");
+	var p1 = document.getElementById("halo10-2");
+	if (x == "1") {
+		y.style.display = 'block';
+		y1.style.display = 'block';
+		z.style.display = 'none';
+		z1.style.display = 'none';
+		p.style.display = 'none';
+		p1.style.display = 'none';
+		document.getElementById("bayar").style.display = "block";
+		document.getElementById("bayar1").style.display = "none";
+		document.getElementById("bayar2").style.display = "block";
+		document.getElementById("another").style.display = "none";
+		document.getElementById("kirim1").style.display = "block";
+		document.getElementById("kirim2").style.display = "none";
+	} else if (x == "-1") {
+		y.style.display = 'none';
+		y1.style.display = 'none';
+		z.style.display = 'block';
+		z1.style.display = 'block';
+		p.style.display = 'none';
+		p1.style.display = 'none';
+		document.getElementById("bayar").style.display = "block";
+		document.getElementById("bayar1").style.display = "none";
+		document.getElementById("bayar2").style.display = "block";
+		document.getElementById("another").style.display = "none";
+		document.getElementById("kirim1").style.display = "none";
+		document.getElementById("kirim2").style.display = "block";
+	} else {
+		y.style.display = 'none';
+		y1.style.display = 'none';
+		z.style.display = 'none';
+		z1.style.display = 'none';
+		p.style.display = 'block';
+		p1.style.display = 'block';
+		document.getElementById("bayar3").style.display = "block";
+		document.getElementById("bayar").style.display = "none";
+		document.getElementById("bayar1").style.display = "none";
+		document.getElementById("bayar2").style.display = "block";
+		document.getElementById("another").style.display = "block";
+		document.getElementById("kirim1").style.display = "none";
+		document.getElementById("kirim2").style.display = "block";
+
+	}
+}
+
+function showNumber() {
+	var num = document.getElementById("shownumber1").value;
+	var num10 = document.getElementById("pilihan10");
+	var num20 = document.getElementById("pilihan20");
+	var num40 = document.getElementById("pilihan40");
+	var num80 = document.getElementById("pilihan80");
+
+	if (num == 1) {
+		num10.style.display = "block";
+		num20.style.display = "none";
+		num40.style.display = "none";
+		num80.style.display = "none";
+	} else if (num == 2) {
+		num10.style.display = "none";
+		num20.style.display = "block";
+		num40.style.display = "none";
+		num80.style.display = "none";
+	} else if (num == 3) {
+		num10.style.display = "none";
+		num20.style.display = "none";
+		num40.style.display = "block";
+		num80.style.display = "none";
+	} else if (num == 4) {
+		num10.style.display = "none";
+		num20.style.display = "none";
+		num40.style.display = "none";
+		num80.style.display = "block";
+	} else {
+		num10.style.display = "block";
+		num20.style.display = "none";
+		num40.style.display = "none";
+		num80.style.display = "none";
+	}
+}
+
+function showNumber2() {
+	var num = document.getElementById("shownumber2").value;
+	var num10 = document.getElementById("pilihan10-2");
+	var num20 = document.getElementById("pilihan20-2");
+	var num40 = document.getElementById("pilihan40-2");
+	var num80 = document.getElementById("pilihan80-2");
+
+	if (num == 1) {
+		num10.style.display = "block";
+		num20.style.display = "none";
+		num40.style.display = "none";
+		num80.style.display = "none";
+	} else if (num == 2) {
+		num10.style.display = "none";
+		num20.style.display = "block";
+		num40.style.display = "none";
+		num80.style.display = "none";
+	} else if (num == 3) {
+		num10.style.display = "none";
+		num20.style.display = "none";
+		num40.style.display = "block";
+		num80.style.display = "none";
+	} else if (num == 4) {
+		num10.style.display = "none";
+		num20.style.display = "none";
+		num40.style.display = "none";
+		num80.style.display = "block";
+	} else {
+		num10.style.display = "block";
+		num20.style.display = "none";
+		num40.style.display = "none";
+		num80.style.display = "none";
+	}
+}
+
+function select1() {
+	document.getElementById("paketBasic").style.display = "block";
+	document.getElementById("paketIntermediate").style.display = "none";
+	document.getElementById("paketAdvance").style.display = "none";
+	document.getElementById("bayar").style.display = "block";
+	document.getElementById("bayar1").style.display = "none";
+	document.getElementById("bayar2").style.display = "block";
+	document.getElementById("bayar3").style.display = "none";
+	document.getElementById("another").style.display = "none";
+	document.getElementById("kirim1").style.display = "block";
+	document.getElementById("kirim2").style.display = "none";
+}
+
+function select2() {
+	document.getElementById("paketBasic").style.display = "none";
+	document.getElementById("paketIntermediate").style.display = "block";
+	document.getElementById("paketAdvance").style.display = "none";
+	document.getElementById("bayar").style.display = "none";
+	document.getElementById("bayar1").style.display = "block";
+	document.getElementById("bayar2").style.display = "block";
+	document.getElementById("bayar3").style.display = "none";
+	document.getElementById("another").style.display = "none";
+	document.getElementById("kirim1").style.display = "none";
+	document.getElementById("kirim2").style.display = "block";
+}
+
+function select3() {
+	var c = document.getElementById("bayar");
+	document.getElementById("paketBasic").style.display = "none";
+	document.getElementById("paketIntermediate").style.display = "none";
+	document.getElementById("paketAdvance").style.display = "block";
+	document.getElementById("bayar").style.display = "none";
+	document.getElementById("bayar1").style.display = "none";
+	document.getElementById("bayar3").style.display = "none";
+	document.getElementById("bayar2").style.display = "block";
+	document.getElementById("another").style.display = "block";
+	document.getElementById("kirim1").style.display = "none";
+	document.getElementById("kirim2").style.display = "block";
+	document.getElementById("type").value = "CreditCard";
+	if (c.value == 'CreditCard' || c.value == 'CreditCardAuto') {
+		document.getElementById("CLS1").style.display = "block";
+		document.getElementById("CLS2").style.display = "none";
+	} else {
+		document.getElementById("CLS1").style.display = "none";
+		document.getElementById("CLS2").style.display = "block";
+	}
+}
+
+function select10nomor2() {
+	document.getElementById("paketIntermediate3").style.display = "block";
+	document.getElementById("paketAdvance3").style.display = "none";
+	document.getElementById("bayar").style.display = "none";
+	document.getElementById("bayar1").style.display = "none";
+	document.getElementById("bayar2").style.display = "block";
+
+	document.getElementById("another").style.display = "block";
+	document.getElementById("kirim1").style.display = "none";
+	document.getElementById("kirim2").style.display = "block";
+}
+
+function select10nomor3() {
+	document.getElementById("paketIntermediate3").style.display = "none";
+	document.getElementById("paketAdvance3").style.display = "block";
+	document.getElementById("bayar").style.display = "none";
+	document.getElementById("bayar1").style.display = "none";
+	document.getElementById("bayar2").style.display = "block";
+	document.getElementById("bayar333").style.display = "block";
+	document.getElementById("another").style.display = "block";
+	document.getElementById("kirim1").style.display = "none";
+	document.getElementById("kirim2").style.display = "block";
+}
+
+function select11() {
+	document.getElementById("paketBasic2").style.display = "block";
+	document.getElementById("paketIntermediate2").style.display = "none";
+	document.getElementById("paketAdvance2").style.display = "none";
+	document.getElementById("bayar").style.display = "block";
+	document.getElementById("bayar1").style.display = "none";
+	document.getElementById("bayar2").style.display = "block";
+
+	document.getElementById("another").style.display = "none";
+	document.getElementById("kirim1").style.display = "block";
+	document.getElementById("kirim2").style.display = "none";
+}
+
+function select22() {
+	document.getElementById("paketBasic2").style.display = "none";
+	document.getElementById("paketIntermediate2").style.display = "block";
+	document.getElementById("paketAdvance2").style.display = "none";
+	document.getElementById("bayar").style.display = "none";
+	document.getElementById("bayar1").style.display = "block";
+	document.getElementById("bayar2").style.display = "block";
+	document.getElementById("bayar33").style.display = "none";
+	document.getElementById("another").style.display = "none";
+	document.getElementById("kirim1").style.display = "none";
+	document.getElementById("kirim2").style.display = "block";
+}
+
+function select33() {
+	document.getElementById("paketBasic2").style.display = "none";
+	document.getElementById("paketIntermediate2").style.display = "none";
+	document.getElementById("paketAdvance2").style.display = "block";
+	document.getElementById("bayar").style.display = "none";
+	document.getElementById("bayar1").style.display = "none";
+	document.getElementById("bayar33").style.display = "block";
+	document.getElementById("bayar2").style.display = "block";
+	document.getElementById("another").style.display = "block";
+	document.getElementById("kirim1").style.display = "none";
+	document.getElementById("kirim2").style.display = "block";
+	document.getElementById("type").value = "CreditCard";
+	document.getElementById("CLS1").style.display = "block";
+	document.getElementById("CLS2").style.display = "none";
+}
+
+function pengiriman() {
+	var x = document.getElementById("kirim1").value;
+	var y = document.getElementById("kirim2").value;
+
+	if (x == '1') {
+		document.getElementById("alamat2").style.display = "none";
+		document.getElementById("pengiriman2").style.display = "block";
+	} else if (x == '-1') {
+		document.getElementById("alamat2").style.display = "none";
+		document.getElementById("pengiriman2").style.display = "none";
+	} else {
+		document.getElementById("alamat2").style.display = "block";
+		document.getElementById("pengiriman2").style.display = "none";
+	}
+
+	if (y == '1') {
+		document.getElementById("alamat").style.display = "none";
+		document.getElementById("pengiriman").style.display = "block";
+	} else if (y == '-1') {
+		document.getElementById("alamat").style.display = "none";
+		document.getElementById("pengiriman").style.display = "none";
+	} else {
+		document.getElementById("alamat").style.display = "block";
+		document.getElementById("pengiriman").style.display = "none";
+	}
+}
+
+function bum() {
+	var d = document.getElementById("type");
+	var c = document.getElementById("bayar");
+
+	d.value = c.value;
+
+	if (c.value == "CreditCardAuto") {
+		document.getElementById("bayar3").style.display = "block";
+	} else {
+		document.getElementById("bayar3").style.display = "none";
+	}
+
+	if (c.value == 'CreditCard' || c.value == 'CreditCardAuto') {
+		document.getElementById("CLS1").style.display = "block";
+		document.getElementById("CLS2").style.display = "none";
+	} else {
+		document.getElementById("CLS1").style.display = "none";
+		document.getElementById("CLS2").style.display = "block";
+	}
+}
+
+function bum1() {
+	var d = document.getElementById("type");
+	var c = document.getElementById("bayar1");
+
+	d.value = c.value;
+
+	if (c.value == "CreditCardAuto") {
+		document.getElementById("bayar3").style.display = "block";
+	} else {
+		document.getElementById("bayar3").style.display = "none";
+	}
+}

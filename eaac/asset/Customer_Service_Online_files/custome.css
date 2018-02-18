@@ -1,0 +1,93 @@
+td {
+	color: #666666
+}
+
+body, html {
+	padding: 0px;
+	margin: 0px;
+	overflow: auto;
+}
+
+.hidden {
+	display: none
+}
+
+.show {
+	display: block
+}
+
+.selectItem {
+	font-family: 'Titillium Web', sans-serif;
+	width: 100%;
+	height: 40px;
+}
+
+.selectItemCalendar {
+	font-family: 'Titillium Web', sans-serif;
+	width: 25%;
+	height: 40px;
+}
+
+.radioSelectItem {
+	float: left;
+	margin: 0px 0 0 !important;
+	margin-right: 0.6em !important;
+}
+
+.radioSelectItemCustom {
+	margin-right: 0.6em !important;
+}
+
+.inputCustome {
+	font-family: 'Titillium Web', sans-serif;
+	width: 98.6%;
+	padding: 0px 0px 0px 5px !important;
+	/* 	font-size: 25px !important;  */
+	line-height: 38px !important;
+	height: 40px !important;
+}
+
+.selectPackage {
+	/* 	display: inline-flex !important; */
+	
+}
+
+.selectPackage>span {
+	position: relative;
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-bottom: 0;
+	font-weight: 400;
+	vertical-align: middle;
+	cursor: pointer;
+	max-width: 100%;
+}
+
+.selectPackage>span>label {
+	display: inline-block;
+	float: left;
+}
+
+.search-height {
+	height: auto !important;
+}
+
+.error {
+	color: red;
+	font-family: 'Titillium Web', sans-serif;
+	width: 100%;
+	height: 10px;
+	font-style: italic;
+	font-size: 12.5px;
+}
+
+body, html {
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+
+html {
+	overflow-y: auto;
+}

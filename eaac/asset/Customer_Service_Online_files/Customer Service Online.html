@@ -1,0 +1,1826 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0033)https://my.telkomsel.com/SelfPSB/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		
+		
+		<title>Customer Service Online</title>
+		<meta name="viewport" content="width=device-width">
+		<link href="https://my.telkomsel.com/SelfPSB/images/favicon.ico" rel="shortcut icon">
+		<link href="./Customer Service Online_files/css" rel="stylesheet" type="text/css">
+		
+		<style>
+			body, html {
+				padding: 0;
+				margin: 0;
+				height: 100%;
+			}
+			
+			html {
+				overflow-y: auto;
+			}
+		</style>
+		
+		<!--CSS BOOTSTRAP HOME-->
+		<link href="./Customer Service Online_files/css(1)" rel="stylesheet" type="text/css">
+		<link href="./Customer Service Online_files/css(2)" rel="stylesheet" type="text/css">
+		
+		
+		<!--SCRIPTS HOME-->
+		<script src="./Customer Service Online_files/jquery.min.js.download" type="text/javascript"></script>
+		<script src="./Customer Service Online_files/application.js.download" type="text/javascript"></script>
+		<script src="./Customer Service Online_files/jquery-1.7.1.js.download" type="text/javascript"></script>
+		<script src="./Customer Service Online_files/bootstrap.js.download" type="text/javascript"></script>
+		<script src="./Customer Service Online_files/jquery-ui.min.js.download" type="text/javascript"></script>
+		<script src="./Customer Service Online_files/custome.js.download" type="text/javascript"></script>
+		
+		
+		<link href="./Customer Service Online_files/bootstrap.css" rel="stylesheet" type="text/css">
+		<link href="./Customer Service Online_files/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+		<link href="./Customer Service Online_files/telkomsel.css" rel="stylesheet" type="text/css">
+		<link href="./Customer Service Online_files/contentDefault.css" rel="stylesheet" type="text/css">
+		<link href="./Customer Service Online_files/custome.css" rel="stylesheet" type="text/css">
+		
+
+		
+		
+		<script type="text/javascript" src="./Customer Service Online_files/yahoo.js.download"> </script>
+		<script type="text/javascript" src="./Customer Service Online_files/event.js.download"></script>
+		<script type="text/javascript" src="./Customer Service Online_files/connection.js.download"> </script>
+		<script type="text/javascript" src="./Customer Service Online_files/jquery.ui.draggable.js.download"> </script>
+		<script type="text/javascript" src="./Customer Service Online_files/jquery.alerts.js.download"> </script>
+		
+		<script src="./Customer Service Online_files/jscal2.js.download"></script>
+		<script src="./Customer Service Online_files/en.js.download"></script>
+		
+		
+		<link rel="stylesheet" type="text/css" href="./Customer Service Online_files/jscal2.css">
+		<link rel="stylesheet" type="text/css" href="./Customer Service Online_files/border-radius.css">
+		<link rel="stylesheet" type="text/css" href="./Customer Service Online_files/steel.css">
+		<link rel="stylesheet" type="text/css" href="./Customer Service Online_files/jquery.alerts.css" media="screen">
+		
+		<!-- Custom Fonts -->
+		<link href="./Customer Service Online_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<!-- <script type="text/javascript" src="https://www.web-cdn.net/qme.js"></script> -->
+			
+		<script type="text/javascript">
+			function redirectToLoginEng(href) {
+				var wrapper = document.getElementById("wrapper_frame");
+				var link = this.value;
+				wrapper.src = "/GTConnect/SecureHttpAcceptor?gtxInitialProcess=WebSelfCare.Implementation.Web.WSCWrapper&locale=English";
+				english();
+			}
+		
+			function redirectToLoginInd(href) {
+				var wrapper = document.getElementById("wrapper_frame");
+				var link = this.value;
+				wrapper.src = "/GTConnect/SecureHttpAcceptor?gtxInitialProcess=WebSelfCare.Implementation.Web.WSCWrapper&locale=Indonesia";
+				indonesia();
+			}
+		</script>
+		
+	
+	</head>
+	<body id="outer" style="padding: 0; margin: 0; height: 100%;">
+		<!-- Header Menu -->
+		<header>
+<div class="brand">
+		<a href="http://www.telkomsel.com/" target="_blank">
+			<img src="./Customer Service Online_files/logo-telko.png">
+		</a>
+	</div>
+	<section class="top">
+		<a href="http://www.telkomsel.com/" target="_blank" class="logo-mobile">
+			<img src="./Customer Service Online_files/logo-telko@mobile.png">
+		</a>
+		<!--  <div class="lang">
+			<ul class="inline-list">
+				<li class=''>
+					<a href="/GTConnect/UnifiedAcceptor/AddWebFramework.Main/site/mytelkomsel/locale/en-GB/">ENGLISH</a>
+				</li>
+				<li> | </li>
+				<li class='active'>
+					<a href="/GTConnect/UnifiedAcceptor/AddWebFramework.Main/site/mytelkomsel/locale/id/">INDONESIA</a>
+				</li>
+			</ul>
+		</div>  -->
+		
+		
+		
+	</section>
+	<section class="bottom">
+		
+	</section>
+	
+</header>
+
+
+		
+		
+
+
+
+
+
+
+<script type="text/javascript">
+
+var page = 1;
+
+function getSearchNumber(arg){
+	// cek btoon enabl;e or disable
+	// invert kondisi
+	if ($('#msisdnWrap3 a').attr('disabled') !== 'true')
+		{
+			$('#msisdnWrap3 a').attr('disabled', true);
+			
+	
+	var dealerCode = $('#halloCardType').val();
+	var val = $('#primaryMSISDN').val();
+	if(val=="" || val==null){
+		val = "62811";
+	}
+	
+	if 	(arg == 'search' )  {  
+		page = 1; 	
+	}
+	else if (arg == 'prev' ) { 
+		if (page > 1) page--;
+	}
+	else if (arg == 'next') { 
+		page++; 
+	}
+	
+	$.ajax({
+		url : 'getSearchNumber',
+  		method : 'get',
+  		ContentType : 'json',
+  		data : {
+  			primaryMSISDN : val,
+  			page : page,
+  			dealerCode: dealerCode
+  		},
+  		success : function(response) {
+   			var posts = JSON.parse(response);
+   			var options = '';
+    		if (response != null) {
+    			
+    			$('#msisdnWrap3 a').attr('disabled', false);
+    			
+    			$('#msisdnWrap1').empty();
+				var i =0;
+				$.each(posts, function() {
+					$('#msisdnWrap1').append('<span><input id="msisdn1" name="msisdn" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="'+this+'" > <label for="msisdn1">'+this+'</label></span>');
+					i++;
+   	        	});
+				if(i==0){
+					$('#<span>').append("NOMOR TIDAK DITEMUKAN");
+				}
+				if (i<5) { 	   $("#msisdnWrap3").hide(); }
+				else{$("#msisdnWrap3").show();	}
+				
+				if (page<=1) {$("#msisdnWrap2").hide();}
+				else{$("#msisdnWrap2").show();	}
+				 console.log(page);
+// 				$('#msisdnWrap1').remove();
+// 				$('#msisdnParent').prepend("<div class='row-fluid' id='msisdnWrap1'>");
+// 				$('#msisdnWrap1').append("<div class='span6' style='float:right;width:100%' id='msisdnWrapChild'>");
+				
+// 				var i =0;
+// 				$.each(posts, function() {
+// 					$('#msisdnWrapChild').append("<input id='msisdn' name='msisdn' type='radio' value='"+ this +"' >"+this).append("<div>").append("<div>");
+// 					i++;
+//    	        	});
+// 				if(i==0){
+// 					$('#msisdnWrapChild').append("NOMOR TIDAK DITEMUKAN");
+// 				}
+// 				$('#msisdnWrap1').append("</div>");
+// 				$('#msisdnParent').append("</div>");
+
+    		}else if(response == null){
+			$('#msisdnWrap1, #msisdnWrap2, #').remove();
+			$('#msisdnWrap1').append("test");			
+			
+   		} 
+  	},
+  	error: function(response) {
+  	  console.log(response);
+  	$('#msisdnWrap3 a').attr('disabled', false);
+  	
+  	}
+	});
+	
+		}
+	
+}
+
+function getMsisdn(dealerCode){
+	console.log('dealerCode --> ' + dealerCode);
+	var val2 = "62811";
+	$.ajax({
+		url : 'getSearchNumber',
+  		method : 'get',
+  		ContentType : 'json',
+  		data : {
+  			primaryMSISDN : val2,
+  			page : page,
+  			dealerCode: dealerCode
+  		},
+  		success : function(response) {
+   			var posts = JSON.parse(response);
+   			var options = '';
+    		if (response != null) {
+    			console.log('success get msisdn --> ' + JSON.stringify(posts));
+    			$('#msisdnWrap1').empty();
+				var i =0;
+				$.each(posts, function() {
+					$('#msisdnWrap1').append('<span><input id="msisdn1" name="msisdn" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="'+this+'" > <label for="msisdn1">'+this+'</label></span>');
+					i++;
+   	        	});
+				if(i==0){
+					$('#<span>').append("NOMOR TIDAK DITEMUKAN");
+				}
+    		}else if(response == null){
+			$('#msisdnWrap1, #msisdnWrap2, #msisdnWrap3').remove();
+			$('#msisdnWrap1').append("test");			
+
+   		} 
+  	},
+  	error: function(response) {
+  	  console.log(response);
+  	}
+	});	
+}
+
+</script>
+
+
+
+<script>
+	$(document).ready(function(){
+		// $('#halloCardType').attr('disabled', 'disabled');
+		//$("#image").val("");
+		$("#msisdnWrap2").hide();
+		$('input:radio[name=optradio]:nth(0)').attr('checked',true);
+		$("#paketBasic").val("-1");
+		$('input:checkbox[name=optPengantaran]').attr('checked',true);
+		
+		/*Validation*/
+		
+		/** Pilih Paket kartuHalo change select item
+			Basic Payment
+		*/
+		$("#halloCardPackage").change(function() {
+			var selectedPackageTitle = $(this).find("option:selected").attr("title");
+			$('#detailSpan').remove();
+			$('#paketdiv').append("<div class='span6' style='float:right;' id='detailSpan'>");
+			$('#detailSpan').append("<span style='font-family:sans-serif;font-size:13px;line-height:19px' id='detailDesc'>");
+			$('#detailDesc').append(selectedPackageTitle);
+			$('#detailSpan').append('</span>');
+		});
+		
+		var packageTitle = $("#halloCardPackage").find("option:selected").attr("title");
+		$('#detailDesc').append(packageTitle);
+		
+		$("#halloCardType").change(function() {
+			var dealerCode = $(this).val();
+			page = 1;
+			$("#msisdnWrap2").hide();
+			$("#msisdnWrap3").show();
+			$("#packageType1").attr("disabled",false);
+			if(dealerCode == '2') {
+				getMsisdn(2); // force always 1 for next dev
+				$("#packageType1").attr("disabled",true);
+				$("#packageType2").attr('checked', 'checked');
+				selectPackage($("input[name='packageType']:checked").val());
+			}else if(dealerCode == '1'){
+				getMsisdn(1);
+			}
+		});
+		
+		/*Load package selected*/
+		getPaymentType($("input[name='packageType']:checked").val());
+		
+		/*same address*/
+		if(true) {
+			$("#alamatPengiriman").hide();
+		}else {
+			$("#alamatPengiriman").show();
+		}
+		
+		var sameAddress = document.getElementById('sameAddress1').checked;
+		if(!sameAddress) {
+			$("#alamatPengiriman").hide();	
+		}
+		if(true) {
+			$("#alamatPengiriman").hide();
+		}else{
+			$("#alamatPengiriman").show();
+		}
+		
+		if ($('#paymentType').val() == 2){
+			$("#recurringSection").hide();
+		}
+		$("#paymentType").change(function() {
+			var paymentCode = $(this).val();
+			if(paymentCode == '2') {
+				$("#recurringSection").hide();
+			}else if(paymentCode == '1'){
+				$("#recurringSection").show();
+			}
+		});
+		if ($('#halloCardType').val() == 2){
+			$("#packageType1").attr("disabled",true);
+			getMsisdn(2);
+		}
+	});
+	
+	function pengantaran() {
+		var pengantaran = document.getElementById("sameAddress1").checked;
+
+		if (pengantaran == true) {
+			$("#alamatPengiriman").hide();
+		} else {
+			$("#alamatPengiriman").show();
+		}
+	}
+	function selectPackage(pagkageType) {
+		$('#halloCardPackage').empty();
+		var packageType = null;
+		if(pagkageType == 2 ){
+			packageType = pagkageType;
+		} else {
+			packageType = pagkageType.value;
+		}		 
+		$.ajax({
+			url : 'getPackageCardHallo',
+			method : 'get',
+			ContentType : 'json',
+			data : {
+				packageType : packageType
+			},
+			success : function(response) {
+				var posts = JSON.parse(response);
+				var options = '<option value="" title="-">Pilih Paket kartuHalo</option>';
+				if (response != null) {
+					$.each(posts, function() {
+						options = options + '<option value="' + this.mapId +  '" title="'+this.description+'" onchange="selectPackage(this)" >'+this.title+ '</option>';
+					});
+					$('#halloCardPackage').html(options);
+					$('#detailDesc').empty();
+					
+				}
+			}
+		});
+		getPaymentType(packageType);
+	}
+	function getPaymentType(packageType) {
+		$("#paymentType").removeAttr("disabled");
+		if(packageType != 1 && packageType != null) {
+			$("#paymentType").val(1).attr("disabled", "disabled"); 
+			$("#recurringSection").show();
+		}
+	}
+</script>
+
+<script type="text/javascript">
+    var ebRand = Math.random()+ ' ';
+    ebRand = ebRand * 1000000;
+    //<![CDATA[
+    document.write('<scr'+'ipt src="HTTP://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?CN=TT&amp;TID=3730&amp;AdvertiserID=69445&amp;TKV0=z&amp;rnd=' + ebRand + '"></scr' + 'ipt>');
+    //]]>
+    </script><script src="http://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?CN=TT&amp;TID=3730&amp;AdvertiserID=69445&amp;TKV0=z&amp;rnd=766734.636460324"></script>
+<noscript>
+	&lt;img width="1" height="1" style="border: 0"
+		src="HTTP://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?CN=TT&amp;amp;TID=3730&amp;amp;AdvertiserID=69445&amp;amp;TKV0=z&amp;amp;ns=1" /&gt;
+</noscript>
+<input type="hidden" id="width" name="sWidth" value="1349"> 
+<input type="hidden" id="height" name="sHeight" value="150">
+
+  <script type="text/javascript">
+  var ebRand = Math.random()+ ' ';
+    ebRand = ebRand * 1000000;
+  //<![CDATA[
+  document.write('<scr'+'ipt src="HTTPS://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&amp;ActivityID=313469&amp;rnd=' + ebRand + '"></scr' + 'ipt>');
+  //]]>
+ </script><script src="https://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&amp;ActivityID=313469&amp;rnd=629682.8720397085"></script>
+ <script src="https://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&amp;ActivityID=313469&amp;rnd=460170.47320492566"></script> 
+ <script> 
+$(function() {
+//$( "#datepicker" ).datepicker();
+});
+</script>
+<script>
+$(function() {
+//$( "#datepicker2" ).datepicker();
+});
+</script>
+<noscript>&lt;img width="1" height="1" style="border:0" src="HTTPS://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&amp;amp;amp;ActivityID=313469&amp;amp;amp;ns=1"/&gt;</noscript>
+
+
+<!-- Container -->
+
+<div class="row-fluid">
+	<div class="maxWidth">
+		<div id="contentIndiv" style="padding: 5% 5% 0% 5%">
+			<div class="container-fluid fullWidth">
+				<div class="row-fluid">
+					<div class="maxWidth">
+
+						<!-- Content Left Starts -->
+						<div class="span9" style="margin-bottom: 50px">
+							<div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
+
+								<!-- Header Starts -->
+								<div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+    <span style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:20px;font-weight:500;color:#666">Registrasi <span style="color:#de0300"> kartuHalo </span>
+</span></div> 
+								<!-- Header Ends -->
+								<div style="padding: 5% 2.5%">
+
+									<form id="registerForm" name="registrationform" action="https://my.telkomsel.com/SelfPSB/register" method="post" enctype="multipart/form-data">
+
+
+										<!-- Jenis Nomor kartuHalo -->
+										<div class="row-fluid" style="margin-bottom: 10px">
+											<div style="width: 15%; float: left">
+												<img src="./Customer Service Online_files/input_jenis.png" border="0">
+											</div>
+											<div style="width: 85%; float: left">
+												<legend style="text-align: right">
+													<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">ISI <span style="color:#de0300">JENIS NOMOR KARTUHALO</span></span>
+												</legend>
+											</div>
+										</div>
+										<div style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+											<!-- 01 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Jenis Nomor kartuHalo <span style="color:#de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<select id="halloCardType" name="halloCardType" class="selectItem"><option value="1">Nomor kartuHalo Baru</option><option value="2">kartuHalo 10 Digit</option></select>
+												</div>
+											</div>
+										</div>
+
+
+
+										<!-- PILIH NOMOR -->
+										<div class="row-fluid" id="halo10" style="margin-bottom: 10px; display: none">
+											<div style="width: 15%; float: left">
+												<img src="./Customer Service Online_files/input_nomor.png" border="0">
+											</div>
+											<div style="width: 85%; float: left">
+												<legend style="text-align: right">
+													<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">PILIH <span style="color:#de0300">10 Digit kartuHalo</span></span>
+												</legend>
+											</div>
+										</div>
+
+										<div class="row-fluid" id="halo" style="margin-bottom: 10px">
+											<div style="width: 15%; float: left">
+												<img src="./Customer Service Online_files/input_nomor.png" border="0">
+											</div>
+											<div style="width: 85%; float: left">
+												<legend style="text-align: right">
+													<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">PILIH <span style="color:#de0300">NOMOR</span></span>
+												</legend>
+											</div>
+										</div>
+
+										<div id="halo2" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+											<!-- 01 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Nomor Pilihan Anda<span style="color:#de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<input id="primaryMSISDN" name="primaryMSISDN" type="text" placeholder="0000" class="inputCustome" style="font-size: 25px;"> <input type="button" value="Cari" onclick="getSearchNumber(&#39;search&#39;)">
+												</div>
+											</div>
+											<div class="row-fluid" style="margin-bottom: 5px;">
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6"></div>
+													<div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent">
+														<div class="row-fluid" id="msisdnWrap1">
+															<span><input id="msisdn1" name="msisdn" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113346866"><label for="msisdn1">628113346866</label></span><span><input id="msisdn2" name="msisdn" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628112032922"><label for="msisdn2">628112032922</label></span><span><input id="msisdn3" name="msisdn" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628116640972"><label for="msisdn3">628116640972</label></span><span><input id="msisdn4" name="msisdn" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628115837035"><label for="msisdn4">628115837035</label></span><span><input id="msisdn5" name="msisdn" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113929977"><label for="msisdn5">628113929977</label></span>
+														</div>
+
+														<div class="row-fluid">
+															<div class="span6" id="msisdnWrap2" style="display: none;">
+																<a href="javascript:void(0)" onclick="getSearchNumber(&#39;prev&#39;)">
+																	<div style="float: left; width: 15%; margin-top: 10px">
+																		<i class="fa fa-angle-left fa-lg"></i>
+																	</div>
+																	<div style="float: left; width: 75%; margin-top: 6px">
+																		Sebelumnya
+																	</div>
+																</a>
+															</div>
+															<div class="span6" id="msisdnWrap3">
+																<a href="javascript:void(0)" onclick="getSearchNumber(&#39;next&#39;)">
+																	<div style="float: right; width: 15%; margin-top: 10px">
+																		<i class="fa fa-angle-right fa-lg"></i>
+																	</div>
+																	<div style="float: right; width: 75%; margin-top: 6px;">
+																		<div style="float: right; width: 85%;">
+																			Selanjutnya
+																		</div>
+																	</div>
+																</a>
+															</div>
+														</div>
+														<hr>
+														<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Pilih nomor kartuHalo yang Anda inginkan.</span>
+													</div>
+												</div>
+											</div>
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Pilih Jenis Paket<span style="color:#de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6 selectPackage">
+													<span><input id="packageType1" name="packageType" class="radio inline control-label radioSelectItem" onchange="selectPackage(this)" type="radio" value="1"><label for="packageType1">Basic</label></span><span><input id="packageType2" name="packageType" class="radio inline control-label radioSelectItem" onchange="selectPackage(this)" type="radio" value="2"><label for="packageType2">Intermediate</label></span><span><input id="packageType3" name="packageType" class="radio inline control-label radioSelectItem" onchange="selectPackage(this)" type="radio" value="3"><label for="packageType3">Advance</label></span>
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 5px" id="paketdiv">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Pilih Paket kartuHalo<span style="color:#de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<select id="halloCardPackage" name="halloCardPackage" class="selectItem">
+														<option title="-" value="">Pilih Paket kartuHalo</option>
+														
+													</select>
+												</div>
+												<div class="span6" style="float: right;" id="detailSpan">
+													<span style="font-family: sans-serif; font-size: 13px; line-height: 19px" id="detailDesc">
+													-</span>
+												</div>
+											</div>
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+
+										<!-- CARA BAYAR	-->
+										<div id="bayar2">
+											<div class="row-fluid" style="margin-bottom: 10px">
+												<div style="width: 15%; float: left">
+													<img src="./Customer Service Online_files/input_jenis.png" border="0">
+												</div>
+												<div style="width: 85%; float: left">
+													<legend style="text-align: right">
+														<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">CARA <span style="color:#de0300">BAYAR</span></span>
+													</legend>
+												</div>
+											</div>
+											<div style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+												<!-- 01 -->
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Cara Bayar<span style="color:#de0300"><b>*</b></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<select id="paymentType" name="paymentType" class="selectItem">
+															<option value="1">Credit Card</option>
+															<option value="2">Transfer ATM/e-banking</option>
+														</select>
+														<br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 12.5px; font-weight: 400; color: #666;"><i>Untuk
+																Pembayaran Biaya Pasang Baru kartuHalo Rp 40.000</i></span>
+													</div>
+												</div>
+											</div>
+											
+											<div style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%" id="recurringSection">
+												<span style="float: right;">
+													<input type="checkbox" name="recurring" id="recurring">
+													<div style="width: 95%; margin: -1px 0 0 15px; float: right">
+														Saya setuju menggunakan layanan autopayment untuk pembayaran tagihan kartuHalo. Jumlah tagihan yang harus dibayarkan adalah biaya berlangganan paket kartuHalo yang telah terdaftar ditambah kelebihan pemakaian di luar paket.
+													</div>
+												</span>
+												
+												<div class="row-fluid" style="float: right">
+													<div style="margin-bottom: 1px;"></div>
+													<div style="margin-bottom: 1px;">
+														<div style="float: right">
+															
+														</div>
+													</div>
+												</div>
+											</div>
+											
+											
+											
+											<div class="row-fluid" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+												<span id="bayar3" style="float: left; margin-left: 300px; display: none">
+													<hr> <input type="checkbox" value="" checked="" disabled="">
+													<div style="margin: -1px 0 0 15px; float: right">
+														Saya setuju dengan pembayaran AutoDebit
+													</div>
+												</span>
+											</div>							
+										</div>
+										<br>
+										
+										<!-- 										INPUT DATA DIRI -->
+
+										<div class="row-fluid" style="margin-bottom: 10px">
+											<div style="width: 15%; float: left">
+												<img src="./Customer Service Online_files/input_datadiri.png" border="0">
+											</div>
+											<div style="width: 85%; float: left">
+												<legend style="text-align: right">
+													<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">ISI <span style="color:#de0300">DATA DIRI</span></span>
+												</legend>
+											</div>
+										</div>
+										<!-- Form 02 -->
+										<div style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+											<!-- 01 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Nama Depan
+														<span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(sesuai dengan Tanda Pengenal Anda)</i></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<input id="firstName" name="firstName" class="inputCustome" placeholder="Input Nama Depan" type="text" value="" maxlength="100">
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+
+											<!-- 02 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Nama Belakang
+														<span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(sesuai dengan Tanda Pengenal Anda)</i></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<input id="lastName" name="lastName" class="inputCustome" placeholder="Input Nama Belakang" type="text" value="" maxlength="100">
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+
+											<!-- 03 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Nama Lengkap Ibu Kandung
+														<span style="color: #de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<input id="mothermaidenname" name="mothermaidenname" class="inputCustome" placeholder="Input Nama Lengkap Ibu Kandung" type="text" value="" maxlength="40">
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+
+											<!-- 04 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Nomor Yang Dapat Dihubungi
+														<span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(pilih salah satu)</i></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<select id="phonetype" name="phonetype" class="selectItem">
+														<option value="3">No. Handphone</option>
+														<option value="2">No. Kantor</option>
+														<option value="1">No. Rumah</option>
+													</select>
+													<br> <br>
+													<input id="phoneno" name="phoneno" class="inputCustome" placeholder="Input Nomor Telepon" type="text" value="" maxlength="50">
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+											<hr>
+											<!-- 05 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Tanggal Lahir
+														<span style="color: #de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<select id="date" name="date" class="selectItemCalendar">
+														
+															<option value="1">
+																01
+															</option>
+														
+															<option value="2">
+																02
+															</option>
+														
+															<option value="3">
+																03
+															</option>
+														
+															<option value="4">
+																04
+															</option>
+														
+															<option value="5">
+																05
+															</option>
+														
+															<option value="6">
+																06
+															</option>
+														
+															<option value="7">
+																07
+															</option>
+														
+															<option value="8">
+																08
+															</option>
+														
+															<option value="9">
+																09
+															</option>
+														
+															<option value="10">
+																10
+															</option>
+														
+															<option value="11">
+																11
+															</option>
+														
+															<option value="12">
+																12
+															</option>
+														
+															<option value="13">
+																13
+															</option>
+														
+															<option value="14">
+																14
+															</option>
+														
+															<option value="15">
+																15
+															</option>
+														
+															<option value="16">
+																16
+															</option>
+														
+															<option value="17">
+																17
+															</option>
+														
+															<option value="18">
+																18
+															</option>
+														
+															<option value="19">
+																19
+															</option>
+														
+															<option value="20">
+																20
+															</option>
+														
+															<option value="21">
+																21
+															</option>
+														
+															<option value="22">
+																22
+															</option>
+														
+															<option value="23">
+																23
+															</option>
+														
+															<option value="24">
+																24
+															</option>
+														
+															<option value="25">
+																25
+															</option>
+														
+															<option value="26">
+																26
+															</option>
+														
+															<option value="27">
+																27
+															</option>
+														
+															<option value="28">
+																28
+															</option>
+														
+															<option value="29">
+																29
+															</option>
+														
+															<option value="30">
+																30
+															</option>
+														
+															<option value="31">
+																31
+															</option>
+														
+													</select>
+
+													<select id="month" name="month" class="selectItemCalendar">
+														
+															<option value="1">
+																01
+															</option>
+														
+															<option value="2">
+																02
+															</option>
+														
+															<option value="3">
+																03
+															</option>
+														
+															<option value="4">
+																04
+															</option>
+														
+															<option value="5">
+																05
+															</option>
+														
+															<option value="6">
+																06
+															</option>
+														
+															<option value="7">
+																07
+															</option>
+														
+															<option value="8">
+																08
+															</option>
+														
+															<option value="9">
+																09
+															</option>
+														
+															<option value="10">
+																10
+															</option>
+														
+															<option value="11">
+																11
+															</option>
+														
+															<option value="12">
+																12
+															</option>
+														
+													</select>
+													<select id="year" name="year" class="selectItemCalendar">
+														
+															<option value="1940">1940</option>
+														
+															<option value="1941">1941</option>
+														
+															<option value="1942">1942</option>
+														
+															<option value="1943">1943</option>
+														
+															<option value="1944">1944</option>
+														
+															<option value="1945">1945</option>
+														
+															<option value="1946">1946</option>
+														
+															<option value="1947">1947</option>
+														
+															<option value="1948">1948</option>
+														
+															<option value="1949">1949</option>
+														
+															<option value="1950">1950</option>
+														
+															<option value="1951">1951</option>
+														
+															<option value="1952">1952</option>
+														
+															<option value="1953">1953</option>
+														
+															<option value="1954">1954</option>
+														
+															<option value="1955">1955</option>
+														
+															<option value="1956">1956</option>
+														
+															<option value="1957">1957</option>
+														
+															<option value="1958">1958</option>
+														
+															<option value="1959">1959</option>
+														
+															<option value="1960">1960</option>
+														
+															<option value="1961">1961</option>
+														
+															<option value="1962">1962</option>
+														
+															<option value="1963">1963</option>
+														
+															<option value="1964">1964</option>
+														
+															<option value="1965">1965</option>
+														
+															<option value="1966">1966</option>
+														
+															<option value="1967">1967</option>
+														
+															<option value="1968">1968</option>
+														
+															<option value="1969">1969</option>
+														
+															<option value="1970">1970</option>
+														
+															<option value="1971">1971</option>
+														
+															<option value="1972">1972</option>
+														
+															<option value="1973">1973</option>
+														
+															<option value="1974">1974</option>
+														
+															<option value="1975">1975</option>
+														
+															<option value="1976">1976</option>
+														
+															<option value="1977">1977</option>
+														
+															<option value="1978">1978</option>
+														
+															<option value="1979">1979</option>
+														
+															<option value="1980">1980</option>
+														
+															<option value="1981">1981</option>
+														
+															<option value="1982">1982</option>
+														
+															<option value="1983">1983</option>
+														
+															<option value="1984">1984</option>
+														
+															<option value="1985">1985</option>
+														
+															<option value="1986">1986</option>
+														
+															<option value="1987">1987</option>
+														
+															<option value="1988">1988</option>
+														
+															<option value="1989">1989</option>
+														
+															<option value="1990">1990</option>
+														
+															<option value="1991">1991</option>
+														
+															<option value="1992">1992</option>
+														
+															<option value="1993">1993</option>
+														
+															<option value="1994">1994</option>
+														
+															<option value="1995">1995</option>
+														
+															<option value="1996">1996</option>
+														
+															<option value="1997">1997</option>
+														
+															<option value="1998">1998</option>
+														
+															<option value="1999">1999</option>
+														
+															<option value="2000">2000</option>
+														
+													</select>
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Tempat Lahir
+														<span style="color: #de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<input id="birthplace" name="birthplace" class="inputCustome" placeholder="Input Tempat Lahir" type="text" value="" maxlength="100">
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+
+											<!-- 06 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Alamat Email
+														<span style="color: #de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<input id="email" name="email" class="inputCustome" placeholder="Input Alamat Email" type="text" value="" maxlength="100">
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+
+
+											<!-- 07 -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Tanda Pengenal
+														<span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(pilih
+																salah satu)</i></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<select id="idtype" name="idtype" class="selectItem">
+														<option value="KTP">
+															KTP
+														</option>
+														<option value="SIM">
+															SIM
+														</option>
+														<option value="PN">
+															Passport
+														</option>
+													</select>
+													<br> <br>
+													<div class="row-fluid" style="margin-bottom: 5px">
+														<input class="span8" type="file" name="image" id="image"> 
+													</div>
+													<div class="row-fluid" style="margin-bottom: 5px">
+														<span class="span8" style="background-color: #fff; padding: 2.5%; color: red;">Ukuran data maksimal 500Kb</span>
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Nomor Tanda Pengenal
+														<span style="color: #de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<input id="idno" name="idno" class="inputCustome" placeholder="Input No Tanda Pengenal" type="text" value="" maxlength="40">
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 1px;">
+												<div class="span6" style="margin-bottom: 1px;"></div>
+												<div class="span6" style="margin-bottom: 1px;">
+													<div style="width: 90%; float: left">
+														
+													</div>
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<div style="width: 90%; float: left">
+														Masa Berlaku (dd/mm/yyyy)
+														<span style="color: #de0300"><b>*</b></span>
+													</div>
+													<div style="width: 10%; float: left">:</div>
+												</div>
+												<div class="span6">
+													<select id="dateExpired" name="dateExpired" class="selectItemCalendar">
+														
+															<option value="1">
+																01
+															</option>
+														
+															<option value="2">
+																02
+															</option>
+														
+															<option value="3">
+																03
+															</option>
+														
+															<option value="4">
+																04
+															</option>
+														
+															<option value="5">
+																05
+															</option>
+														
+															<option value="6">
+																06
+															</option>
+														
+															<option value="7">
+																07
+															</option>
+														
+															<option value="8">
+																08
+															</option>
+														
+															<option value="9">
+																09
+															</option>
+														
+															<option value="10">
+																10
+															</option>
+														
+															<option value="11">
+																11
+															</option>
+														
+															<option value="12">
+																12
+															</option>
+														
+															<option value="13">
+																13
+															</option>
+														
+															<option value="14">
+																14
+															</option>
+														
+															<option value="15">
+																15
+															</option>
+														
+															<option value="16">
+																16
+															</option>
+														
+															<option value="17">
+																17
+															</option>
+														
+															<option value="18">
+																18
+															</option>
+														
+															<option value="19">
+																19
+															</option>
+														
+															<option value="20">
+																20
+															</option>
+														
+															<option value="21">
+																21
+															</option>
+														
+															<option value="22">
+																22
+															</option>
+														
+															<option value="23">
+																23
+															</option>
+														
+															<option value="24">
+																24
+															</option>
+														
+															<option value="25">
+																25
+															</option>
+														
+															<option value="26">
+																26
+															</option>
+														
+															<option value="27">
+																27
+															</option>
+														
+															<option value="28">
+																28
+															</option>
+														
+															<option value="29">
+																29
+															</option>
+														
+															<option value="30">
+																30
+															</option>
+														
+															<option value="31">
+																31
+															</option>
+														
+													</select>
+													<select id="monthExpired" name="monthExpired" class="selectItemCalendar">
+														
+															<option value="1">
+																01
+															</option>
+														
+															<option value="2">
+																02
+															</option>
+														
+															<option value="3">
+																03
+															</option>
+														
+															<option value="4">
+																04
+															</option>
+														
+															<option value="5">
+																05
+															</option>
+														
+															<option value="6">
+																06
+															</option>
+														
+															<option value="7">
+																07
+															</option>
+														
+															<option value="8">
+																08
+															</option>
+														
+															<option value="9">
+																09
+															</option>
+														
+															<option value="10">
+																10
+															</option>
+														
+															<option value="11">
+																11
+															</option>
+														
+															<option value="12">
+																12
+															</option>
+														
+													</select>
+													<select id="yearExpired" name="yearExpired" class="selectItemCalendar">
+														
+															<option value="1995">1995</option>
+														
+															<option value="1996">1996</option>
+														
+															<option value="1997">1997</option>
+														
+															<option value="1998">1998</option>
+														
+															<option value="1999">1999</option>
+														
+															<option value="2000">2000</option>
+														
+															<option value="2001">2001</option>
+														
+															<option value="2002">2002</option>
+														
+															<option value="2003">2003</option>
+														
+															<option value="2004">2004</option>
+														
+															<option value="2005">2005</option>
+														
+															<option value="2006">2006</option>
+														
+															<option value="2007">2007</option>
+														
+															<option value="2008">2008</option>
+														
+															<option value="2009">2009</option>
+														
+															<option value="2010">2010</option>
+														
+															<option value="2011">2011</option>
+														
+															<option value="2012">2012</option>
+														
+															<option value="2013">2013</option>
+														
+															<option value="2014">2014</option>
+														
+															<option value="2015">2015</option>
+														
+															<option value="2016">2016</option>
+														
+															<option value="2017">2017</option>
+														
+															<option value="2018">2018</option>
+														
+															<option value="2019">2019</option>
+														
+															<option value="2020">2020</option>
+														
+															<option value="2021">2021</option>
+														
+															<option value="2022">2022</option>
+														
+															<option value="2023">2023</option>
+														
+															<option value="2024">2024</option>
+														
+															<option value="2025">2025</option>
+														
+															<option value="2026">2026</option>
+														
+															<option value="2027">2027</option>
+														
+															<option value="2028">2028</option>
+														
+															<option value="2029">2029</option>
+														
+															<option value="2030">2030</option>
+														
+													</select>
+												</div>
+											</div>
+
+
+											<!-- 											ALAMAT PENGANTARAN				 -->
+
+											<hr>
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<b><h4>
+															Alamat Pengantaran
+														</h4></b>
+												</div>
+											</div>
+											<br>
+
+											<div class="row-fluid" style="margin-bottom: 5px;" id="alamatPengantaran">
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Alamat Lengkap
+															<span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i></i></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<input id="alamat2" name="deliveryaddress" class="inputCustome" placeholder="Input Alamat" type="text" value="" maxlength="127">
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Propinsi<span style="color: #de0300"><b>*</b></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<select id="deliveryProvince" name="deliveryProvince" class="selectItem" onchange="onChangeDeliveryState()">
+															<option value="">
+																Pilih Provinsi
+															</option>
+															<option value="1">Aceh</option><option value="17">Bali</option><option value="11">Banten</option><option value="7">Bengkulu</option><option value="14">DI Yogyakarta</option><option value="12">DKI Jakarta</option><option value="24">Gorontalo</option><option value="8">Jambi</option><option value="13">Jawa Barat</option><option value="15">Jawa Tengah</option><option value="16">Jawa Timur</option><option value="20">Kalimantan Barat</option><option value="21">Kalimantan Selatan</option><option value="22">Kalimantan Tengah</option><option value="23">Kalimantan Timur</option><option value="6">Kep. Bangka-Belitung</option><option value="3">Kepulauan Riau</option><option value="9">Lampung</option><option value="25">Maluku</option><option value="26">Maluku Utara</option><option value="18">Nusa Tenggara Barat</option><option value="19">Nusa Tenggara Timur</option><option value="27">Papua</option><option value="28">Papua Barat</option><option value="4">Riau</option><option value="29">Sulawesi Barat</option><option value="30">Sulawesi Selatan</option><option value="31">Sulawesi Tengah</option><option value="32">Sulawesi Tenggara</option><option value="33">Sulawesi Utara</option><option value="5">Sumatera Barat</option><option value="10">Sumatera Selatan</option><option value="2">Sumatera Utara</option>
+														</select>
+													</div>
+													<div class="row-fluid" style="margin-bottom: 1px;">
+														<div class="span6" style="margin-bottom: 1px;"></div>
+														<div class="span6" style="margin-bottom: 1px;">
+															<div style="width: 90%; float: left">
+																
+															</div>
+														</div>
+													</div>
+
+												</div>
+
+												<!-- 10 -->
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Kota/Kecamatan<span style="color: #de0300"><b>*</b></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<select id="deliveryCity" name="deliveryCity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;">
+															<option value="">Pilih Kota</option>
+															
+														</select>
+													</div>
+												</div>
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+
+												<!-- 11 -->
+
+
+												<!-- 13 -->
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Kode Pos
+															<span style="color: #de0300"><b>*</b></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<input id="kodepos2" name="deliveryPostalCode" class="inputCustome" placeholder="Input Kodepos" type="text" value="" maxlength="10">
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<hr>
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span6">
+													<b><h4>
+															Alamat Penagihan
+														</h4></b>
+												</div>
+											</div>
+											<br>
+
+
+
+											<!-- 											ALAMAT PENAGIHAN -->
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<span style="float: left;"> <input id="sameAddress1" name="sameAddress" onclick="pengantaran()" type="checkbox" value="true" checked="checked"><input type="hidden" name="_sameAddress" value="on">
+													<div style="margin: -1px 0 0 15px; float: right">
+														<b>Sama dengan Alamat Pengantaran</b> <span style="color: #de0300"><b>*</b></span>
+													</div>
+												</span>
+											</div>
+											<br>
+
+											<div class="row-fluid" style="margin-bottom: 5px; display: none;" id="alamatPengiriman">
+
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Alamat Lengkap
+															<span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(sesuai dengan Tanda Pengenal Anda)</i></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<input id="address" name="address" class="inputCustome" placeholder="Input Alamat" type="text" value="" maxlength="500">
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Propinsi<span style="color: #de0300"><b>*</b></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<select id="province" name="province" class="selectItem" onchange="onChangeBillingState()">
+															<option value="">
+																Pilih Provinsi
+															</option>
+															<option value="1">Aceh</option><option value="17">Bali</option><option value="11">Banten</option><option value="7">Bengkulu</option><option value="14">DI Yogyakarta</option><option value="12">DKI Jakarta</option><option value="24">Gorontalo</option><option value="8">Jambi</option><option value="13">Jawa Barat</option><option value="15">Jawa Tengah</option><option value="16">Jawa Timur</option><option value="20">Kalimantan Barat</option><option value="21">Kalimantan Selatan</option><option value="22">Kalimantan Tengah</option><option value="23">Kalimantan Timur</option><option value="6">Kep. Bangka-Belitung</option><option value="3">Kepulauan Riau</option><option value="9">Lampung</option><option value="25">Maluku</option><option value="26">Maluku Utara</option><option value="18">Nusa Tenggara Barat</option><option value="19">Nusa Tenggara Timur</option><option value="27">Papua</option><option value="28">Papua Barat</option><option value="4">Riau</option><option value="29">Sulawesi Barat</option><option value="30">Sulawesi Selatan</option><option value="31">Sulawesi Tengah</option><option value="32">Sulawesi Tenggara</option><option value="33">Sulawesi Utara</option><option value="5">Sumatera Barat</option><option value="10">Sumatera Selatan</option><option value="2">Sumatera Utara</option>
+														</select>
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+
+												<!-- 10 -->
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Kota/Kecamatan<span style="color: #de0300"><b>*</b></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<select id="city" name="city" class="selectItem">
+															<option value="">Pilih Kota</option>
+															
+														</select>
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 5px">
+													<div class="span6">
+														<div style="width: 90%; float: left">
+															Kode Pos
+															<span style="color: #de0300"><b>*</b></span>
+														</div>
+														<div style="width: 10%; float: left">:</div>
+													</div>
+													<div class="span6">
+														<input id="postalCode" name="postalCode" class="inputCustome" placeholder="Input Kodepos" type="text" value="" maxlength="10">
+													</div>
+												</div>
+
+												<div class="row-fluid" style="margin-bottom: 1px;">
+													<div class="span6" style="margin-bottom: 1px;"></div>
+													<div class="span6" style="margin-bottom: 1px;">
+														<div style="width: 90%; float: left">
+															
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="row-fluid" style="margin-bottom: 5px">
+												<div class="span12">
+													<span style="color: #de0300"><b>*</b> Wajib Diisi</span>
+												</div>
+											</div>
+										</div>
+										<!-- Header 03 -->
+										<div class="row-fluid" style="margin-bottom: 10px">
+											<div style="width: 15%; float: left">
+												<img src="./Customer Service Online_files/input_tnc.png" border="0">
+											</div>
+											<div style="width: 85%; float: left">
+												<legend style="text-align: right">
+													<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">TERMS
+														&amp; <span style="color: #de0300">CONDITION</span>
+													</span>
+												</legend>
+											</div>
+										</div>
+										<div style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+											<!-- 01 -->
+											<div style="padding: 5%; background: #fff; border-radius: 3px; overflow:auto; height: 336px;">
+												<ol> <li>Dengan mengajukan berlangganan kartuHalo melalui web Telkomsel Care ini, maka Anda telah memahami sepenuhnya pilihan paket kartuHalo Telkomsel yang diajukan, dan mematuhi Syarat dan Ketentuan yang berlaku untuk pilihan layanan tersebut. Ketidaksesuaian informasi yang disampaikan dapat berakibat pada tidak diloloskannya permintaan berlangganan Anda.</li> <li>Pelanggan menjamin data-data yang diberikan dalam form registrasi berlangganan kartuHalo adalah benar dan dapat dipertanggungjawabkan.</li> <li>Biaya Registrasi yang telah dibayarkan tidak dapat dikembalikan.</li> <li>Khusus untuk pelanggan yang memilih berlangganan kartuHalo 10 digit, untuk diketahui bahwa: <ol type="a"> <li>Komitmen berlangganan minimal selama 12 bulan.</li> <li>Paket kartuHalo minimal yang dapat dipilih adalah paket Intermediate.</li> <li><strong>Apabila pelanggan kartuHalo 10 digit berhenti autopayment sebelum 12 bulan sejak nomor tersebut aktif, maka Telkomsel berhak untuk menonaktifkan nomor tersebut secara sepihak</strong></li> </ol> </li> <li>Biaya bulanan berlangganan kartuHalo belum termasuk pajak (Ppn 10%).</li> <li>Kuota internet dibagi menjadi 3 (tiga) yaitu kuota semua akses (tidak ada pembagian kuota untuk 2G/3G/4G dan berlaku seluruh Indonesia), kuota khusus 4G, dan Kuota khusus konten entertainment.</li> <li>Kuota 4G &amp; konten berlaku selama periode promo dan jika terdapat perubahan akan diinfokan lebih lanjut.</li> <li>Kuota konten entertainment hanya untuk bebas akses ke aplikasi : HOOQ, VIU, JOOX, GUVERA, Prambors, Gen FM, Smule, dan Langit Musik. Jika kuota konten entertainment telah habis, akan mengkonsumsi paket data kuota semua akses.</li> <li>Membership konten hanya untuk HOOQ, VIU and Langit Musik Premium yang dapat digunakan 1 (satu) hari setelah registrasi Pascabayar telah berhasil. <ol type="a"> <li>Promo bebas biaya membership aplikasi HOOQ berlaku hingga 31 Maret 2018. Setelah masa promo berakhir, Pelanggan dapat melanjutkan membership dengan tambahan biaya 45rb/bln (diluar biaya berlangganan kartuHalo). Pelanggan dapat berhenti berlangganan konten HOOQ sewaktu-waktu tanpa dikenakan pinalti atau tambahan biaya apapun.</li> <li>Promo bebas biaya membership aplikasi VIU berlaku hingga 31 Mei 2018. Setelah masa promo berakhir, membership aplikasi VIU akan dinonaktifkan. Untuk akses melanjutkan membership VIU kembali akan dikenakan biaya sesuai ketentuan aplikasi VIU.</li> <li>Konten Langit Musik Premium akan aktif selama Pelanggan berlangganan paket Penawaran Spesial kartuHalo.</li> </ol> </li> <li>Promo pemakaian selama 6 (enam) bulan: <ol type="a"> <li>Promo Telkomsel POIN diberikan satu kali dimana pemberiannya dilakukan dengan cara bertahap setiap bulan selama 6 (enam) bulan. Contoh: Paket Rp100,000 Pelanggan akan mendapatkan total 300 Telkomsel POIN dengan pembagian  sebesar 50 POIN setiap bulan selama 6 (enam) bulan.</li> <li>Promo Saldo Tcash diberikan satu kali dimana pemberiannya dilakukan dengan cara bertahap pada bulan ke-3 dan ke-6 dengan pembagian bulan ke-3 sebesar Rp50,000 dan sisanya akan diberikan pada bulan ke-6. Contoh:  Paket Rp150,000 Pelanggan akan mendapatkan total Saldo Tcash sebesar Rp 80,000 dengan pembagian Rp50,000 pada bulan ke-3, dan untuk sisanya sebesar Rp30,000 akan diterima pada bulan ke-6.</li> </ol> </li> <li>Paket Penawaran Spesial kartuHalo HANYA berlaku untuk Pelanggan  Pasang baru (PSB) dan Pelanggan  yang mengajukan perpindahan layanan dari prabayar ke Pasca-bayar (Migrasi Prepaid to Postpaid).</li> <li>Setelah kuota paket habis maka tarif yang dikenakan mengacu kepada tarif normal kartuHalo yang berlaku.</li> <li>Pelanggan WAJIB mengaktifkan sticker TAP TCASH untuk menikmati layanan TCASH di merchant.</li> <li>Dengan mengajukan berlangganan kartuHalo, maka Anda telah memahami sepenuhnya pilihan paket kartuHalo Telkomsel yang diajukan, dan mematuhi Syarat dan Ketentuan yang berlaku untuk pilihan layanan tersebut. Ketidaksesuaian informasi yang disampaikan dapat berakibat pada tidak diloloskannya permintaan berlangganan Anda.</li> <li>Pelanggan menjamin informasi yang diberikan dalam form registrasi berlangganan kartuHalo adalah benar dan dapat dipertanggungjawabkan.</li> <li>Apabila telah pindah layanan menjadi Pascabayar kartuHalo, maka nomor tersebut dan tidak dapat kembali menjadi nomor Prabayar, beserta dengan layanannya selanjutnya berlaku ketentuan tariff Pascabayar kartuHalo.</li> <li>Informasi mengenai batasan pemakaian atau Credit Limit Service (CLS) Domestic &amp; Roaming serta BC (Billing Cycle) serta informasi lainnya terkait kartuHalo dapat (klik di <a href="http://www.telkomsel.com/infohalo" target="_blank">sini</a>)</li> <li>Informasi lebih lanjut dapat menghubungi Contact Center Telkomsel melalui : <ol type="a"> <li>Email : <a href="mailto:cs@telkomsel.co.id" target="_top">cs@telkomsel.co.id</a></li> <li><a href="https://www.facebook.com/telkomsel" target="_blank">Facebook.com/telkomsel</a> atau twitter <a href="https://twitter.com/telkomsel" target="_blank">@telkomsel</a></li> <li>Live Chat di <a href="https://my.telkomsel.com/" target="_blank">https://my.telkomsel.com</a></li> <li>Call Center 188 atau 08071811811 (dari Indonesia) dan +628110000333 (dari luar negeri)</li> <li>Atau kunjungi GraPARI terdekat</li> </ol> </li> </ol>
+											</div>
+											<br> <span style="float: right"><input type="checkbox" name="agree" id="agree">
+												<div style="width: 100px; margin: -1px 0 0 15px; float: right">
+													SAYA SETUJU</div></span>
+										</div>
+
+										<div class="row-fluid" style="float: right">
+											<div style="margin-bottom: 1px;"></div>
+											<div style="margin-bottom: 1px;">
+												<div style="float: right">
+													
+												</div>
+											</div>
+										</div>
+										<input type="hidden" id="type" name="type" value="CreditCard">
+										<button type="submit" class="btn-large btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">Registrasi
+											Sekarang!</button>
+									</form>
+
+								</div>
+								<!-- Content Ends -->
+							</div>
+						</div>
+						<!-- /Content Left Ends -->
+
+						<!-- Content Right Starts -->
+						<div class="span3" style="margin-bottom:100px">
+<a href="https://my.telkomsel.com/SelfPSB"><img src="./Customer Service Online_files/pack_kartuhalo.jpg"></a>
+          <div style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:15px;color:#333">
+            <img src="./Customer Service Online_files/icon-arrow.png" style="margin-right:15px"><a href="https://my.telkomsel.com/SelfPSB/download/Terms.pdf" style="color:#333">Syarat &amp; Ketentuan</a>
+            <hr style="margin:10px 0">
+            <img src="./Customer Service Online_files/icon-arrow.png" style="margin-right:15px"><a href="https://my.telkomsel.com/SelfPSB/orderStatus" style="color:#333">Status Pemesanan kartuHalo</a>
+			<hr style="margin:10px 0"> 
+            <img src="./Customer Service Online_files/icon-arrow.png" style="margin-right:15px"><a href="https://my.telkomsel.com/SelfPSB/CekStatusPembayaran" style="color:#333">Status Pembayaran Pemesanan kartuHalo</a>
+          </div>
+		  <!-- Button trigger modal -->
+
+</div>
+
+						<!-- /Content Right Ends -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="./Customer Service Online_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Customer Service Online_files/bootstrap.min.js.download"></script>
+<!-- Script to Activate the Carousel -->
+<script>
+
+</script>
+
+		
+		
+		<!--COPYRIGHT STARTS-->
+		<div class="row-fluid black">
+	<div class="row">
+		<div class="small-12 medium-7 column">
+			
+		</div>
+
+
+		<div class="small-12 column medium-5 ">
+			<div class="foot-menu social">
+				<div class="social-connect">
+					<h6 class=" title" style="color: white;">Connect with us</h6>
+					<ul class="inline-list">
+						<li><a href="http://www.twitter.com/telkomsel" target="_blank"><i class="icon social twitter"></i></a></li>
+						<li><a href="http://www.facebook.com/telkomsel" target="_blank"><i class="icon social facebook"></i></a></li>
+						<li><a href="http://www.youtube.com/telkomsel" target="_blank"><i class="icon social youtube"></i></a></li>
+						<li><a href="http://www.telkomsel.com/rss/news" target="_blank"><i class="icon social rss"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="row">
+		<div class="small-12 column">
+			<div class="copyright">
+				<p>Copyright © PT. Telekomunikasi Selular
+
+						<span style="float: right; color: #F1A5A5;">Untuk tampilan terbaik, gunakan Chrome 47, IE 11, Firefox 42 atau Safari 9</span>
+				
+</p>
+
+			</div>
+		</div>
+	</div>
+	
+	
+</div>
+	
+	
+		<!-- pilih package -->
+		<script type="text/javascript">
+				var ebRand = Math.random()+'';
+				ebRand = ebRand * 1000000;
+				document.write('<scr'+'ipt src="HTTPS://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&amp;ActivityID=313469&amp;rnd=' + ebRand + '"></scr' + 'ipt>');
+		</script><script src="https://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&amp;ActivityID=313469&amp;rnd=619851.9756066015"></script>
+		
+		<noscript>
+			&lt;img width="1" height="1" style="border:0" src="HTTPS://bs.serving-sys.com/BurstingPipe/ActivityServer.bs?cn=as&amp;amp;ActivityID=313469&amp;amp;ns=1"/&gt;
+		</noscript>
+
+</body></html>
