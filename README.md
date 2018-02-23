@@ -1,25 +1,21 @@
-# eaac
+Eaac
+============================
 
-This project is still on proress
+This project is still on proress , Enjoy ! :)
 
-Tools : 
+### Tools 
 - CodeIgniter PHP 3.x
 - MySQL
 
-###################
-MySQL Configuration
-###################
-
-*******************
-Database Information
-*******************
+### MySQL Configuration
+```
 Database Name : test
 User          : root
 Password      : 
+```
 
-*******************
-Tables MAKER
-*******************
+### Tables MAKER
+```
 CREATE TABLE `eprofile` (
   `id_profile` integer NOT NULL auto_increment ,
   `fullname` varchar(255) NOT NULL,
@@ -61,3 +57,6 @@ CREATE TABLE `email_token` (
 	('asdasdasdsad@asdasd.asd', '129911', '2018-02-17 17:29:21'),
 	('qweqwe@qwe.qwe', '750267', '2018-02-17 12:01:18'),
 	('sempaj@asd.asd', '123qwe', '2018-02-17 13:44:47');
+```
+
+
