@@ -15,7 +15,7 @@ class checkEmail extends CI_Controller {
 	 
 	public function index()
 	{
-		$this->load->gotoPage('v_checkEmail');
+		$this->load->gotoPage('v_checkEmail');//$this->load->gotoPage('v_checkEmail');
 	}
 	
 	public function isValid()
@@ -55,7 +55,7 @@ class checkEmail extends CI_Controller {
 			redirect (base_url());
 		}
 	}
-	
+		
 	public function validationAPI($theEmail)
 	{
 		//
@@ -73,7 +73,6 @@ class checkEmail extends CI_Controller {
 		$allEmail = $result->result_array();
 		
 		if(!$this->in_array_r($theEmail, $allEmail)){
-		//if (!in_array($theEmail, $allEmail)) {
 			$Token = substr(uniqid(), 7);
 			$insertEmail = "Insert intO email_token (email,token,update_time) values (?,?,now())";
 			$this->db->query($insertEmail,array($theEmail,$Token));
@@ -82,7 +81,7 @@ class checkEmail extends CI_Controller {
 			$updateToken = "UPDATE email_token SET token = ? , update_time=now() WHERE email = ? ";
 			$this->db->query($updateToken,array($Token,$theEmail));
 		}
-		
+		//$this->sendToken($theEmail);	UnComment when deployed
 	}
 	
 	function in_array_r($needle, $haystack, $strict = false) {
@@ -93,11 +92,43 @@ class checkEmail extends CI_Controller {
 		}
 		return false;
 	}
+	
+	public function sendToken($theEmail)
+	{
+		$to = $theEmail;
+		$title = "SUBJECT OF EMAIL HERE";
+		$text = "CONTENT OF EMAIL HERE";
+
+		$config['protocol'] = "smtp";
+		$config['smtp_host'] = "10.54.13.242";  // GANTI
+		$config['smtp_port'] = "25";
+		$config['mailtype'] = "html";
+		$config['newline'] = "\r\n";
+		$config['crlf'] = "\r\n";
+
+		$this->load->library('email');
+
+		$this->email->initialize($config);
+		$this->email->to($to);
+		$this->email->from('noreply.eaac@telkomsel.com');
+		$this->email->subject($title);
+		$this->email->message($text);
+
+		$result = $this->email->send();
+		var_dump($result);
+	}
 
 	#################
 	#YG KURANG
 	# - Validation server&client side
 	# - API Check email
 	# - Send token to Email via SMTP
+	#################
+	#METHOD LIST
+	# - isValid			--> triggered by <form>
+	# - validationAPI	--> API for email validation
+	# - firstOTP		--> Generate token & access to DB
+	# - in_array_r		--> only used by firstOTP()
+	# - sendToken		--> Send Token to Email
 	#################
 }

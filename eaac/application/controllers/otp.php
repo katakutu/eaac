@@ -32,17 +32,16 @@ class OTP extends CI_Controller {
 			
 			if ($token_input == $token_validate)
 			{
-				// lek token e bener			
-				//redirect('dashboard');
-				$this->load->gotoPage('v_regisEnd');
+				# lek token e bener			
+				redirect('registrasi');
+				//$this->load->gotoPage('v_regisEnd');
 			}
 				else
 			{				
-				//$this->session->sess_destroy();
+				# lek token e salah
 				$baseee = base_url();
 				echo "<script>alert('Token Salah');
 				window.location.href='{$baseee}otp';</script>";
-				//redirect (base_url());
 			}               
 		}
 		else
@@ -51,18 +50,18 @@ class OTP extends CI_Controller {
 		}
 	}
 		
-		public function sendMail($usr, $msisdn, $token)
-		{
-			$ip = $this->config->item("ip_smsgw");
-			$port = $this->config->item("port_smsgw");
-			$user = $this->config->item("user_smsgw");
-			$pass = $this->config->item("pwd_smsgw");
-			$adn = $this->config->item("adn");
-			$msg = urlencode("Token untuk username ".$usr." adalah ".$token);
-			$url = "http://$ip:$port/cgi-bin/sendsms?user=$user&pass=$pass&from=$adn&to=$msisdn&text=$msg";
-			$response = file_get_contents($url);
-		}
-	
+	public function sendMail($usr, $msisdn, $token)
+	{
+		$ip = $this->config->item("ip_smsgw");
+		$port = $this->config->item("port_smsgw");
+		$user = $this->config->item("user_smsgw");
+		$pass = $this->config->item("pwd_smsgw");
+		$adn = $this->config->item("adn");
+		$msg = urlencode("Token untuk username ".$usr." adalah ".$token);
+		$url = "http://$ip:$port/cgi-bin/sendsms?user=$user&pass=$pass&from=$adn&to=$msisdn&text=$msg";
+		$response = file_get_contents($url);
+	}
+
 	
 }
 		

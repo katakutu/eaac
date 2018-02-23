@@ -210,13 +210,14 @@
 
         <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/440","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"id"},"pluralDelimiter":"\u0003","ajaxPageState":{"libraries":"core\/html5shiv,search_api_autocomplete\/search_api_autocomplete,system\/base,telkomsel\/global-js,telkomsel\/search_api_autocomplete","theme":"telkomsel","theme_token":null},"ajaxTrustedUrl":{"\/search":true},"search_api_autocomplete":{"acquia_search":{"delay":true,"auto_submit":true}},"user":{"uid":0,"permissionsHash":"a5824ae7ebb4624a071bea9788427103f692202de4727daeaa4238d8f304295a"}}</script>
         <script src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/js_M9hfFCqQ7zGySD961qXvTY3A3kheCaauKApNA2ihNgs.js.download"></script>
+		<script src="<?php echo base_url() ?>asset/Customer_Service_Online_files/jquery-1.7.1.js.download" type="text/javascript"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/loader.js.download"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/js(1)"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/jsapi"></script>
         <script type="text/javascript" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/js-prod.min.js.download"></script>
         <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"19f1c540de","applicationID":"78206581","transactionName":"Y1JQZUcEDURQWhFQWVoYc1JBDAxZHn0XTEZVW25CUAQRVFlmBElfa1ZHRVoGDFpBVQBNU2h0XV9BFwxbXVwXZXdBQ11SWggTW1RNAHpZWkNAXlkJBkUcBwRaVVFEQQ==","queueTime":0,"applicationTime":12819,"atts":"TxVTEw8eHko=","errorBeacon":"bam.nr-data.net","agent":""}</script>
-
-        <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;"></ul>
+        
+		<ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;"></ul>
         <span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
         <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-2" tabindex="0" style="display: none;"></ul>
         <span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
@@ -242,5 +243,7 @@
             a,10),"100%":a-1};var e=+new Date-t;f.length>=4+d.elements.length?k.off("scroll.scrollDepth"):(d.elements&&q(d.elements,b,e),d.percentage&&p(a,b,e))},500)))}})(jQuery,window,document);jQuery.scrollDepth();</script><script type="text/javascript" id="">var trackOutboundLink=function(a){ga("send","event","outbound","click",a,{transport:"beacon",hitCallback:function(){document.location=a}})};</script>
         <iframe id="spWorker" style="display:none;" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/worker.html"></iframe>
         <style>#spHeader {background-color:#52B7F1 !important;}#spHeader p span{color:#000 !important;}.spHeaderNav {color:#000 !important;}</style>
+		
+		<!-- END TAMBAHAN -->
     </body>
 </html>

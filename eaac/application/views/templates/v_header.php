@@ -80,7 +80,6 @@
 
         <!-- End Google Tag Manager -->
         <link rel="stylesheet" href="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/css_7uiQzscBu_utLQbCQfQ32oWDj9xyVmGeozrFY_vKlZg.css" media="all">
-
         <link rel="stylesheet" href="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/css-prod.min.css" media="all"><link id="spStyleCss" rel="stylesheet" href="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/sp-style.css" type="text/css" media="screen">
 
         <!--[if lte IE 8]>
@@ -102,6 +101,15 @@
         <style class="keyframe-style" id="boost-keyframe" type="text/css"> .boostKeyframe{transform:scale3d(1,1,1);}</style>
         <script type="text/javascript" charset="UTF-8" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/stats.js.download"></script>
         <script type="text/javascript" charset="UTF-8" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/AuthenticationService.Authenticate"></script>
+		
+		<!-- TAMBAHAN GW -->
+		<style type="text/css">
+			#halaman2{display:none;}
+		</style>
+		<!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.0.min.js"></script> -->
+		<script type="text/javascript" src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2.js"></script>
+		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+		<!-- END TAMBAHAN GW -->
 		
 		<script>
 		function validateEmail(email) {
