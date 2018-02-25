@@ -15,6 +15,7 @@ class MY_Loader extends CI_Loader {
         $this->view('templates/v_footer', $vars);
     endif;
     }
+
 }
 
 ?>

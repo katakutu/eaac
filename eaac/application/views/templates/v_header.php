@@ -104,7 +104,8 @@
 		
 		<!-- TAMBAHAN GW -->
 		<style type="text/css">
-			#halaman2{display:none;}
+			#halaman2,
+            #halaman3{display:none;}
 		</style>
 		<!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.0.min.js"></script> -->
 		<script type="text/javascript" src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2.js"></script>

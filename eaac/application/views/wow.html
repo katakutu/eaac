@@ -1,0 +1,321 @@
+<fieldset id="halaman1">
+    <!-- PILIH NOMOR -->
+    <!-- JUDUL PILIH NOMOR -->
+    <div class="row-fluid" id="halo" style="margin-bottom: 10px">
+        <div style="width: 15%; float: left">
+            <img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_jenis.png" border="0">
+        </div>
+        <div style="width: 85%; float: left">
+            <legend style="text-align: right">
+                <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">PILIH <span style="color:#de0300">NOMOR</span></span>
+            </legend>
+        </div>
+    </div>
+    <!-- END OF PILIH NOMOR -->
+    <!-- END JUDUL PILIH NOMOR -->
+
+    <div id="halo2" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+        <!-- 01 -->
+        <div class="row-fluid" style="margin-bottom: 5px">
+            <div class="span6">
+                <div style="width: 90%; float: left">
+                    Alamat Kantor<span style="color: #de0300"><b>*</b></span>
+                    <br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(Kartu SIM akan dikirim ke alamat ini)</i></span>
+                </div>
+                <div style="width: 10%; float: left">:</div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 5px;">
+                <div class="row-fluid" style="margin-bottom: 5px">
+                    <div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent">
+                        <div class="row-fluid" id="msisdnWrap1">
+                            <span>
+                                                                    <input id="msisdn1" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113346866">
+                                                                    <label for="msisdn1">Telkomsel Smart Office, Jl. Gatot Subroto kav. 52, Jakarta Selatan, DKI Jakarta</label>
+                                                                </span><br>
+                            <span>
+                                                                    <input id="msisdn2" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628112032922">
+                                                                    <label for="msisdn2">GraPARI Mall Ambassador, Jl. Prof. Dr. Satrio no. 16, Karet Kuningan, Kuningan, Jakarta Selatan, DKI Jakarta</label>
+                                                                </span><br>
+                            <span>
+                                                                    <input id="msisdn3" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628116640972">
+                                                                    <label for="msisdn3">GraPARI Telkomsel, Jl. Sultan Iskandar Muda, Arteri Pondok Indah, Kebayoran Lama, RT.10/RW.6, Kby. Lama Utara, Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12240</label>
+                                                                </span><br>
+                            <span>
+                                                                    <input id="msisdn4" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628115837035">
+                                                                    <label for="msisdn4">GraPARI Telkomsel, Jl. Rw. Belong No.20, RT.1/RW.9, Kb. Jeruk, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530</label>
+                                                                </span>
+                        </div>
+
+                        <div class="row-fluid">
+                            <div class="span6" id="msisdnWrap2" style="display: none;">
+                                <a href="javascript:void(0)" onclick="getSearchNumber(&#39;prev&#39;)">
+                                    <div style="float: left; width: 15%; margin-top: 10px">
+                                        <i class="fa fa-angle-left fa-lg"></i>
+                                    </div>
+                                    <div style="float: left; width: 75%; margin-top: 6px">
+                                        Sebelumnya
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="span6" id="msisdnWrap3">
+                                <a href="javascript:void(0)" onclick="getSearchNumber(&#39;next&#39;)">
+                                    <div style="float: right; width: 15%; margin-top: 10px">
+                                        <i class="fa fa-angle-right fa-lg"></i>
+                                    </div>
+                                    <div style="float: right; width: 75%; margin-top: 6px;">
+                                        <div style="float: right; width: 85%;">
+                                            Selanjutnya
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row-fluid" style="margin-bottom: 5px">
+                            <input id="infoGedung" name="infogedung" class="inputCustome" placeholder="Informasi tambahan (gedung, lantai, dll.)" type="text" value="" maxlength="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 1px;">
+                <div class="span6" style="margin-bottom: 1px;"></div>
+                <div class="span6" style="margin-bottom: 1px;">
+                    <div style="width: 90%; float: left">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid" style="margin-bottom: 5px">
+            <div class="span6">
+                <div style="width: 90%; float: left">
+                    Nomor Kartu<span style="color:#de0300"><b>*</b></span>
+                </div>
+                <div style="width: 10%; float: left">:</div>
+            </div>
+            <div class="span6">
+                <input id="primaryMSISDN" name="primaryMSISDN" type="text" placeholder="170845" class="inputCustome" style="font-size: 25px;" />
+                <input type="button" value="Cari" onclick="getSearchNumber(&#39;search&#39;)" />
+                <input type="button" value="Sarankan Nomor Cantik" onclick="getSearchNumber(&#39;search&#39;)" />
+            </div>
+        </div>
+
+        <div class="row-fluid" style="margin-bottom: 5px;">
+            <div class="row-fluid" style="margin-bottom: 5px">
+                <div class="span6"></div>
+                <div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent">
+                    <div class="row-fluid" id="msisdnWrap1">
+                        <span>
+                                                                    <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113346866">
+                                                                    <label for="msisdn1">62811170845</label>
+                                                                </span>
+                        <span>
+                                                                    <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628112032922">
+                                                                    <label for="msisdn2">628112170845</label></span>
+                        <span>
+                                                                    <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628116640972">
+                                                                    <label for="msisdn3">628116170845</label></span>
+                        <span>
+                                                                    <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628115837035">
+                                                                    <label for="msisdn4">628115170845</label></span>
+                        <span>
+                                                                    <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113929977">
+                                                                    <label for="msisdn5">628113170845</label></span>
+                    </div>
+
+                    <div class="row-fluid">
+                        <div class="span6" id="msisdnWrap2" style="display: none;">
+                            <a href="javascript:void(0)" onclick="getSearchNumber(&#39;prev&#39;)">
+                                <div style="float: left; width: 15%; margin-top: 10px">
+                                    <i class="fa fa-angle-left fa-lg"></i>
+                                </div>
+                                <div style="float: left; width: 75%; margin-top: 6px">
+                                    Sebelumnya
+                                </div>
+                            </a>
+                        </div>
+                        <div class="span6" id="msisdnWrap3">
+                            <a href="javascript:void(0)" onclick="getSearchNumber(&#39;next&#39;)">
+                                <div style="float: right; width: 15%; margin-top: 10px">
+                                    <i class="fa fa-angle-right fa-lg"></i>
+                                </div>
+                                <div style="float: right; width: 75%; margin-top: 6px;">
+                                    <div style="float: right; width: 85%;">
+                                        Selanjutnya
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Pilih nomor kartuHalo yang Anda inginkan.</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row-fluid" style="margin-bottom: 1px;">
+            <div class="span6" style="margin-bottom: 1px;"></div>
+            <div class="span6" style="margin-bottom: 1px;">
+                <div style="width: 90%; float: left"></div>
+            </div>
+        </div>
+
+        <div class="row-fluid" style="margin-bottom: 5px">
+            <div class="span6">
+                <div style="width: 90%; float: left">
+                    Pilih Paket<span style="color:#de0300"><b>*</b></span>
+                </div>
+                <div style="width: 10%; float: left">:</div>
+            </div>
+            <div class="span6 selectPackage">
+                <span>
+                                                            <input id="packageType1" name="packagetype" class="radio inline control-label radioSelectItem" onchange="selectPackage(this)" type="radio" value="1">
+                                                            <label for="packageType1">Basic</label></span>
+                <span>
+                                                            <input id="packageType2" name="packagetype" class="radio inline control-label radioSelectItem" onchange="selectPackage(this)" type="radio" value="2">
+                                                            <label for="packageType2">Intermediate</label></span>
+                <span>
+                                                            <input id="packageType3" name="packagetype" class="radio inline control-label radioSelectItem" onchange="selectPackage(this)" type="radio" value="3">
+                                                            <label for="packageType3">Advance</label></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- INPUT DATA DIRI -->
+    <!-- JUDUL DATA DIRI -->
+    <div class="row-fluid" style="margin-bottom: 10px">
+        <div style="width: 15%; float: left">
+            <img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_datadiri.png" border="0">
+        </div>
+        <div style="width: 85%; float: left">
+            <legend style="text-align: right">
+                <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">DATA <span style="color:#de0300">DIRI</span></span>
+            </legend>
+        </div>
+    </div>
+    <!-- INPUT DATA DIRI -->
+    <!-- JUDUL DATA DIRI -->
+
+    <!-- Form 02 -->
+    <div style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+        <!-- 01 -->
+        <!-- YG KE-1 -->
+        <div class="row-fluid" style="margin-bottom: 5px">
+            <div class="span6">
+                <div style="width: 90%; float: left">
+                    Nomor KTP
+                    <span style="color: #de0300"><b>*</b></span>
+                </div>
+                <div style="width: 10%; float: left">:</div>
+            </div>
+
+            <div class="span6">
+                <input id="noKTP" name="noktp" class="inputCustome" placeholder="Isi dengan nomor KTP" type="text" value="" maxlength="40">
+                <!-- <br> <br> -->
+                <div class="row-fluid" style="margin-bottom: 5px">
+                    <input class="span8" type="file" name="imagektp" id="imageKTP">
+                </div>
+                <div class="row-fluid" style="margin-bottom: 5px">
+                    <span class="span8" style="background-color: #fff; padding: 2.5%;">Format: jpg, png, atau gif. Maks.: 5MB</span>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 1px;">
+                <div class="span6" style="margin-bottom: 1px;"></div>
+                <div class="span6" style="margin-bottom: 1px;">
+                    <div style="width: 90%; float: left"></div>
+                </div>
+            </div>
+        </div>
+        <!-- YG KE-1 END-->
+
+        <!-- YG KE-2 -->
+        <div class="row-fluid" style="margin-bottom: 5px">
+            <div class="span6">
+                <div style="width: 90%; float: left">
+                    Kartu Identitas Karyawan
+                    <span style="color: #de0300"><b>*</b></span>
+                </div>
+                <div style="width: 10%; float: left">:</div>
+            </div>
+
+            <div class="span6">
+                <div class="row-fluid" style="margin-bottom: 5px">
+                    <input class="span8" type="file" name="imagepeg" id="imagePeg">
+                </div>
+                <div class="row-fluid" style="margin-bottom: 5px">
+                    <span class="span8" style="background-color: #fff; padding: 2.5%;">Format: jpg, png, atau gif. Maks.: 5MB</span>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 1px;">
+                <div class="span6" style="margin-bottom: 1px;"></div>
+                <div class="span6" style="margin-bottom: 1px;">
+                    <div style="width: 90%; float: left">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- YG KE-2 END-->
+
+        <!-- YG KE-3 -->
+        <div class="row-fluid" style="margin-bottom: 5px">
+            <div class="span6">
+                <div style="width: 90%; float: left">
+                    Nomor Kartu Keluarga
+                    <span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(Berdasarkan Peraturan Menkominfo)</i></span>
+                </div>
+                <div style="width: 10%; float: left">:</div>
+            </div>
+
+            <div class="span6">
+                <input id="noKK" name="nokk" class="inputCustome" placeholder="Isi dengan nomor Kartu Keluarga" type="text" value="" maxlength="40">
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 1px;">
+                <div class="span6" style="margin-bottom: 1px;"></div>
+                <div class="span6" style="margin-bottom: 1px;">
+                    <div style="width: 90%; float: left">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 1px;">
+                <div class="span6" style="margin-bottom: 1px;"></div>
+                <div class="span6" style="margin-bottom: 1px;">
+                    <div style="width: 90%; float: left">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-fluid" style="margin-bottom: 5px">
+                <div class="span12">
+                    <span style="color: #de0300"><b>*</b> Wajib Diisi</span>
+                </div>
+            </div>
+            <div class="row-fluid" style="margin-bottom: 5px">
+                <div class="span12">
+                    <span style="color: #de0300"><b></b> Pastikan semua data telah benar</span>
+                </div>
+            </div>
+        </div>
+        <!-- YG KE-3 END-->
+
+        <div class="row-fluid" style="float: right">
+            <div style="margin-bottom: 1px;"></div>
+            <div style="margin-bottom: 1px;">
+                <div style="float: right">
+
+                </div>
+            </div>
+        </div>
+
+        <a class="btn-large btn-primary nextz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">LANJUT</a>
+    </div>
+</fieldset>

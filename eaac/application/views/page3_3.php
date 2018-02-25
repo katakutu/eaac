@@ -1004,7 +1004,15 @@ Berdayakan bisnis Anda untuk jadi lebih baik. Temukan berbagai solusi bisnis yan
                                         <div style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
                                             <!-- 01 -->
                                             <div style="padding: 5%; background: #fff; border-radius: 3px; overflow:auto; height: 336px;">
-                                                <ol> </ol>
+                                                <ol>
+                                                    <p>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit egestas velit sit amet scelerisque. Donec dignissim venenatis velit vitae tristique. Sed pharetra lectus auctor nisi dictum efficitur. In ante ligula, mollis ac ligula ut, rutrum pellentesque sapien. Vestibulum lacus nunc, consequat at vestibulum non, maximus non sapien. Donec id orci a tellus rutrum feugiat sed ut turpis. Etiam justo ante, lobortis vehicula libero id, rutrum semper arcu. Nulla molestie, diam gravida placerat posuere, orci neque laoreet sem, et ultricies ipsum magna porta nulla. Suspendisse lacinia ante turpis, eu sollicitudin ex ullamcorper id. Suspendisse metus dui, imperdiet ornare risus non, molestie faucibus dui. Maecenas quis quam sem.
+                                                    </p>
+                                                    <p>
+                                                    Donec malesuada dui vel arcu accumsan venenatis. Vestibulum nulla sapien, imperdiet ut porttitor a, tempus sit amet odio. Nam pharetra commodo lacus quis dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam erat tortor, lacinia eget vulputate id, aliquam pulvinar justo. Aenean quis purus eu metus fermentum malesuada sodales id justo. Quisque ac dolor finibus, accumsan nisl ut, gravida mi. Pellentesque laoreet posuere enim id vestibulum. Quisque aliquet metus ut elit congue, tincidunt bibendum magna efficitur. Aenean a tortor id ex rutrum auctor a vitae sapien. Sed sagittis justo id libero ultricies consectetur. Proin imperdiet, leo non convallis imperdiet, massa leo consectetur tellus, vitae blandit lorem diam imperdiet sapien. Integer magna felis, tempus non urna non, commodo vehicula risus. Fusce pretium efficitur orci, ac bibendum nisi varius ut. Fusce ut tempor neque. Fusce ac urna a justo efficitur semper.
+                                                    </p>
+
+                                                </ol>
                                             </div>
                                             <br> <span style="float: right"><input type="checkbox" name="agree" id="agree">
                                                 <div style="width: 100px; margin: -1px 0 0 15px; float: right">

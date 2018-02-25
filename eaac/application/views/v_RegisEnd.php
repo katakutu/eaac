@@ -729,7 +729,7 @@
                                 <!-- Header Ends -->
                                 <div style="padding: 5% 2.5%">
 
-                                    <form id="registerForm" name="registrationform" action="https://my.telkomsel.com/SelfPSB/register" method="post" enctype="multipart/form-data">
+                                    <form id="registerForm" name="registrationform" action="<?php echo base_url(). 'registrasi/berhasil'; ?>" method="post" enctype="multipart/form-data">
 
 
                                         <!-- Jenis Nomor kartuHalo -->
@@ -746,7 +746,7 @@
                                        <!-- <form action="C:/Users/Evan/Desktop/Bisnis%20_%20Telkomsel_page1.html">
                                         <button  type="button" class="btn-large btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">KEMBALI</button>
                                         </form> -->
-                                        <input class="btn-large btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif; text-align: center; font-size: 15px; width: 250px; margin-top: 20px; float: right" type="button" value="KEMBALI" onclick="window.location.href='<?php echo base_url() ?>'" />
+                                        <input class="btn-large btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif; text-align: center; font-size: 15px; width: 250px; margin-top: 20px; float: right" type="submit" value="KEMBALI" />
                                     </form>
 
                                 </div>

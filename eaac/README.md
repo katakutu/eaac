@@ -4,15 +4,8 @@ Eaac
 This project is still on proress , Enjoy ! :)
 
 ### Tools 
-- CodeIgniter 3.x
-- PHP
+- CodeIgniter PHP 3.x
 - MySQL
-
-### Folder in Use Till Now (Inside Application)
-- config
-- controllers
-- core
-- views
 
 ### MySQL Configuration
 ```
@@ -48,29 +41,22 @@ CREATE TABLE `eprofile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `email_token` (
-  `email` varchar(200) NOT NULL primary key,
-  `token` varchar(200) DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	  `email` varchar(200) NOT NULL,
+	  `token` varchar(200) DEFAULT NULL,
+	  `update_time` datetime DEFAULT NULL
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `acuan_alamat_kantor` ( 
-  `id_kantor` integer NOT NULL auto_increment , 
-  `alamat_kantor` text NOT NULL, 
-  constraint PK_KANTOR primary key (id_kantor) 
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=latin1;
+	--
+	-- Dumping data for table `email_token`
+	--
 
-CREATE TABLE `acuan_tipe_package` ( 
-  `id_package` integer NOT NULL auto_increment , 
-  `nama_package` varchar(255) NOT NULL, 
-  constraint PK_PACKAGE primary key (id_package) 
-) ENGINE=InnoDB AUTO_INCREMENT=3000 DEFAULT CHARSET=latin1;
-
-CREATE TABLE `acuan_nomor_cantik` ( 
-  `id_no_cantik` integer NOT NULL auto_increment , 
-   msisdn varchar(25) not null,
-  `status` enum('available','unavailable') NOT NULL  DEFAULT 'unavailable', 
-  constraint PK_NOCANTIK primary key (id_no_cantik) 
-) ENGINE=InnoDB AUTO_INCREMENT=8000 DEFAULT CHARSET=latin1;
+	INSERT INTO `email_token` (`email`, `token`, `update_time`) VALUES
+	('adsfodsajf@asd.sad', '476e31', '2018-02-21 22:20:36'),
+	('anung@yaii.com', '30e0e8', '2018-02-23 17:43:47'),
+	('asdads@asd.asd', '', '2018-02-17 12:01:10'),
+	('asdasdasdsad@asdasd.asd', '129911', '2018-02-17 17:29:21'),
+	('qweqwe@qwe.qwe', '750267', '2018-02-17 12:01:18'),
+	('sempaj@asd.asd', '123qwe', '2018-02-17 13:44:47');
 ```
 
 

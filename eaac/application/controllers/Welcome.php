@@ -9,11 +9,13 @@ class Welcome extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
+		$this->load->library('session');
 	} 
 	 
 	public function index()
 	{
-		$this->load->view('page1');
+		$this->session->sess_destroy();
+		$this->load->view('welcome_message');
 	}
 	
 }

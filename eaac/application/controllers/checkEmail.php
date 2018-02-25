@@ -123,6 +123,7 @@ class checkEmail extends CI_Controller {
 	# - Validation server&client side
 	# - API Check email
 	# - Send token to Email via SMTP
+	# - if isset dataEmail --> make sure no route is bypass'd
 	#################
 	#METHOD LIST
 	# - isValid			--> triggered by <form>
