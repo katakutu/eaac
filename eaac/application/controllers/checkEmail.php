@@ -38,6 +38,7 @@ class checkEmail extends CI_Controller {
 				// if VALID SHOW "SEND OTP PAGE"
 				$dataEmail = array(
                    #'username'  => 'johndoe','logged_in' => TRUE
+				   'alamat_antor' => array('alamat1, provinsi A','alamat2, provinsi B','alamat3, provinsi C','alamat4, provinsi A','alamat5, provinsi C','alamat6, provinsi A','alamat7, provinsi D','alamat8, provinsi C','alamat9, provinsi C','alamat10, provinsi E','alamat11, provinsi A','alamat12, provinsi B','alamat13, provinsi D','alamat14, provinsi A','alamat15, provinsi C'),
                    'email'     => $email 
 				);
 				$this->session->set_userdata($dataEmail);

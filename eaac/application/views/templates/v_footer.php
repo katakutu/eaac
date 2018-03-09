@@ -243,6 +243,8 @@
             a,10),"100%":a-1};var e=+new Date-t;f.length>=4+d.elements.length?k.off("scroll.scrollDepth"):(d.elements&&q(d.elements,b,e),d.percentage&&p(a,b,e))},500)))}})(jQuery,window,document);jQuery.scrollDepth();</script><script type="text/javascript" id="">var trackOutboundLink=function(a){ga("send","event","outbound","click",a,{transport:"beacon",hitCallback:function(){document.location=a}})};</script>
         <iframe id="spWorker" style="display:none;" src="<?php echo base_url() ?>asset/Bisnis_Telkomsel_files/worker.html"></iframe>
         <style>#spHeader {background-color:#52B7F1 !important;}#spHeader p span{color:#000 !important;}.spHeaderNav {color:#000 !important;}</style>
+        <link rel="stylesheet" type="text/css" href="http://flaviusmatis.github.io/simplePagination.js/simplePagination.css" />  
+        <script type="text/javascript" src="http://flaviusmatis.github.io/simplePagination.js/jquery.simplePagination.js"></script>
 		
 		<!-- END TAMBAHAN -->
     </body>

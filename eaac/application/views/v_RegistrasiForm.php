@@ -1,3 +1,37 @@
+<?php
+$email          		= "";	$fullname    			= "";	$emailreferensi			= "";
+$alamatkantor    		= "";	$alamat    				= "";
+$infogedung    			= "";	$provinsi    			= "";
+$primarymsisdn 			= "";	$kota    				= "";
+$secondarymsisdn		= "";	$kodepos    			= "";
+$noktp 		   			= "";	$tanggallahir    		= "";
+$nokk  		  			= "";	$tempatlahir    		= "";
+$imagektp      			= "";	$namaibu    			= "";
+$imagepeg      			= "";	$phone    				= "";
+
+if(array_key_exists('insertion',$this->session->all_userdata())){
+$email          		= $this->session->userdata['insertion']['email'];
+$alamatkantor    		= $this->session->userdata['insertion']['alamatkantor'];
+$infogedung    			= $this->session->userdata['insertion']['infogedung'];
+$primarymsisdn 			= $this->session->userdata['insertion']['primarymsisdn'];
+$secondarymsisdn		= $this->session->userdata['insertion']['secondarymsisdn'];
+$noktp 		   			= $this->session->userdata['insertion']['noktp'];
+$nokk  		  			= $this->session->userdata['insertion']['nokk'];
+$imagektp      			= $this->session->userdata['insertion']['imagektp'];
+$imagepeg      			= $this->session->userdata['insertion']['imagepeg'];
+$fullname    			= $this->session->userdata['insertion']['fullname'];
+$alamat    				= $this->session->userdata['insertion']['alamat'];
+$provinsi    			= $this->session->userdata['insertion']['provinsi'];
+$kota    				= $this->session->userdata['insertion']['kota'];
+$kodepos    			= $this->session->userdata['insertion']['kodepos'];
+$tanggallahir    		= $this->session->userdata['insertion']['tanggallahir'];
+$tempatlahir    		= $this->session->userdata['insertion']['tempatlahir'];
+$namaibu    			= $this->session->userdata['insertion']['namaibu'];
+$phone    				= $this->session->userdata['insertion']['phone'];
+$emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
+}
+?>
+
     <body class="">
 		<!-- Google Tag Manager (noscript) -->
 		<noscript>&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53KRC3"
@@ -751,7 +785,7 @@
 										        <div style="width: 15%; float: left">
 										            <img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_jenis.png" border="0">
 										        </div>
-										        <div style="width: 85%; float: left">
+										        <div id="scrollHere1" style="width: 85%; float: left">
 										            <legend style="text-align: right">
 										                <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">PILIH <span style="color:#de0300">NOMOR</span></span>
 										            </legend>
@@ -774,6 +808,7 @@
 										            <div class="row-fluid" style="margin-bottom: 5px;">
 										                <div class="row-fluid" style="margin-bottom: 5px">
 										                    <div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent">
+										                    <!--    
 										                        <div class="row-fluid" id="msisdnWrap1">
 										                            <span>
 										                                <input id="msisdn1" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113346866">
@@ -792,8 +827,22 @@
 										                                <label for="msisdn4">GraPARI Telkomsel, Jl. Rw. Belong No.20, RT.1/RW.9, Kb. Jeruk, Kota Jakarta Barat, Daerah Khusus Ibukota Jakarta 11530</label>
 										                            </span>
 										                        </div>
+										                    -->
+										                    	<div class="row-fluid" id="paagee">
+										                    	<?php foreach ($this->session->userdata['alamat_antor'] as $value) {
+										                    	$checked = $alamatkantor==$value ? 'checked="checked"' : '';	?>
+										                    	    <span>
+										                                <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value;?>" <?php echo $checked; ?>>
+										                                <label for="alamat_antor1"><?php echo $value;?></label>
+										                            </span>
+										                        <?php } ?>    
+										                        </div>
 
+										                        <br>
+										                        
 										                        <div class="row-fluid">
+										                        	<div id="paging" ></div> 
+										                        	<!--
 										                            <div class="span6" id="msisdnWrap2" style="display: none;">
 										                                <a href="javascript:void(0)" onclick="getSearchNumber(&#39;prev&#39;)">
 										                                    <div style="float: left; width: 15%; margin-top: 10px">
@@ -816,10 +865,11 @@
 										                                    </div>
 										                                </a>
 										                            </div>
+										                        	-->
 										                        </div>
 										                        <br>
 										                        <div class="row-fluid" style="margin-bottom: 5px">
-										                            <input id="infoGedung" name="infogedung" class="inputCustome" placeholder="Informasi tambahan (gedung, lantai, dll.)" type="text" value="" maxlength="100">
+										                            <input id="infoGedung" name="infogedung" class="inputCustome" placeholder="Informasi tambahan (gedung, lantai, dll.)" type="text" value="<?php echo $infogedung; ?>" maxlength="100">
 										                        </div>
 										                    </div>
 										                </div>
@@ -842,9 +892,14 @@
 										                <div style="width: 10%; float: left">:</div>
 										            </div>
 										            <div class="span6">
-										                <input id="primaryMSISDN" name="primaryMSISDN" type="text" placeholder="170845" class="inputCustome" style="font-size: 25px;" />
+										                <input id="primaryMSISDN" name="primaryMSISDN" type="text" placeholder="170845" class="inputCustome" style="font-size: 25px;width:80%;float:left;" value="<?php echo $primarymsisdn; ?>" />
+										                <button id="carimsisdn" type="button" data-loading-text="Mencari..." class="btn btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif;margin-top:3px; float: left;width:20%;">Cari</button>
+										                <!--
+										                <button onclick="#" type="button" class="btn btn-info" style="font-family: &#39;Titillium Web&#39;, sans-serif; float: left;">Sarankan Nomor Cantik</button>
+										                
 										                <input type="button" value="Cari" onclick="getSearchNumber(&#39;search&#39;)" />
 										                <input type="button" value="Sarankan Nomor Cantik" onclick="getSearchNumber(&#39;search&#39;)" />
+										            	-->
 										            </div>
 										        </div>
 
@@ -852,26 +907,30 @@
 										            <div class="row-fluid" style="margin-bottom: 5px">
 										                <div class="span6"></div>
 										                <div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent">
-										                    <div class="row-fluid" id="msisdnWrap1">
+										                    <div class="row-fluid" id="radioMSISDN">
+										                    <!--
 										                        <span>
-										                            <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113346866">
-										                            <label for="msisdn1">62811170845</label>
-										                                                                </span>
+										                            <input id="secondaryMSISDN1" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" >
+										                            <label class="nomorcantik" for="msisdn1">?????</label></span>
 										                        <span>
-										                            <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628112032922">
-										                            <label for="msisdn2">628112170845</label></span>
+										                            <input id="secondaryMSISDN2" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" >
+										                            <label class="nomorcantik" for="msisdn2">?????</label></span>
 										                        <span>
-										                            <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628116640972">
-										                            <label for="msisdn3">628116170845</label></span>
+										                            <input id="secondaryMSISDN3" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" >
+										                            <label class="nomorcantik" for="msisdn3">?????</label></span>
 										                        <span>
-										                            <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628115837035">
-										                            <label for="msisdn4">628115170845</label></span>
+										                            <input id="secondaryMSISDN4" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" >
+										                            <label class="nomorcantik" for="msisdn4">?????</label></span>
 										                        <span>
-										                            <input id="secondaryMSISDN" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" value="628113929977">
-										                            <label for="msisdn5">628113170845</label></span>
+										                            <input id="secondaryMSISDN5" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" >
+										                            <label class="nomorcantik" for="msisdn5">?????</label></span>
+										                    -->
 										                    </div>
 
 										                    <div class="row-fluid">
+										                    	<!--
+										                    	<div id="paging2" ></div> 
+										                    	
 										                        <div class="span6" id="msisdnWrap2" style="display: none;">
 										                            <a href="javascript:void(0)" onclick="getSearchNumber(&#39;prev&#39;)">
 										                                <div style="float: left; width: 15%; margin-top: 10px">
@@ -894,6 +953,7 @@
 										                                </div>
 										                            </a>
 										                        </div>
+										                        -->
 										                    </div>
 										                    <hr>
 										                    <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Pilih nomor kartuHalo yang Anda inginkan.</span>
@@ -959,7 +1019,7 @@
 										            </div>
 
 										            <div class="span6">
-										                <input id="noKTP" name="noktp" class="inputCustome" placeholder="Isi dengan nomor KTP" type="text" value="" maxlength="40">
+										                <input id="noKTP" name="noktp" class="inputCustome" placeholder="Isi dengan nomor KTP" type="text" value="<?php echo $noktp;?>" maxlength="40">
 										                <!-- <br> <br> -->
 										                <div class="row-fluid" style="margin-bottom: 5px">
 										                    <input class="span8" type="file" name="imagektp" id="imageKTP">
@@ -1019,7 +1079,7 @@
 										            </div>
 
 										            <div class="span6">
-										                <input id="noKK" name="nokk" class="inputCustome" placeholder="Isi dengan nomor Kartu Keluarga" type="text" value="" maxlength="40">
+										                <input id="noKK" name="nokk" class="inputCustome" placeholder="Isi dengan nomor Kartu Keluarga" type="text" value="<?php echo $nokk; ?>" maxlength="40">
 										            </div>
 
 										            <div class="row-fluid" style="margin-bottom: 1px;">
@@ -1062,7 +1122,7 @@
 										            </div>
 										        </div>
 
-										        <a class="btn-large btn-primary nextz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">LANJUT</a>
+										        <a class="btn-large btn-primary nextz" style="cursor:pointer;text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">LANJUT</a>
 										    </div>
 										</fieldset>
 										<!-- FIELDSET 1 ENDS -->
@@ -1074,7 +1134,7 @@
 												<div style="width: 15%; float: left">
 													<img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_datadiri.png" border="0">
 												</div>
-												<div style="width: 85%; float: left">
+												<div id="scrollHere2" style="width: 85%; float: left">
 													<legend style="text-align: right">
 														<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">DATA <span style="color:#de0300">DIRI</span></span>
 													</legend>
@@ -1094,7 +1154,7 @@
 														<div style="width: 10%; float: left">:</div>
 													</div>
 													<div class="span6">
-														<input id="fullName" name="fullname" class="inputCustome" placeholder="Isi dengan nama lengkap" type="text" value="" maxlength="100">
+														<input id="fullName" name="fullname" class="inputCustome" placeholder="Isi dengan nama lengkap" type="text" value="<?php echo $fullname;?>" maxlength="100">
 													</div>
 												</div>
 
@@ -1121,7 +1181,7 @@
 															
 														</div>
 														<div class="span6">
-															<input id="alamat" name="deliveryaddress" class="inputCustome" placeholder="Isi dengan alamat sesuai KTP" type="text" value="" maxlength="127">
+															<input id="alamat" name="deliveryaddress" class="inputCustome" placeholder="Isi dengan alamat sesuai KTP" type="text" value="<?php echo $alamat;?>" maxlength="127">
 														
 														<div class="row-fluid" style="margin-bottom: 5px">
 																<select id="deliveryProvince" name="deliveryprovince" class="selectItem" onchange="onChangeDeliveryState()">
@@ -1131,7 +1191,7 @@
 																<select id="deliveryCity" name="deliverycity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;">
 																<option value="">Kota</option>
 																<option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option>
-																<input id="kodePos" name="kodepos" class="inputCustome" placeholder="Kode Pos" type="text" value="" maxlength="10">
+																<input id="kodePos" name="kodepos" class="inputCustome" placeholder="Kode Pos" type="text" value="<?php echo $kodepos;?>" maxlength="10">
 																</select>
 														</div>
 														
@@ -1157,7 +1217,7 @@
 														<div style="width: 10%; float: left">:</div>
 													</div>
 													<div class="span6">
-														<input id="birthplace" name="birthplace" class="inputCustome" placeholder="Isi dengan tempat lahir" type="text" value="" maxlength="100">
+														<input id="birthplace" name="birthplace" class="inputCustome" placeholder="Isi dengan tempat lahir" type="text" value="<?php echo $tempatlahir;?>" maxlength="100">
 													</div>
 												</div>
 
@@ -1232,7 +1292,7 @@
 														<div style="width: 10%; float: left">:</div>
 													</div>
 													<div class="span6">
-														<input id="ibuName" name="ibuname" class="inputCustome" placeholder="Isi dengan nama ibu kandung" type="text" value="" maxlength="100">
+														<input id="ibuName" name="ibuname" class="inputCustome" placeholder="Isi dengan nama ibu kandung" type="text" value="<?php echo $namaibu; ?>" maxlength="100">
 													</div>
 												</div>
 
@@ -1279,7 +1339,7 @@
 														<div style="width: 10%; float: left">:</div>
 													</div>
 													<div class="span6">
-														<input id="emailRef" name="emailref" class="inputCustome" placeholder="Isi apabila memiliki alamat email pemberi referensi" type="text" value="" maxlength="100">
+														<input id="emailRef" name="emailref" class="inputCustome" placeholder="Isi apabila memiliki alamat email pemberi referensi" type="text" value="<?php echo $emailreferensi;?>" maxlength="100">
 													</div>
 												</div>
 												
@@ -1319,170 +1379,13 @@
 												</div>
 											</div>
 											
-											<a class="btn-large btn-primary backz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: left">KEMBALI</a>
-											<a class="btn-large btn-primary nextz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">LANJUT</a>
-											<!--<input class="btn-large btn-primary nextz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right" type="submit" value="LANJUT"> -->
+											<a class="btn-large btn-primary backz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px;cursor:pointer;width: 250px; margin-top: 20px; float: left">KEMBALI</a>
+											<!--<a class="btn-large btn-primary nextz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">LANJUT</a>-->
+											<input class="btn-large btn-primary" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px;cursor:pointer;width: 250px; margin-top: 20px; float: right" type="submit" value="LANJUT"> 
+
 										</fieldset>
 										<!-- FIELDSET 2 ENDS -->
 										 
-										<!-- FIELDSET 3 START -->
-                                        <fieldset id="halaman3">
-                                            <!-- JUDUL KONFIRMASI PENDAFTARAN -->
-                                            <div class="row-fluid" id="halo" style="margin-bottom: 10px">
-                                                <div style="width: 15%; float: left">
-                                                    <img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_datadiri.png" border="0">
-                                                </div>
-                                                <div style="width: 85%; float: left">
-                                                    <legend style="text-align: right">
-                                                        <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">KONFIRMASI <span style="color:#de0300">PENDAFTARAN</span></span>
-                                                    </legend>
-                                                </div>
-                                            </div>
-                                            <!-- END OF JUDUL KONFIRMASI PENDAFTARAN -->
-
-                                            <!-- ENCAP DATA KE-1 STARTS -->
-                                            <div id="halo2" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
-
-                                                <div class="row-fluid" style="margin-bottom: 5px">
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            Alamat Email<span style="color: #de0300"></span>
-                                                        </div>
-                                                        <div style="width: 10%; float: left">:</div>
-                                                    </div>
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            john_smith@telkomsel.co.id<span style="color: #de0300"><b></b></span>
-                                                        </div>
-                                                    </div>  
-                                                </div>
-
-                                                <div class="row-fluid" style="margin-bottom: 5px">
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            Alamat Kantor<span style="color: #de0300"><b></b></span>
-                                                            <br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(Kartu SIM akan dikirim ke alamat ini)</i></span>
-                                                        </div>
-                                                        <div style="width: 10%; float: left">:</div>
-                                                    </div>
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            Kantor Telkomsel HO, Jl. Jend. Gatot Subroto kav. 52, Jakarta Selatan, Telkom Landmark Tower tower 1, lt. 18<span style="color: #de0300"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row-fluid" style="margin-bottom: 5px">
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            Nomor Kartu<span style="color: #de0300"><b></b></span>
-                                                        </div>
-                                                        <div style="width: 10%; float: left">:</div>
-                                                    </div>
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            62811170845<span style="color: #de0300"><b></b></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row-fluid" style="margin-bottom: 5px">
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            Pilihan Paket<span style="color: #de0300"><b></b></span>
-                                                        </div>
-                                                        <div style="width: 10%; float: left">:</div>
-                                                    </div>
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            Team Plan 150K<span style="color: #de0300"><b></b></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row-fluid" style="margin-bottom: 5px">
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            dst.<span style="color: #de0300"><b></b></span>
-                                                        </div>
-                                                        <div style="width: 10%; float: left">:</div>
-                                                    </div>
-                                                    <div class="span6">
-                                                        <div style="width: 90%; float: left">
-                                                            <span style="color: #de0300"><b></b></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- END OF ENCAP DATA KE-1 -->
-
-                                            <!-- ENCAP DATA KE-2 STARTS -->
-                                            <div id="halo2" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
-                                                <div class="row-fluid" style="margin-bottom: 1px;">
-                                                    <div class="span6" style="margin-bottom: 1px;"></div>
-                                                    <div class="span6" style="margin-bottom: 1px;">
-                                                        <div style="width: 90%; float: left"></div>
-                                                    </div>
-                                                </div>
-                                            
-                                                <div class="row-fluid" style="margin-bottom: 1px;">
-                                                    <div class="span6" style="margin-bottom: 1px;"></div>
-                                                    <div class="span6" style="margin-bottom: 1px;">
-                                                        <div style="width: 90%; float: left"></div>
-                                                    </div>
-                                                </div>
-                                            </div><!-- END OF ENCAP DATA KE-2 -->
-
-                                            <!-- JUDUL SYARAT & KETENTUAN -->
-                                            <div class="row-fluid" style="margin-bottom: 10px">
-                                                <div style="width: 15%; float: left">
-                                                    <img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_tnc.png" border="0">
-                                                </div>
-                                                <div style="width: 85%; float: left">
-                                                    <legend style="text-align: right">
-                                                        <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">SYARAT
-                                                            &amp; <span style="color: #de0300">KETENTUAN</span>
-                                                        </span>
-                                                    </legend>
-                                                </div>
-                                            </div>
-                                            <!-- END OF JUDUL SYARAT & KETENTUAN -->
-
-                                            <div style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
-                                                <!-- 01 -->
-                                                <div style="padding: 5%; background: #fff; border-radius: 3px; overflow:auto; height: 336px;">
-                                                    <ol>
-                                                        <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit egestas velit sit amet scelerisque. Donec dignissim venenatis velit vitae tristique. Sed pharetra lectus auctor nisi dictum efficitur. In ante ligula, mollis ac ligula ut, rutrum pellentesque sapien. Vestibulum lacus nunc, consequat at vestibulum non, maximus non sapien. Donec id orci a tellus rutrum feugiat sed ut turpis. Etiam justo ante, lobortis vehicula libero id, rutrum semper arcu. Nulla molestie, diam gravida placerat posuere, orci neque laoreet sem, et ultricies ipsum magna porta nulla. Suspendisse lacinia ante turpis, eu sollicitudin ex ullamcorper id. Suspendisse metus dui, imperdiet ornare risus non, molestie faucibus dui. Maecenas quis quam sem.
-                                                        </p>
-                                                        <p>
-                                                        Donec malesuada dui vel arcu accumsan venenatis. Vestibulum nulla sapien, imperdiet ut porttitor a, tempus sit amet odio. Nam pharetra commodo lacus quis dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam erat tortor, lacinia eget vulputate id, aliquam pulvinar justo. Aenean quis purus eu metus fermentum malesuada sodales id justo. Quisque ac dolor finibus, accumsan nisl ut, gravida mi. Pellentesque laoreet posuere enim id vestibulum. Quisque aliquet metus ut elit congue, tincidunt bibendum magna efficitur. Aenean a tortor id ex rutrum auctor a vitae sapien. Sed sagittis justo id libero ultricies consectetur. Proin imperdiet, leo non convallis imperdiet, massa leo consectetur tellus, vitae blandit lorem diam imperdiet sapien. Integer magna felis, tempus non urna non, commodo vehicula risus. Fusce pretium efficitur orci, ac bibendum nisi varius ut. Fusce ut tempor neque. Fusce ac urna a justo efficitur semper.
-                                                        </p>
-                                                    </ol>
-                                                </div>
-                                                <br> 
-                                                <span style="float: right"><input type="checkbox" name="agree" id="agree">
-                                                    <div style="width: 100px; margin: -1px 0 0 15px; float: right">
-                                                        SAYA SETUJU
-                                                    </div>
-                                                </span>
-                                            </div>
-
-                                            <div class="row-fluid" style="float: right">
-                                                <div style="margin-bottom: 1px;"></div>
-                                                <div style="margin-bottom: 1px;">
-                                                    <div style="float: right"></div>
-                                                </div>
-                                            </div>
-
-                                            <input type="hidden" id="type" name="type" value="CreditCard" />
-                                            <!--
-                                            <button type="submit" class="btn-large btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: left">KEMBALI</button>
-                                            <button type="submit" class="btn-large btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">DAFTAR</button>--> 
-                                            <a class="btn-large btn-primary backz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: left">KEMBALI</a>
-											<input class="btn-large btn-primary nextz" style="text-align:center;font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right" type="submit" value="LANJUT">
-                                        </fieldset>
-                                        <!-- FIELDSET 3 ENDS -->
-										
 									</form>
 									<!-- Content Ends -->
 								</div>
@@ -1576,19 +1479,19 @@
 							},
 						},
 						messages: {
-							primaryMSISDN: {required: "MSISDN required",},
-							imagektp : {required: "Please upload your KTP image",},
-							imagepeg : {required: "Please upload your NIP image",},
-							infogedung : {required: "Info Gedung required",},
-							nokk: {required: "No KK required",},
-							noktp: {required: "No KTP required",},
-							fullname : {required: "Your Name required",},
-							deliveryaddress: {required: "Address required",},
-							kodepos: {required: "KodePos required",},
-							birthplace : {required: "Tanggal Lahir required",},
-							ibuname: {required: "Name IBU required",},
-							phoneno: {required: "Phone required",},
-							email: {required: "Email required",},
+							primaryMSISDN: {required: "MSISDN required !",},
+							imagektp : {required: "Please upload your KTP image !",},
+							imagepeg : {required: "Please upload your NIP image !",},
+							infogedung : {required: "Info Gedung required !",},
+							nokk: {required: "No KK required !",},
+							noktp: {required: "No KTP required !",},
+							fullname : {required: "Your Name required !",},
+							deliveryaddress: {required: "Address required !",},
+							kodepos: {required: "KodePos required !",},
+							birthplace : {required: "Tanggal Lahir required !",},
+							ibuname: {required: "Name IBU required !",},
+							phoneno: {required: "Phone required !",},
+							email: {required: "Email required !",},
 						}
 					});
 					if (form.valid() === true){
@@ -1596,26 +1499,18 @@
 							current_fs = $('#halaman1');
 							next_fs = $('#halaman2');
 							$("#pageNumber").html("halaman 2 dari 2");
-						}else if ($('#halaman2').is(":visible")){
-							current_fs = $('#halaman2');
-							next_fs = $('#halaman3');
-							$("#pageNumber").html(" ");
 						}
 						//$("#pageNumber").html("halaman 2 dari 2");
 						next_fs.show(); 
 						current_fs.hide();
-						$("html, body").animate({ scrollTop: ($('#halaman2').offset().top-500) }, "slow");
+						$("html, body").animate({ scrollTop: ($('#scrollHere2').offset().top-500) }, "slow");
 					}else{
 						$("html, body").animate({ scrollTop: ($('.has-error').offset().top ) }, "slow");
 					}
 				});
 				
 				$('.backz').click(function(){
-					if($('#halaman3').is(":visible")){
-						current_fs = $('#halaman3');
-						next_fs = $('#halaman2');
-						$("#pageNumber").html("halaman 2 dari 2");
-					}else if($('#halaman2').is(":visible")){
+					if($('#halaman2').is(":visible")){
 						current_fs = $('#halaman2');
 						next_fs = $('#halaman1');
 						$("#pageNumber").html("halaman 1 dari 2");
@@ -1624,6 +1519,123 @@
 					//$("#pageNumber").html("halaman 1 dari 2");
 					next_fs.show(); 
 					current_fs.hide();
+					$("html, body").animate({ scrollTop: ($('#scrollHere1').offset().top-500) }, "slow");
 				});
 			});
 		</script>
+
+		<script type="text/javascript">  
+         $(document).ready(function () {  
+           var itemsOnPage = 3;  
+           $('#paging').pagination({  
+             items: $('#paagee > span').length,  
+             itemsOnPage: itemsOnPage, 
+             nextText: 'Selanjutnya',
+             prevText: 'Sebelumnya',
+             hrefTextPrefix: 'javascript:void(0);',
+             hrefTextSuffix: 'javascript:void(0);',
+             cssStyle: 'dark-theme',  
+             onPageClick: function (pageNumber, event) {  
+               var pageN = pageNumber != 0 ? (pageNumber - 1) : pageNumber;  
+               var from = (pageN * itemsOnPage) + 1;  
+               var to = (pageNumber * itemsOnPage);  
+               //console.log('page :'+pageNumber+' from: ' + from + ' to :' + to);  
+               $('#paagee > span').css({ 'display': 'none' });  
+               for (var i = from; i <= to ; i++) {  
+                 //console.log('loop :'+i);  
+                 $('#paagee > span:eq(' + (i-1) + ')').css({ 'display': 'block' });  
+               }  
+             },  
+             onInit: function () {  
+               $('#paagee > span').css({ 'display': 'none' });  
+               for (var i = 0; i <itemsOnPage; ++i) {  
+                 $('#paagee > span:eq('+i+')').css({ 'display': 'block' });  
+               }  
+             }  
+           });  
+         });  
+        </script>
+
+        <script>
+		$(document).ready(function(){
+		    $("#carimsisdnx").click(function(){
+		        $.post("demo_test_post.asp",
+		        {
+		          name: "Donald Duck",
+		          city: "Duckburg"
+		        },
+		        function(data,status){
+		            alert("Data: " + data + "\nStatus: " + status);
+		        });
+		    });
+		});
+		</script>
+
+		<script type="text/javascript">
+		   $(document).ready(function(){
+		    $('#carimsisdn').click(function(){
+		      var wildNumber = $('#primaryMSISDN').val();
+		      $(".contaRadio").remove();
+			    // Then whatever you actually want to do i.e. submit form
+			    // After that has finished, reset the button state using
+			    
+
+		        $.ajax({
+		        	type:'POST',
+		        	data:{toserverFind: wildNumber},
+		        	url:'<?php echo base_url('registrasi/API_MSISDN_Get'); ?>',
+		        	dataType: "json",
+		        	success: function(result){
+		        		/*$('#radioMSISDN > span').addClass('radioSelectItemCustom');*/
+			        	var $i =  1;
+
+			        	for (var x = 0; x < Object.keys(result).length; x++) {
+				        	$("#radioMSISDN").append(''+
+				        		'<label class="contaRadio">'+result[x]+
+				        			'<input id="secondaryMSISDN' + ($i) + '" type="radio" name="secondaryMSISDN" value="'+result[x]+'">'+
+				        			'<span class="checkmark"></span>'+
+				        		'</label>');
+				        	$i = $i + 1;
+						//alert(result[x]);
+						}
+
+			        }
+		   });
+		  });
+		 });
+		</script>
+
+		<script type="text/javascript">
+		
+	    </script>
+
+
+
+<!--
+	    var itemsOnPage = 4;  
+			       $('#paging2').pagination({  
+			         items: $('#radioMSISDN > span').length,  
+			         itemsOnPage: itemsOnPage, 
+			         nextText: 'Selanjutnya',
+			         prevText: 'Sebelumnya',
+			         hrefTextPrefix: 'javascript:void(0);',
+			         hrefTextSuffix: 'javascript:void(0);',
+			         cssStyle: 'dark-theme',  
+			         onPageClick: function (pageNumber, event) {  
+			           var pageN = pageNumber != 0 ? (pageNumber - 1) : pageNumber;  
+			           var from = (pageN * itemsOnPage) + 1;  
+			           var to = (pageNumber * itemsOnPage);  
+			           //console.log('page :'+pageNumber+' from: ' + from + ' to :' + to);  
+			           $('#radioMSISDN > span').css({ 'display': 'none' });  
+			           for (var i = from; i <= to ; i++) {  
+			             //console.log('loop :'+i);  
+			             $('#radioMSISDN > span:eq(' + (i-1) + ')').css({ 'display': 'block' });  
+			           }  
+			         },  
+			         onInit: function () {  
+			           $('#radioMSISDN > span').css({ 'display': 'none' });  
+			           for (var i = 0; i <itemsOnPage; ++i) {  
+			             $('#radioMSISDN > span:eq('+i+')').css({ 'display': 'block' });  
+			           }  
+			         }  
+			       }); -->

@@ -693,7 +693,7 @@
 </div>
 
 <div class="loader-page" style="background-color: rgb(255, 255, 255); position: fixed; top: 0px; bottom: 0px; left: 0px; right: 0px; z-index: 9999; box-sizing: border-box; display: none;">
-    <img src="./Bisnis _ Telkomsel_files/loader.gif" alt="" style="width: 75px; height: 75px; background: #0f2236; padding: 12.5px; position: absolute; top: 50%; left: 50%; bottom: initial; right: initial; box-sizing: border-box; -webkit-border-radius: 100%; -moz-border-radius: 100%; -ms-border-radius: 100%; -o-border-radius: 100%; border-radius: 100%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
+    <img src="./Bisnis _ Telkomsel_files/loader.gif" alt="" style="cursor:pointer;width: 75px; height: 75px; background: #0f2236; padding: 12.5px; position: absolute; top: 50%; left: 50%; bottom: initial; right: initial; box-sizing: border-box; -webkit-border-radius: 100%; -moz-border-radius: 100%; -ms-border-radius: 100%; -o-border-radius: 100%; border-radius: 100%; -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
 </div>
 <div id="site-container">
               

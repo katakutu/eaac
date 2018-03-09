@@ -106,12 +106,80 @@
 		<style type="text/css">
 			#halaman2,
             #halaman3{display:none;}
+            .secondaryMSISDN1{color:red;}
+            
+            /* The container */
+            .contaRadio {
+                display: block;
+                position: relative;
+                padding-left: 35px;
+                margin-bottom: 14px;
+                cursor: pointer;
+                font-family: "apexBook";
+                font-size: 15px;    font-weight: bold;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            /* Hide the browser's default radio button */
+            .contaRadio input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            /* Create a custom radio button */
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: #eee;
+                border-radius: 50%;
+                /*border: 1px solid #B3D4FC;*/
+            }
+
+            /* On mouse-over, add a grey background color 
+            .contaRadio:hover input ~ .checkmark {
+                background-color: #ccc;
+            }*/
+
+            /* When the radio button is checked, add a blue background */
+            .contaRadio input:checked ~ .checkmark {
+                background-color: #000000;
+            }
+
+            /* Create the indicator (the dot/circle - hidden when not checked) */
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+
+            /* Show the indicator (dot/circle) when checked */
+            .contaRadio input:checked ~ .checkmark:after {
+                display: block;
+            }
+
+            /* Style the indicator (dot/circle) */
+            .contaRadio .checkmark:after {
+                top: 7.4px;
+                left: 7.6px;
+                width: 10.3px;
+                height: 10.3px;
+                border-radius: 50%;
+                background: white;
+            }
 		</style>
 		<!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.0.min.js"></script> -->
 		<script type="text/javascript" src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2.js"></script>
 		<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<!-- END TAMBAHAN GW -->
-		
+
 		<script>
 		function validateEmail(email) {
 		  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

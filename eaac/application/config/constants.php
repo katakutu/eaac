@@ -3,6 +3,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
+| My Constants API
+|--------------------------------------------------------------------------
+|
+| I don't have any idea what these are for
+| 
+*/
+define('kill', 'I am number One');
+define('the', 'I am number Two');
+define('God', 'I am number Three');
+
+
+/*
+|--------------------------------------------------------------------------
+| LIST OF API 
+|--------------------------------------------------------------------------
+|
+| These API are used when user about to fill the registration form on
+| controller 'registrasi' . Used on these fields :
+| - Alamat Kantor
+| - Type Package 
+| - Nomor Kartu
+*/
+#API Query list MSISDN to SRM
+/*Developmentdefine('API_SRM_MSISDN_LIST','http://10.250.195.155:8011/Amdocs/SRM/Service/Number');*/
+/*Productiion*/ define('API_SRM_MSISDN_LIST','http://10.251.38.178:7477/Amdocs/SRM/Service/Number');
+
+#API Reservasi MSISDN to SRM
+/*Development*/define('API_SRM_MSISDN_RESERVE','http://10.250.195.155:8011/Amdocs/SRM/Service/Number');
+/*Production define('API_SRM_MSISDN_RESERVE','http://10.251.38.178:7477/Amdocs/SRM/Service/Number');*/
+
+#API Checking KK & NIK to Dukcapil
+/*Developmentdefine('API_DUKCAPIL','http://10.250.195.155:8011/CivilRegistry/service/NIKInfoGet');*/
+/*Production */define('API_DUKCAPIL','http://10.251.38.178:7477/CivilRegistry/service/NIKInfoGet');
+
+
+
+/*
+|--------------------------------------------------------------------------
 | Display Debug backtrace
 |--------------------------------------------------------------------------
 |
