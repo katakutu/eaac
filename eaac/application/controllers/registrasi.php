@@ -21,7 +21,7 @@ class Registrasi extends CI_Controller {
 	public function index()
 	{
 		$this->load->gotoPage('v_registrasiForm');
-		echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
+		//echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
 	}
 	    
 	public function submit()
@@ -112,19 +112,21 @@ class Registrasi extends CI_Controller {
 	public function konfirmOK()
 	{
 		$DEJA_VU = $this->session->all_userdata();
-		echo "<pre>";print_r($DEJA_VU['insertion']);echo "</pre>";
+		//echo "<pre>";print_r($DEJA_VU['insertion']);echo "</pre>";
 		
 		$this->db->set($DEJA_VU['insertion']);
 		$this->db->insert('eprofile');
+
+		$this->load->driver('cache');
+	    $this->session->sess_destroy();
+	    $this->cache->clean();
+	    ob_clean();
+
 		$this->load->gotoPage('v_RegisEnd');
 	}
 
 	public function berhasil()
 	{
-		$this->load->driver('cache');
-	    $this->session->sess_destroy();
-	    $this->cache->clean();
-	    ob_clean();
 		redirect (base_url());
 	}
 
@@ -219,7 +221,7 @@ class Registrasi extends CI_Controller {
         ##### make a condition TIMEOUT #####
         //echo $errCode."<br>".$errMsg;
         #####$listNumber = $this->get_msisdn($wildNumber);
-		$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005','62812222006','62812222007','62812222008','62812222009','62812222010','62812222011','62812222012','62812222013','62812222014','62812222015','62812222016','62812222017','62812222018');
+		$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005');
 		$content = "";
 		foreach ($listNumber as &$value) {
 			/**/

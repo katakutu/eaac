@@ -1,4 +1,4 @@
-<body class="">
+<body>
     <!-- Google Tag Manager (noscript) -->
     <noscript>&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53KRC3"
                       height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>

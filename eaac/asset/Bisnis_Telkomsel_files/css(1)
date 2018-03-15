@@ -40,7 +40,7 @@
 }
 /* latin */
 @font-face {
-  font-family: 'Lato';
+  font-family: 'LatoBold';
   font-style: normal;
   font-weight: 700;
   src: local('Lato Bold'), local('Lato-Bold'), url(http://fonts.gstatic.com/s/lato/v14/H2DMvhDLycM56KNuAtbJYA.woff2) format('woff2');

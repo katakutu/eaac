@@ -17,7 +17,7 @@ class Welcome extends CI_Controller {
 	{
 		$this->session->sess_destroy();
 		//echo kill ." - ". the ." - ". God;
-		$this->load->view('zzz');//$this->load->view('welcome_message');
+		$this->load->gotoPage('templates/mencoba');//$this->load->view('welcome_message');
 	}
 
 	function API($body,$url)
