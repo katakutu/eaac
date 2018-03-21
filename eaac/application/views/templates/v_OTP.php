@@ -9,7 +9,7 @@
 #token {
 	width: 497px;
 	height: 222px;
-	background: url(<?php echo base_url(); ?>asset/images/token_main.png) center top;
+	background: url(<?php echo base_url(); ?>asset/img/token_main.png) center top;
 	margin-left: 15px;
 	font-family: Verdana, Geneva, sans-serif;
 	font-size: 9px;

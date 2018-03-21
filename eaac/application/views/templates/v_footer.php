@@ -133,7 +133,9 @@
       </div>
       
     </div>  <!-- END container -->
-    <div class="bg-footer bg-res" data-original="/themes/custom/telkomsel/assets/img/bg-footer-desktop.jpg" data-src="/themes/custom/telkomsel/assets/img/bg-footer-mobile.jpg" style="background-image: url(&#39;/themes/custom/telkomsel/assets/img/bg-footer-desktop.jpg&#39;);"></div>
+    <!--<div class="bg-footer bg-res" data-original="/themes/custom/telkomsel/assets/img/bg-footer-desktop.jpg" data-src="/themes/custom/telkomsel/assets/img/bg-footer-mobile.jpg" style="background-image: url(&#39;/themes/custom/telkomsel/assets/img/bg-footer-desktop.jpg&#39;);"></div>-->
+    <div class="bg-footer bg-res" data-original="<?php echo base_url(); ?>/asset/img/bg-footer-desktop.jpg" data-src="<?php echo base_url(); ?>asset/img/bg-footer-desktop.jpg"></div>
+    
   </footer><!-- FOOTER -->
 
   <!-- ~~~~~~~~~~~~~~~~LIST OF JAVASCRIPT~~~~~~~~~~~~~~~~ -->

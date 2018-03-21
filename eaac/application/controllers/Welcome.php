@@ -92,7 +92,7 @@ class Welcome extends CI_Controller {
 					<ns1:UnifiedResourceCriteriaInfo>
 						<ns1:type>MSISDN</ns1:type>
 						<ns1:status>AVAILABLE</ns1:status>
-						<ns1:pattern>%628115%</ns1:pattern>
+						<ns1:pattern>%6255%</ns1:pattern>
 						<ns1:AttributesData>
 							<ns1:attrName>DEALER</ns1:attrName>
 							<ns1:attrValue>002SNRSC</ns1:attrValue>
@@ -111,15 +111,20 @@ class Welcome extends CI_Controller {
         $objGetEmAll->loadXML($respGet);
         $errCode = $objGetEmAll->getElementsByTagName("errorCode")->item(0)->nodeValue;
         $errMsg = $objGetEmAll->getElementsByTagName("errorMessage")->item(0)->nodeValue;
-        $isAvailable = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
+        //$isAvailable = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
         if($errCode == '0000' && $errMsg == 'Success')
         {
         	$numbers = $objGetEmAll->getElementsByTagName('value');
         	foreach ($numbers as $number) {
 			    $listNumber[] = $number->nodeValue;
+			    //echo is_null($objGetEmAll->getElementsByTagName('value'))
+			    //echo $number->nodeValue;
 			}
-        }
-        echo '<pre>';print_r($listNumber);echo '</pre>';
+        }else echo "WTF";
+        //var_dump($numbers);
+        if(isset($listNumber)){
+        echo '<pre>';print_r($listNumber);echo '</pre>';}
+        else echo 'ASDASD';
     }
 
     function reserve_msisdn($msisdn = '628112014807')

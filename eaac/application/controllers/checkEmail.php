@@ -27,19 +27,31 @@ class checkEmail extends CI_Controller {
 		/*
 				Doing API VALIDATION FROM SURROUNDING	
 														*/
-		$responseAPI = true;	// <-- HARDCODE
+		$responseAPI1 = true;	// <-- HARDCODE
+		$responseAPI2 = true;	// <-- HARDCODE
 		
 		#EmailNullCheck 
 		if ($email)
 		{
 			#isFieldFilled
-			if ($responseAPI)
+			if ($responseAPI1)
 			{
 				// if VALID SHOW "SEND OTP PAGE"
 				$dataEmail = array(
                    #'username'  => 'johndoe','logged_in' => TRUE
 				   'alamat_antor' => array('alamat1, provinsi A','alamat2, provinsi B','alamat3, provinsi C','alamat4, provinsi A','alamat5, provinsi C','alamat6, provinsi A','alamat7, provinsi D','alamat8, provinsi C','alamat9, provinsi C','alamat10, provinsi E','alamat11, provinsi A','alamat12, provinsi B','alamat13, provinsi D','alamat14, provinsi A','alamat15, provinsi C'),
-                   'email'     => $email 
+                   'email'     => $email ,
+                   'paketz' => array(
+						    array("label"=>"HaloKick", "info"=>"Halo MyPlan", "net"=>"1,5", "netmail"=>"500", 
+							"callCUG"=>"1000", "callAll"=>"60", "SMSCUG"=>"1000", "SMSAll"=>"60")   ,
+							
+							array("label"=>"HaloPunch", "info"=>"Halo MyDream", "net"=>"1,5", "netmail"=>"500", 
+							"callCUG"=>"1000", "callAll"=>"60", "SMSCUG"=>"1000", "SMSAll"=>"60")   ,
+							
+							array("label"=>"HaloBdg", "info"=>"Halo Bdg", "net"=>"1,5", "netmail"=>"500", 
+							"callCUG"=>"1000", "callAll"=>"60", "SMSCUG"=>"1000", "SMSAll"=>"60")
+						)
+                   
 				);
 				$this->session->set_userdata($dataEmail);
 				$this->firstOTP($email);

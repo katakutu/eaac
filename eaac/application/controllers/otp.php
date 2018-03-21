@@ -15,7 +15,7 @@ class OTP extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('templates/v_OTP');
+		$this->load->view('templates/v_OTP');echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
 	}
 	    
 	public function validate()

@@ -142,6 +142,8 @@ class Registrasi extends CI_Controller {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30); //timeout in seconds
 		$output = curl_exec($ch);
 		curl_close($ch);
 		return $output;//echo API_DUKCAPIL;
@@ -167,7 +169,7 @@ class Registrasi extends CI_Controller {
 	{
 		#JF1-000231Validation of the unifiedResourceCriteriaInfo input parameter failed. The invalid fields are toValue.type,fromValue.type.064589fa-b0cd-4a41-9802-dfecdd02dabf
 		
-		####$wildNumber = $this->input->post('toserverFind');
+		$wildNumber = $this->input->post('toserverFind');
 
 		/*// do something with wildNumber [for input to the body of API]
 		$body="
@@ -220,15 +222,15 @@ class Registrasi extends CI_Controller {
         ##### STUCK ABOVE #####
         ##### make a condition TIMEOUT #####
         //echo $errCode."<br>".$errMsg;
-        #####$listNumber = $this->get_msisdn($wildNumber);
-		$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005');
-		$content = "";
+        $listNumber = $this->get_msisdn($wildNumber);
+		#####$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005');
+		/*$content = "";
 		foreach ($listNumber as &$value) {
-			/**/
+			
 			//$content .='<span><input id="secondaryMSISDN" name="secondaryMSISDN" type="radio" value="'.$value.'"><label for="msisdn1">'.$value.'</label></span>';
 			
-			#$content .= '<label for="msisdn1">'.$value.'</label>';
-		}
+			$content .= '<label for="msisdn1">'.$value.'</label>';
+		}*/
       	//echo $content;
       	echo json_encode($listNumber);
 	}
@@ -266,7 +268,7 @@ class Registrasi extends CI_Controller {
 						</ns1:AttributesData>
 					</ns1:UnifiedResourceCriteriaInfo>
 					<ns1:PaginationInfo>
-						<ns1:pageSize>8</ns1:pageSize>
+						<ns1:pageSize>5</ns1:pageSize>
 						<ns1:pageNumber>417</ns1:pageNumber>
 					</ns1:PaginationInfo>
 				</ns1:NumberRetrieveRq>
@@ -278,17 +280,20 @@ class Registrasi extends CI_Controller {
         $objGetEmAll->loadXML($respGet);
         $errCode = $objGetEmAll->getElementsByTagName("errorCode")->item(0)->nodeValue;
         $errMsg = $objGetEmAll->getElementsByTagName("errorMessage")->item(0)->nodeValue;
-        $isAvailable = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
+        //$isAvailable = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
         if($errCode == '0000' && $errMsg == 'Success')
         {
         	$numbers = $objGetEmAll->getElementsByTagName('value');
-        	foreach ($numbers as $number) {
-			    $listNumber[] = $number->nodeValue;
-			}
+        	foreach ($numbers as $number) {$listNumber[] = $number->nodeValue;}
         }else if($errCode == '9999' && $errMsg == 'Failed') {
         		$listNumber[] = 'No Response';
         }
-        return $listNumber;
+
+        if(isset($listNumber)){
+        	return $listNumber;
+        } else{
+        	return $listNumber = array('NO MSISDN FOUND');
+        }
         //echo '<pre>';print_r($listNumber);echo '</pre>';
     }
 }

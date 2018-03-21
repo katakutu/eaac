@@ -1,9 +1,6 @@
-<body>
-      <!-- Google Tag Manager (noscript) -->
-  <!--<noscript>&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53KRC3" height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>  End Google Tag Manager (noscript) -->
+<!--<body>
   <div class="backdrop"></div>
-                       
-  <!-- HEADER -->
+                
   <header class="wow fadeInDown" id="site-header" style="visibility: visible; animation-name: fadeInDown;">
     <div class="container hidden-xs hidden-sm">
       
@@ -241,7 +238,7 @@
         </div>
       </div>
     </div>
-    
+    -->
     <!-- MOBILE HEADER -->
     <div class="container head-m visible-xs visible-sm">
       <div class="row row-0">
@@ -515,20 +512,195 @@
 
                     <div style="padding: 5% 2.5%;">
 
-                        <form action="https://my.telkomsel.com/SelfPSB/register" enctype="multipart/form-data" id="registerForm" method="post" name="registrationform">
-                            <!-- Jenis Nomor kartuHalo -->
-                            <div class="row-fluid" style="margin-bottom: 10px">
-                                <!-- <div style="width: 15%; float: left">
-                                                                    <img src="./Customer Service Online_files/input_jenis.png" border="0">
-                                                                </div> -->
-                                <div style="width: 100%; float: left">
-                                    <legend style="text-align: center"><span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;"><span style="color:#de0300">REGISTRASI BERHASIL</span> - Kode pemesanan telah dikirim melalui email</span></legend>
+                        <div class="package-list">
+
+                          <!--
+                          <div class="package-offer" style="height: 174px;width: 224px;position: relative;display: inline-block;padding: 30px 20px;margin: 6px 4px;background-color: #fff;border: 1px solid #fff;text-align: left;overflow: hidden;vertical-align: middle;transition: all .3s linear;">
+
+                            <a href="https://my.telkomsel.com/app/package-details/ML4_BP_15151" class="click-area buy-to-mytelkomsel" target="_blank" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: 1;font-size: 0;text-indent: -6666em;outline: 0;color: #23527c;text-decoration: none;">HaloKick</a>
+                            <div class="subheads">
+                                <h5 style="font-family: 'Helvetica-Medium';font-size: 1em;font-weight: normal;line-height: 14pt;letter-spacing: .2pt;">kartuHalo</h5>
+                            </div>
+                        
+                            <div class="numerical price large" data-currency="Rp" data-decimal=".000" style="font-size: 4em;margin: 5px 0 10px;">280</div>
+                            <ul class="body-text-1" style="list-style: none;display: block;margin: 0;">
+                              <li class="active-day" style="display: inline-block;margin: 0 20px 0 0;">
+                                
+                                <p style="display: inline-block;vertical-align: middle;margin: 0;">1 bulan</p>
+                              </li>
+                              <li class="price">
+                                
+                                <p style="display: inline-block;vertical-align: middle;margin: 0;">150.000</p>
+                              </li>
+                            </ul>
+                          </div>
+                          -->
+                          <!--
+                          <div class="package-offer" style="height: 174px;width: 224px;position: relative;display: inline-block;padding: 30px 20px;margin: 6px 4px;background-color: #fff;border: 1px solid #fff;text-align: left;overflow: hidden;vertical-align: middle;transition: all .3s linear;">
+                          </div>
+
+                          <div class="package-offer" style="height: 174px;width: 224px;position: relative;display: inline-block;padding: 30px 20px;margin: 6px 4px;background-color: #fff;border: 1px solid #fff;text-align: left;overflow: hidden;vertical-align: middle;transition: all .3s linear;">
+                          </div> -->
+                          <!--
+                          <div id="package-offer">
+                             <a href="https://google.com" id="click-area"></a>
+
+                            <div id="subheads">
+                              <h5 id="myh5">
+                                TeamPlan 50K
+                              </h5>
+                            </div>
+
+                            <div id="numerical" data-currency="Rp" data-decimal=".000">
+                              150
+                            </div>
+
+                            <ul id="body-text-1">
+
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  Internet
+                                </p>
+                              </li>
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  1,5 GB
+                                </p>
+                              </li>
+
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  Internet email
+                                </p>
+                              </li>
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  500 MB
+                                </p>
+                              </li>
+
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  Call (CUG)
+                                </p>
+                              </li>
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  1000 mins
+                                </p>
+                              </li>
+
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  SMS (CUG)
+                                </p>
+                              </li>
+                              <li class="active-day">
+                                <i class="iconzzz "></i>
+                                <p class="desczzz">
+                                  1000 SMS
+                                </p>
+                              </li>
+
+                            </ul>
+
+                          </div>
+                          -->
+
+
+                          <div class="D1">
+
+                            <div class="D2">
+                              <h5>HaloKick</h5>
+                            </div>
+
+                            <div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin:20px 0;">550</div>
+
+                            <div class="table-div">
+
+                              <div class="row row-0">
+                                <div class="thead">
+                                  <span>Internet</span>
                                 </div>
-                            </div><!-- <form action="C:/Users/Evan/Desktop/Bisnis%20_%20Telkomsel_page1.html">
-                                                            <button  type="button" class="btn-large btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">KEMBALI</button>
-                                                            </form> -->
-                            <a class="btn-large btn-primary" href="file:///C:/Users/Evan/Desktop/Bisnis%20_%20Telkomsel_page1.html" role="button" style="font-family: &#39;Titillium Web&#39;, sans-serif; text-align: center; font-size: 15px; width: 250px; margin-top: 20px; float: right">KEMBALI</a>
-                        </form>
+                                <!-- DER --> 
+                                <div class="tbody">
+                                  <div class="numericcc">
+                                    8<sup>GB</sup>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row row-0">
+                                <div class="thead">
+                                  <span>Internet Email</span>
+                                </div>
+                                <!-- DER --> 
+                                <div class="tbody">
+                                  <div class="numericcc">
+                                    600<sup>MB</sup>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row row-0">
+                                <div class="thead">
+                                  <span>Call CUG</span>
+                                </div>
+                                <!-- DER --> 
+                                <div class="tbody">
+                                  <div class="numericcc">
+                                    1000<sup>mins</sup>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row row-0">
+                                <div class="thead">
+                                  <span>Call All Operator</span>
+                                </div>
+                                <!-- DER --> 
+                                <div class="tbody">
+                                  <div class="numericcc">
+                                    60<sup>mins</sup>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row row-0">
+                                <div class="thead">
+                                  <span>SMS CUG</span>
+                                </div>
+                                <!-- DER --> 
+                                <div class="tbody">
+                                  <div class="numericcc">
+                                    1000<sup>SMS</sup>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row row-0">
+                                <div class="thead">
+                                  <span>SMS All Operator</span>
+                                </div>
+                                <!-- DER --> 
+                                <div class="tbody">
+                                  <div class="numericcc">
+                                    60<sup>SMS</sup>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                        </div>
     
                     </div> <!-- END padding 5% 2.5% -->
 
