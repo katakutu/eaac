@@ -512,9 +512,9 @@
 
                     <div style="padding: 5% 2.5%;">
 
-                        <div class="package-list">
+                        <!--<div class="package-list">
 
-                          <!--
+                          
                           <div class="package-offer" style="height: 174px;width: 224px;position: relative;display: inline-block;padding: 30px 20px;margin: 6px 4px;background-color: #fff;border: 1px solid #fff;text-align: left;overflow: hidden;vertical-align: middle;transition: all .3s linear;">
 
                             <a href="https://my.telkomsel.com/app/package-details/ML4_BP_15151" class="click-area buy-to-mytelkomsel" target="_blank" style="position: absolute;top: 0;left: 0;right: 0;bottom: 0;z-index: 1;font-size: 0;text-indent: -6666em;outline: 0;color: #23527c;text-decoration: none;">HaloKick</a>
@@ -612,7 +612,7 @@
                             </ul>
 
                           </div>
-                          -->
+                          
 
 
                           <div class="D1">
@@ -629,7 +629,7 @@
                                 <div class="thead">
                                   <span>Internet</span>
                                 </div>
-                                <!-- DER --> 
+                                
                                 <div class="tbody">
                                   <div class="numericcc">
                                     8<sup>GB</sup>
@@ -641,7 +641,7 @@
                                 <div class="thead">
                                   <span>Internet Email</span>
                                 </div>
-                                <!-- DER --> 
+                                
                                 <div class="tbody">
                                   <div class="numericcc">
                                     600<sup>MB</sup>
@@ -653,7 +653,7 @@
                                 <div class="thead">
                                   <span>Call CUG</span>
                                 </div>
-                                <!-- DER --> 
+                                
                                 <div class="tbody">
                                   <div class="numericcc">
                                     1000<sup>mins</sup>
@@ -665,7 +665,7 @@
                                 <div class="thead">
                                   <span>Call All Operator</span>
                                 </div>
-                                <!-- DER --> 
+                                
                                 <div class="tbody">
                                   <div class="numericcc">
                                     60<sup>mins</sup>
@@ -677,7 +677,7 @@
                                 <div class="thead">
                                   <span>SMS CUG</span>
                                 </div>
-                                <!-- DER --> 
+                                
                                 <div class="tbody">
                                   <div class="numericcc">
                                     1000<sup>SMS</sup>
@@ -689,7 +689,7 @@
                                 <div class="thead">
                                   <span>SMS All Operator</span>
                                 </div>
-                                <!-- DER --> 
+                                
                                 <div class="tbody">
                                   <div class="numericcc">
                                     60<sup>SMS</sup>
@@ -700,7 +700,49 @@
                             </div>
                           </div>
 
-                        </div>
+                        </div>-->
+                        <div class="row-fluid" style="margin-bottom: 5px;" id="alamatPengantaran">
+                            <div class="row-fluid" style="margin-bottom: 5px">
+                              <div class="span6">
+                                <div style="width: 90%; float: left">
+                                  Alamat
+                                  <span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(sesuai KTP)</i></span>
+                                </div>
+                            
+                                <div style="width: 10%; float: left">:</div>
+                                
+                              </div>
+                              <div class="span6">
+                                <input id="alamat" name="deliveryaddress" class="inputCustome" placeholder="Isi dengan alamat sesuai KTP" type="text" value="afdhal" maxlength="127">
+                              
+                              <div class="row-fluid" style="margin-bottom: 5px">
+                                  <select class="selectItem" id="kategori" name="deliveryprovince" onchange="onChangeDeliveryState()">
+                                    <option value="0">Provinsi</option>
+                                    <?php foreach ($prov as $prov){echo '<option value="'.$prov['provinsi'].'">'.$prov['provinsi'].'</option>';} ?>
+                                  </select>
+                                    
+                                  <select id="subkategori" name="deliverycity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;">
+                                    <!--<option value="">Kota</option><option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option>-->
+                                    <option value="0">Kota</option>
+                                    <?php //foreach ($LOL as $LOL){echo '<option value="'.$LOL['kota'].'">'.$LOL['kota'].'</option>';} ?>
+                                    
+                                  </select>
+
+                                  <input id="kodePos" name="kodepos" class="inputCustome" placeholder="Kode Pos" type="text" value="kodepos" maxlength="10">
+                              </div>
+                              
+                              </div>
+                              
+                            </div>
+
+                            <div class="row-fluid" style="margin-bottom: 1px;">
+                              <div class="span6" style="margin-bottom: 1px;"></div>
+                              <div class="span6" style="margin-bottom: 1px;">
+                                <div style="width: 90%; float: left"> </div>
+                              </div>
+                            </div>
+                            
+                          </div>
     
                     </div> <!-- END padding 5% 2.5% -->
 
@@ -724,3 +766,28 @@
 
   </div>    <!-- END row - fluid -->
         
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $('#kategori').change(function(){
+            var id=$(this).val();
+            $.ajax({
+                url : "<?php echo base_url();?>welcome/get_subkategori",
+                type : "POST",
+                data : {id: id},
+                async : false,
+                dataType : 'json',
+                success: function(data){
+                    var html = '';
+                    var i;
+                    for(i=0; i<data.length; i++){
+                        html += '<option>'+data[i]+'</option>';
+                    }
+                    $('#subkategori').html(html);
+                    //$('#kodePos').val(data);
+                     
+                }
+            });
+        });
+    });
+</script>

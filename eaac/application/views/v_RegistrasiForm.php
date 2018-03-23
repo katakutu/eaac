@@ -1,7 +1,7 @@
 <?php
 $email          	=	$fullname    	=	$emailreferensi =	$alamatkantor	=		$alamat 			= "";
-$infogedung    		=	$provinsi    	=	$primarymsisdn 	=	$kota 			  =		$secondarymsisdn 	= "";
-$kodepos    		  =	$noktp 		   	=	$tanggallahir  	=	$nokk  		  	=		$tempatlahir    	= "";
+$infogedung    		=	$provinsi    	=	$primarymsisdn 	=	$kota 			=		$secondarymsisdn 	= "";
+$kodepos    		=	$noktp 		   	=	$tanggallahir  	=	$nokk  		  	=		$tempatlahir    	= "";
 $imagektp      		=	$namaibu    	=	$imagepeg      	=	$phone    									= "";
 
 if(array_key_exists('insertion',$this->session->all_userdata())){
@@ -24,6 +24,7 @@ $tempatlahir    		= $this->session->userdata['insertion']['tempatlahir'];
 $namaibu    			= $this->session->userdata['insertion']['namaibu'];
 $phone    				= $this->session->userdata['insertion']['phone'];
 $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
+$exxx = explode('-',$tanggallahir);
 }
 ?>
 
@@ -572,6 +573,10 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
                                 </div>
                                 <hr style="display: none;">
                                 <span id="ketpilih" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Cari nomor yang mengandung angka cantik yang Anda ketikan</span>
+                                <br>
+                                <?php if($secondarymsisdn !== ""){ ?>
+                                <span id="currentNo" style="font-family: 'Helvetica-Bold', sans-serif; font-size: 13px; line-height: 19px">Nomor yang dipilih <?php echo $secondarymsisdn; ?></span><?php } ?>
+                                <input type="hidden" value=<?php echo $secondarymsisdn; ?> name="secondaryMSISDN" >
                                   <!--<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Pilih nomor kartuHalo yang Anda inginkan.</span>-->
                               </div>
                             </div>
@@ -602,8 +607,8 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 
                                 
                                     
-                                    <div class="D1">
-                                        <input class="paketku" type="radio" name="packagetype" value="550">
+                                    <div class="D1 selected">
+                                        <input class="paketku" type="radio" name="packagetype" value="550" checked="checked">
                                         <div class="D2">
                                           <h5>HaloKick</h5>
                                         </div>
@@ -1145,27 +1150,6 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
                             </div>
                               
 
-                              
-
-                              <?php /*
-                              $paketz = $this->session->userdata['paketz'];
-                              for($x=0; $x<count($paketz); $x++){
-                            
-                              $xxx=$x+1;
-                              echo '<span><input type="radio" value="'.$paketz[$x]['label'].'" class="wtf" name="packagetype"><label for="paket'.$xxx.'">
-                              LABEL = '.$paketz[$x]['label'].' ||
-                              Desc = '.$paketz[$x]['info'].' || 
-                              Internet = '.$paketz[$x]['net'].' || 
-                              InternetMail = '.$paketz[$x]['netmail'].' || 
-                              CallCUG = '.$paketz[$x]['callCUG'].' || 
-                              CallAll = '.$paketz[$x]['callAll'].' || 
-                              SMS = '.$paketz[$x]['SMSCUG'].' || 
-                              SMSAll = '.$paketz[$x]['SMSAll'].'
-                              </label></span>';
-                              }
-                              */
-                              ?>
-
                               <!--
                               <span>
                                 <input id="packageType1" name="packagetype" class="radio inline control-label radioSelectItem" onchange="selectPackage(this)" type="radio" value="1">
@@ -1371,12 +1355,22 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
                                 <input id="alamat" name="deliveryaddress" class="inputCustome" placeholder="Isi dengan alamat sesuai KTP" type="text" value="<?php echo $alamat;?>" maxlength="127">
                               
                               <div class="row-fluid" style="margin-bottom: 5px">
-                                  <select class="selectItem" id="deliveryProvince" name="deliveryprovince" onchange="onChangeDeliveryState()">
-                                    <option value="">Provinsi</option><option value="1">Aceh</option><option value="17">Bali</option><option value="11">Banten</option><option value="7">Bengkulu</option><option value="14">DI Yogyakarta</option><option value="12">DKI Jakarta</option><option value="24">Gorontalo</option><option value="8">Jambi</option><option value="13">Jawa Barat</option><option value="15">Jawa Tengah</option><option value="16">Jawa Timur</option><option value="20">Kalimantan Barat</option><option value="21">Kalimantan Selatan</option><option value="22">Kalimantan Tengah</option><option value="23">Kalimantan Timur</option><option value="6">Kep. Bangka-Belitung</option><option value="3">Kepulauan Riau</option><option value="9">Lampung</option><option value="25">Maluku</option><option value="26">Maluku Utara</option><option value="18">Nusa Tenggara Barat</option><option value="19">Nusa Tenggara Timur</option><option value="27">Papua</option><option value="28">Papua Barat</option><option value="4">Riau</option><option value="29">Sulawesi Barat</option><option value="30">Sulawesi Selatan</option><option value="31">Sulawesi Tengah</option><option value="32">Sulawesi Tenggara</option><option value="33">Sulawesi Utara</option><option value="5">Sumatera Barat</option><option value="10">Sumatera Selatan</option><option value="2">Sumatera Utara</option>
+                                  <select class="selectItem" id="provinces" name="deliveryprovince" onchange="onChangeDeliveryState()">
+                                    <!--<option value="">Provinsi</option><option value="1">Aceh</option><option value="17">Bali</option><option value="11">Banten</option><option value="7">Bengkulu</option><option value="14">DI Yogyakarta</option><option value="12">DKI Jakarta</option><option value="25">Gorontalo</option><option value="8">Jambi</option><option value="13">Jawa Barat</option><option value="15">Jawa Tengah</option><option value="16">Jawa Timur</option><option value="20">Kalimantan Barat</option><option value="21">Kalimantan Selatan</option><option value="22">Kalimantan Tengah</option><option value="23">Kalimantan Timur</option><option value="24">Kalimantan Utara</option><option value="6">Kep. Bangka-Belitung</option><option value="3">Kepulauan Riau</option><option value="9">Lampung</option><option value="26">Maluku</option><option value="27">Maluku Utara</option><option value="18">Nusa Tenggara Barat</option><option value="19">Nusa Tenggara Timur</option><option value="28">Papua</option><option value="29">Papua Barat</option><option value="4">Riau</option><option value="30">Sulawesi Barat</option><option value="31">Sulawesi Selatan</option><option value="32">Sulawesi Tengah</option><option value="33">Sulawesi Tenggara</option><option value="34">Sulawesi Utara</option><option value="5">Sumatera Barat</option><option value="10">Sumatera Selatan</option><option value="2">Sumatera Utara</option>-->
+                                    <option value="0">Provinsi</option>
+
+                                      <?php //foreach ($prov as $prov){ ?>
+                                        <!--<option value="<?php echo $prov->provinsi;?>" <?php echo (isset($provinsi)&&$provinsi==$prov->provinsi) ? 'selected="selected"':''; ?> ><?php echo $prov->provinsi;?></option>';-->
+                                      <?php //} ?>
+
+                                      <?php foreach ($prov as $prov){ ?>
+                                        <option value="<?php echo $prov->provinsi;?>"><?php echo $prov->provinsi;?></option>';
+                                      <?php } ?>
                                   </select>
                                     
-                                  <select id="deliveryCity" name="deliverycity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;">
-                                    <option value="">Kota</option><option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option>
+                                  <select id="cities" name="deliverycity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;">
+                                    <!--<option value="">Kota</option><option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option>-->
+                                    <option value="0">Kota</option>
                                   </select>
 
                                   <input id="kodePos" name="kodepos" class="inputCustome" placeholder="Kode Pos" type="text" value="<?php echo $kodepos;?>" maxlength="10">
@@ -1430,30 +1424,36 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
                             <div class="span6">
                               <select id="date" name="date" class="selectItemCalendar">
                               <?php
-                                for ($day = 1; $day <= 31; $day++) {
-                                if($day >=1 and $day <10)  
-                                  {echo "<option value=\"$day\">0$day</option>\n";}
-                                else
-                                  {echo "<option value=\"$day\">$day</option>\n";}
+                              
+                                for ($day = 1; $day <= 31; $day++) 
+                                {
+                                    if($day >=1 and $day <10) { ?>
+                                    <option value=<?php echo $day; ?> <?php echo (isset($exxx[2])&&$exxx[2]==$day) ? 'selected="selected"':''; ?> >0<?php echo $day; ?></option>
+
+                                   <?php }else{ ?>
+
+                                    <option value=<?php echo $day; ?> <?php echo (isset($exxx[2])&&$exxx[2]==$day) ? 'selected="selected"':''; ?> ><?php echo $day; ?></option>
+                                    <?php }
                                 }
+                              
+                              //else{$selectMe = 'selected="selected"';$d = substr($tanggalLahir,0,2);echo "<option value=\"$d\" $selectMe>$d</option>\n";}
                               ?>
                               </select>
 
                               <select id="month" name="month" class="selectItemCalendar">
                               <?php
                                 $months = array (1 => 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',   'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember');
-                                 foreach ($months as $key => $value) {
-                                echo "<option value=\"$key\">$value</option>\n";
-                              }
-                              ?>
+                                 foreach ($months as $key => $value) { ?>
+                                <option value=<?php echo $key; ?> <?php echo (isset($exxx[1])&&$exxx[1]==$key) ? 'selected="selected"':''; ?> ><?php echo $value; ?></option>
+                              <?php } ?>
                               </select>
                               
                               <select id="year" name="year" class="selectItemCalendar">
                               <?php
-                                for ($year = 1940; $year <= date("Y"); $year++) {
-                                echo "<option value=\"$year\">$year</option>\n";
-                                }
-                              ?>
+                                for ($year = 1940; $year <= date("Y"); $year++) 
+                              {?>
+                                <option value=<?php echo $year; ?> <?php echo (isset($exxx[0])&&$exxx[0]==$year) ? 'selected="selected"':''; ?> ><?php echo $year; ?></option>
+                              <?php } ?>
                               </select>
                             </div>
                             
@@ -1505,17 +1505,17 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
                             <div class="span6">
                               <div style="width: 90%; float: left">
                                 Nomor Lain Yang Dapat Dihubungi
-                                <span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(pilih salah satu)</i></span>
+                                <span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(handphone/kantor/rumah)</i></span>
                               </div>
                               <div style="width: 10%; float: left">:</div>
                             </div>
                             <div class="span6">
-                              <select id="phonetype" name="phonetype" class="selectItem">
+                              <!--<select id="phonetype" name="phonetype" class="selectItem">
                                 <option value="3">No. Handphone</option>
                                 <option value="2">No. Kantor</option>
                                 <option value="1">No. Rumah</option>
-                              </select>
-                              <input id="phoneNo" name="phoneno" class="inputCustome" placeholder="Isi dengan nomor yang dapat dihubungi" type="text" value="" maxlength="50">
+                              </select>-->
+                              <input id="phoneNo" name="phoneno" class="inputCustome" placeholder="Isi dengan nomor yang dapat dihubungi" type="text" value="<?php echo $phone;?>" maxlength="50">
                             </div>
                           </div>
                           
@@ -1588,16 +1588,6 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
                     </form>
 
 
-
-
-
-
-
-
-
-
-
-
                   </div> <!-- END padding 5% 2.5% -->
 
 
@@ -1634,6 +1624,8 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 </div> <!-- END CONTENT CONTAINER -->
 	
 	<!-- MY JQUERY TAMBAHAN -->
+
+        <!-- JAVASCRIPT FOR FORM VALIDATION ALL INPUT TYPES -->
 		<script type="text/javascript">
 			$(document).ready(function(){
 				// Custom method to validate username
@@ -1654,25 +1646,25 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 						},
 						rules: {
 							primaryMSISDN: {
-								required: true,
-								nomorRegex: true,
-								minlength: 6,
+								//required: true,
+								//nomorRegex: true,
+								//minlength: 6,
 							},
 							infogedung : {
-								required: true,
-								minlength: 13,
+								//required: true,
+								//minlength: 13,
 							},
 							noktp:{
-								required: true,
+								//required: true,
 							},
 							nokk:{
-								required: true,
+								//required: true,
 							},
 							imagektp:{
-								required: true,
+								required: false,
 							},
 							imagepeg:{
-								required: true,
+								required: false,
 							},
 							fullname: {
 								required: true,
@@ -1739,6 +1731,7 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 			});
 		</script>
 
+        <!-- JAVASCRIPT FOR PAGINATION ALAMAT -->
 		<script type="text/javascript">  
          $(document).ready(function () {  
            var itemsOnPage = 3;  
@@ -1786,11 +1779,13 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 		});
 		</script>-->
 
+        <!-- JAVASCRIPT FOR SELECT BOX GET MSISDN FROM API -->
 		<script type="text/javascript">
 		   $(document).ready(function(){
 		    $('#carimsisdn').click(function(){
 		      var wildNumber = $('#primaryMSISDN').val();
 		      $(".contaRadio").remove();
+              $("#currentNo").hide();
 		      var $this = $('#carimsisdn');
 		      $this.button('loading');
 			    // Then whatever you actually want to do i.e. submit form
@@ -1832,6 +1827,7 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 		 });
 		</script>
 
+        <!-- JAVASCRIPT FOR PACKAGE TYPE TRY and ERROR 
 		<script type="text/javascript">
 		  $(".calendar :radio").hide().click(function(e){
             e.stopPropagation();
@@ -1841,8 +1837,13 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
             $(this).addClass("selected").find(":radio").click();
           });
 	    </script>
+        -->
 
+        <!-- JAVASCRIPT FOR PACKAGE TYPE -->
         <script type="text/javascript">
+          //$(".paketku").prop("checked", true);
+          //if($('.paketku').attr('checked', 'checked')) { $(".package-list > .D1").addClass("selected"); }
+
           $(".package-list :radio").hide().click(function(e){
             e.stopPropagation();
           });
@@ -1852,9 +1853,34 @@ $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
           });
         </script>
 
+        <!-- AJAX FOR SELECT BOX PROVINSI & KOTA -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#provinces').change(function(){
+                    var id=$(this).val();
+                    $.ajax({
+                        url : "<?php echo base_url();?>registrasi/ambil_data",
+                        type : "POST",
+                        data : {id: id},
+                        async : false,
+                        dataType : 'json',
+                        success: function(data){
+                            var html = '<option value="0">Kota</option>';
+                            var i;
+                            for(i=0; i<data.length; i++){
+                                html += '<option value="'+data[i]+'">'+data[i]+'</option>';
+                            }
+                            $('#cities').html(html);
+                            //$('#kodePos').val("data");
+                             
+                        }
+                    });
+                });
+            });
+        </script>
 
+<!--       
 
-<!--
 	    var itemsOnPage = 4;  
 			       $('#paging2').pagination({  
 			         items: $('#radioMSISDN > span').length,  

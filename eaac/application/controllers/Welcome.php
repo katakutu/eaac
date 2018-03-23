@@ -11,14 +11,36 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->library('curl');
+		$this->load->model('m_select');
+		$this->load->database();
 	} 
 	 
 	public function index()
 	{
 		$this->session->sess_destroy();
 		//echo kill ." - ". the ." - ". God;
-		$this->load->gotoPage('templates/mencoba');//$this->load->view('welcome_message');
+		$data['prov'] = $this->m_select->show_prov()->result_array();
+		//$data['kot'] = $this->m_select->show_kota();
+		$this->load->gotoPage('templates/mencoba',$data);//$this->load->view('welcome_message');
 	}
+
+	function get_subkategori(){
+        $id=$this->input->post('id');
+        //$data=$this->m_select->get_subkategori($id);
+        //$kill['LOL']=$this->m_select->get_subkategori($id)->result_array();$this->load->gotoPage('templates/mencoba',$kill);
+        ##$dato = $this->m_select->show_kota();
+
+        ##########$sql = "SELECT * FROM acuan_kota WHERE id_provinsi='$id'";
+        ##########$query = $this->db->query($sql);
+        //$query = $this->m_select->zzz($id);
+        $query = $this->m_select->show_kota($id);
+        foreach ($query as $row)	{$data[] = $row['kota'];}
+        
+
+        //$data = array('a','b','c');
+        echo json_encode($data);
+        #echo $data;
+    }
 
 	function API($body,$url)
 	{

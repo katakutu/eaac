@@ -509,7 +509,7 @@
                                                         <div class="row-fluid" style="margin-bottom: 5px">
                                                             <div class="span6">
                                                                 <div style="width: 90%; float: left">
-                                                                    Provinsi<span style="color: #de0300"><b></b></span>
+                                                                    Provinsi, Kota, KodePos<span style="color: #de0300"><b></b></span>
                                                                 </div>
                                                                 <div style="width: 10%; float: left">:</div>
                                                             </div>
@@ -530,7 +530,7 @@
                                                             </div>
                                                             <div class="span6">
                                                                 <div style="width: 90%; float: left">
-                                                                    <?php echo $this->session->userdata['insertion']['tempatlahir']; ?>, <?php echo $this->session->userdata['insertion']['tanggallahir']; ?>
+                                                                    <?php echo $this->session->userdata['insertion']['tempatlahir']; ?>, <?php echo date('d-F-Y',strtotime($this->session->userdata['insertion']['tanggallahir'])); ?>
                                                                     <span style="color: #de0300"><b></b></span>
                                                                 </div>
                                                             </div>
@@ -625,7 +625,7 @@
                                                     <div style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
                                                         <!-- 01 -->
                                                         <div style="padding: 5%; background: #fff; border-radius: 3px; overflow:auto; height: 336px;">
-                                                            <ol>
+                                                            <ol style="text-align: justify;text-justify: inter-word;">
                                                                 <p>
                                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit egestas velit sit amet scelerisque. Donec dignissim venenatis velit vitae tristique. Sed pharetra lectus auctor nisi dictum efficitur. In ante ligula, mollis ac ligula ut, rutrum
                                                                     pellentesque sapien. Vestibulum lacus nunc, consequat at vestibulum non, maximus non sapien. Donec id orci a tellus rutrum feugiat sed ut turpis. Etiam justo ante, lobortis vehicula libero
