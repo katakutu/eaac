@@ -496,6 +496,7 @@ $exxx = explode('-',$tanggallahir);
                                 <div style="width: 90%; float: left"></div>
                               </div>
                             </div>
+
                           </div>
                           <!-- END INPUT ALAMAT GEDUNG -->
 
@@ -508,7 +509,7 @@ $exxx = explode('-',$tanggallahir);
                               <div style="width: 10%; float: left">:</div>
                             </div>
                             <div class="span6">
-                                <input id="primaryMSISDN" name="primaryMSISDN" type="text" placeholder="170845" class="inputCustome" style="font-size: 25px;width:75%;float:left;" value="<?php echo $primarymsisdn; ?>" />
+                                <input id="primaryMSISDN" name="primaryMSISDN" type="text" placeholder="170845" class="inputCustome" style="font-size: 25px;width:75%;float:left;" maxlength="6" pattern="[0-9]*" value="<?php echo $primarymsisdn; ?>" />
                                 <button id="carimsisdn" type="button" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Mencari..." class="btn btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif;margin-top:3px; float: left;width:25%;">Cari</button>
                                 <!--
                                 <button onclick="#" type="button" class="btn btn-info" style="font-family: &#39;Titillium Web&#39;, sans-serif; float: left;">Sarankan Nomor Cantik</button>
@@ -1195,7 +1196,7 @@ $exxx = explode('-',$tanggallahir);
                             </div>
 
                             <div class="span6">
-                              <input id="noKTP" name="noktp" class="inputCustome" placeholder="Isi dengan nomor KTP" type="text" value="<?php echo $noktp;?>" maxlength="40">
+                              <input id="noKTP" name="noktp" class="inputCustome" placeholder="Isi dengan nomor KTP" type="text" value="<?php echo $noktp;?>" maxlength="16" pattern="[0-9]*" >
                               <!-- <br> <br> -->
                               <div class="row-fluid" style="margin-bottom: 5px">
                                 <input class="span8" type="file" name="imagektp" id="imageKTP">
@@ -1253,7 +1254,7 @@ $exxx = explode('-',$tanggallahir);
                             </div>
 
                             <div class="span6">
-                              <input id="noKK" name="nokk" class="inputCustome" placeholder="Isi dengan nomor Kartu Keluarga" type="text" value="<?php echo $nokk; ?>" maxlength="40">
+                              <input id="noKK" name="nokk" class="inputCustome" maxlength="16" pattern="[0-9]*" placeholder="Isi dengan nomor Kartu Keluarga" type="text" value="<?php echo $nokk; ?>" >
                             </div>
 
                             <div class="row-fluid" style="margin-bottom: 1px;">
@@ -1355,25 +1356,27 @@ $exxx = explode('-',$tanggallahir);
                                 <input id="alamat" name="deliveryaddress" class="inputCustome" placeholder="Isi dengan alamat sesuai KTP" type="text" value="<?php echo $alamat;?>" maxlength="127">
                               
                               <div class="row-fluid" style="margin-bottom: 5px">
-                                  <select class="selectItem" id="provinces" name="deliveryprovince" onchange="onChangeDeliveryState()">
+                                  <select class="selectItem" id="provinces" name="deliveryprovince" onchange="onChangeDeliveryState()" required >
                                     <!--<option value="">Provinsi</option><option value="1">Aceh</option><option value="17">Bali</option><option value="11">Banten</option><option value="7">Bengkulu</option><option value="14">DI Yogyakarta</option><option value="12">DKI Jakarta</option><option value="25">Gorontalo</option><option value="8">Jambi</option><option value="13">Jawa Barat</option><option value="15">Jawa Tengah</option><option value="16">Jawa Timur</option><option value="20">Kalimantan Barat</option><option value="21">Kalimantan Selatan</option><option value="22">Kalimantan Tengah</option><option value="23">Kalimantan Timur</option><option value="24">Kalimantan Utara</option><option value="6">Kep. Bangka-Belitung</option><option value="3">Kepulauan Riau</option><option value="9">Lampung</option><option value="26">Maluku</option><option value="27">Maluku Utara</option><option value="18">Nusa Tenggara Barat</option><option value="19">Nusa Tenggara Timur</option><option value="28">Papua</option><option value="29">Papua Barat</option><option value="4">Riau</option><option value="30">Sulawesi Barat</option><option value="31">Sulawesi Selatan</option><option value="32">Sulawesi Tengah</option><option value="33">Sulawesi Tenggara</option><option value="34">Sulawesi Utara</option><option value="5">Sumatera Barat</option><option value="10">Sumatera Selatan</option><option value="2">Sumatera Utara</option>-->
-                                    <option value="0">Provinsi</option>
-
-                                      <?php //foreach ($prov as $prov){ ?>
-                                        <!--<option value="<?php echo $prov->provinsi;?>" <?php echo (isset($provinsi)&&$provinsi==$prov->provinsi) ? 'selected="selected"':''; ?> ><?php echo $prov->provinsi;?></option>';-->
-                                      <?php //} ?>
+                                    <option value="">Provinsi</option>
 
                                       <?php foreach ($prov as $prov){ ?>
-                                        <option value="<?php echo $prov->provinsi;?>"><?php echo $prov->provinsi;?></option>';
+                                        <option value="<?php echo $prov->provinsi;?>" <?php echo (isset($provinsi)&&$provinsi==$prov->provinsi) ? 'selected="selected"':''; ?> ><?php echo $prov->provinsi;?></option>
                                       <?php } ?>
-                                  </select>
-                                    
-                                  <select id="cities" name="deliverycity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;">
-                                    <!--<option value="">Kota</option><option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option>-->
-                                    <option value="0">Kota</option>
+
+                                      <?php //foreach ($prov as $prov){ ?>
+                                        <!--<option value="<?php echo $prov->provinsi;?>"><?php echo $prov->provinsi;?></option>';-->
+                                      <?php //} ?>
                                   </select>
 
-                                  <input id="kodePos" name="kodepos" class="inputCustome" placeholder="Kode Pos" type="text" value="<?php echo $kodepos;?>" maxlength="10">
+                                  <select id="cities" name="deliverycity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;" required >
+                                    <!--<option value="">Kota</option><option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option><option value="">Kota</option>-->
+                                    <option value="">Kota</option>
+                                    <option value=<?php echo $kota; ?> <?php echo (isset($kota)&&$kota!="") ? 'selected="selected"':''; ?> ><?php echo $kota; ?></option>
+
+                                  </select>
+
+                                  <input id="kodePos" name="kodepos" class="inputCustome" placeholder="Kode Pos" type="text" value="<?php echo $kodepos;?>" pattern="[0-9]*" maxlength="5">
                               </div>
                               
                               </div>
@@ -1623,17 +1626,33 @@ $exxx = explode('-',$tanggallahir);
 
 </div> <!-- END CONTENT CONTAINER -->
 	
-	<!-- MY JQUERY TAMBAHAN -->
+	<!-- MY JQUERY TAMBAHAN 
+		<script type="text/javascript">
+		$(function(){
+			$('#imagePeg').change(function(){
+				var f=this.files[0]
+				alert(f.size||f.fileSize)
+			});
+		});
+		</script>-->
 
         <!-- JAVASCRIPT FOR FORM VALIDATION ALL INPUT TYPES -->
 		<script type="text/javascript">
 			$(document).ready(function(){
-				// Custom method to validate username
+				// Custom method validate username
 				$.validator.addMethod("nomorRegex", function(value, element) {
 					return this.optional(element) || /^[0-9]*$/i.test(value);
 				}, "Nomor Kartu must contain only numbers");
-				
+				// Custom method validate username
+				$.validator.addMethod('filesize', function (value, element, param) {
+				    return this.optional(element) || (element.files[0].size <= param)
+				}, 'The file you are trying to upload is too large (max {0}MB)');
+
+				// Validator
 				$(".nextz").click(function(){
+				    if ($("input[name=alamatkantor]:checked").length == 0){window.alert("Please choose your office address !");}
+					if ($("input[name=packagetype]:checked").length == 0){window.alert("Please choose your package type !");}
+
 					var form = $("#registerForm");
 					form.validate({
 						errorElement: 'span',
@@ -1645,60 +1664,66 @@ $exxx = explode('-',$tanggallahir);
 							$(element).closest('.span6').removeClass("has-error");
 						},
 						rules: {
+							//alamatkantor : {required: true, },
 							primaryMSISDN: {
-								//required: true,
+								required: false,
 								//nomorRegex: true,
 								//minlength: 6,
 							},
-							infogedung : {
-								//required: true,
-								//minlength: 13,
-							},
+							infogedung : { required: true, },
 							noktp:{
-								//required: true,
+								required: true,
+								//minlength: 16,
 							},
 							nokk:{
-								//required: true,
+								required: true,
+								//minlength: 16,
 							},
 							imagektp:{
-								required: false,
+								required: true,
+								accept: "image/jpg,image/jpeg,image/png,image/gif",
+								filesize: 5000000,
 							},
 							imagepeg:{
-								required: false,
-							},
-							fullname: {
 								required: true,
+								accept: "image/jpg,image/jpeg,image/png,image/gif",
+								filesize: 5000000,
 							},
-							deliveryaddress: {
-								required: true,
-							},
+							fullname: { required: true, },
+							deliveryaddress: { required: true, },
+							deliveryprovince: { required: true,},
+							deliverycity: { required: true,},
 							kodepos: {
 								required: true,
+								//minlength: 5,
 							},
 							birthplace: {
-								required: true,
-							},
+								required: true, },
 							ibuname: {
-								required: true,
-							},
+								required: true, },
 							phoneno: {
-								required: true,
-							},
+								required: true, },
+							emailref: { required: false, },
 						},
 						messages: {
 							primaryMSISDN: {required: "MSISDN required !",},
-							imagektp : {required: "Please upload your KTP image !",},
-							imagepeg : {required: "Please upload your NIP image !",},
+							imagektp : {required: "Please upload your KTP image !",
+								accept:"Only files of type jpg, png, gif is allowed",
+							},
+							imagepeg : {required: "Please upload your NIP image !",
+								accept:"Only files of type jpg, png, gif is allowed",
+							},
 							infogedung : {required: "Info Gedung required !",},
 							nokk: {required: "No KK required !",},
 							noktp: {required: "No KTP required !",},
 							fullname : {required: "Your Name required !",},
 							deliveryaddress: {required: "Address required !",},
+							deliveryprovince : {required: "Your Province required !",},
+							deliverycity : {required: "Your City required !",},
 							kodepos: {required: "KodePos required !",},
 							birthplace : {required: "Tanggal Lahir required !",},
 							ibuname: {required: "Name IBU required !",},
 							phoneno: {required: "Phone required !",},
-							email: {required: "Email required !",},
 						}
 					});
 					if (form.valid() === true){
@@ -1865,7 +1890,7 @@ $exxx = explode('-',$tanggallahir);
                         async : false,
                         dataType : 'json',
                         success: function(data){
-                            var html = '<option value="0">Kota</option>';
+                            var html = '<option value="">Kota</option>';
                             var i;
                             for(i=0; i<data.length; i++){
                                 html += '<option value="'+data[i]+'">'+data[i]+'</option>';

@@ -9,10 +9,12 @@ This project is still on proress , Enjoy ! :)
 - MySQL
 
 ### Folder in Use Till Now (Inside Application)
-- config
+- config        --> [constant,config,database,dll]
 - controllers
-- core
-- views
+- core          --> [MY_Loader.php]
+- views     
+- model         --> [select provinsi&kota Only]
+- library       --> [curl]
 
 ### MySQL Configuration
 ```
@@ -58,6 +60,21 @@ CREATE TABLE `acuan_alamat_kantor` (
   `alamat_kantor` text NOT NULL, 
   constraint PK_KANTOR primary key (id_kantor) 
 ) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `acuan_provinsi` (
+  `id_provinsi` int(11) NOT NULL auto_increment ,
+  `provinsi` varchar(255) NOT NULL,
+  `ibukota` varchar(255) NOT NULL,
+  constraint PK_PROFILE primary key (id_provinsi)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `acuan_kota` (
+  `id_kota` int(11) NOT NULL auto_increment,
+  `id_provinsi` int(11) NOT NULL,
+  `kota` varchar(255)  NOT NULL,
+  constraint PK_KOTA primary key (id_kota),
+  CONSTRAINT FK_KOTA_PROV FOREIGN KEY (`id_provinsi`) REFERENCES `acuan_provinsi` (`id_provinsi`)
+) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `acuan_tipe_package` ( 
   `id_package` integer NOT NULL auto_increment , 

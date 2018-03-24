@@ -387,7 +387,7 @@
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
                                                                 <div class="span6">
-                                                                    <input id="email" name="email" class="inputCustome" placeholder="john_smith@telkomsel.co.id" type="email" value="" maxlength="100">
+                                                                    <input id="email" name="email" class="inputCustome" placeholder="john_smith@telkomsel.co.id" type="text" value="" maxlength="100">
 																</div>
                                                             </div>
 
@@ -408,7 +408,7 @@
                                                             <input type="hidden" id="type" name="type" value="CreditCard">
                                                             <!-- <button type="submit" class="btn-large btn-primary" style="font-family: 'Titillium Web';, sans-serif; font-size: 15px; width: 250px; margin-top: 20px; float: right">Lanjut</button> -->
                                                             <!-- <a href="file:///C:/Users/Evan/Desktop/Bisnis%20_%20Telkomsel_page3.html" class="btn-large btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 250px; margin-top: 20px; float: right" role="button">LANJUT</a> -->
-															<input type="submit" id='validate' class="btn-large btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 250px; margin-top: 20px; float: right" value="LANJUT">
+															<input type="submit" id='validatez' class="btn-large btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 250px; margin-top: 20px; float: right" value="LANJUT">
 														</div>
                                                     </form>
 													<!-- END OF FORM -->
@@ -438,3 +438,39 @@
                 </div>
             </div>
         </div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // Custom method validate email
+        $.validator.addMethod("strictemail", function(value, element) {
+            var valid = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/i.test(value);
+                return valid;
+        }, "Please enter valid email");
+
+        // Validator
+        $("#validatez").click(function(){
+            var form = $("#registerForm");
+            form.validate({
+                errorElement: 'span',
+                errorClass: 'help-block',
+                highlight: function(element, errorClass, validClass) {
+                    $(element).closest('.span6').addClass("has-error");
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).closest('.span6').removeClass("has-error");
+                },
+                rules: {
+                    email: {
+                        required: true,
+                        strictemail:'Please enter valid email',
+                    },
+                },
+                messages: {
+                    email: {required: "Email required !",},
+                }
+            });
+        });
+    });
+    </script>

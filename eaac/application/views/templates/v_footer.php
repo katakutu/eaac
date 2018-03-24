@@ -177,7 +177,9 @@
   <!-- pagination alamat provinsi Kantor-->
   <link href="http://flaviusmatis.github.io/simplePagination.js/simplePagination.css" rel="stylesheet" type="text/css">
   <script src="http://flaviusmatis.github.io/simplePagination.js/jquery.simplePagination.js" type="text/javascript"></script> 
-  <!-- END TAMBAHAN GW -->
+  <!-- END TAMBAHAN GW 
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>-->
+  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
     
   </body>
 </html>
