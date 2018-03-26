@@ -25,6 +25,7 @@ $namaibu    			= $this->session->userdata['insertion']['namaibu'];
 $phone    				= $this->session->userdata['insertion']['phone'];
 $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 $exxx = explode('-',$tanggallahir);
+$kotaku = $this->session->userdata['kota'];
 }
 ?>
 
@@ -525,6 +526,9 @@ $exxx = explode('-',$tanggallahir);
                               <div class="span6"></div>
                               <div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent">
                                 <div class="row-fluid" id="radioMSISDN">
+
+                                <input type="hidden" value=<?php echo $secondarymsisdn; ?> name="secondaryMSISDN" >
+                                <label class="contaRadio" style="display: none; overflow: hidden;"><?php echo $secondarymsisdn; ?><input id="secondaryMSISDN0" type="radio" name="secondaryMSISDN"  checked="checked" value="<?php echo $secondarymsisdn; ?>"><span class="checkmark"></span></label>
                                 <!--
                                     <span>
                                         <input id="secondaryMSISDN1" name="secondaryMSISDN" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem " type="radio" >
@@ -577,7 +581,7 @@ $exxx = explode('-',$tanggallahir);
                                 <br>
                                 <?php if($secondarymsisdn !== ""){ ?>
                                 <span id="currentNo" style="font-family: 'Helvetica-Bold', sans-serif; font-size: 13px; line-height: 19px">Nomor yang dipilih <?php echo $secondarymsisdn; ?></span><?php } ?>
-                                <input type="hidden" value=<?php echo $secondarymsisdn; ?> name="secondaryMSISDN" >
+                                <!--<input type="hidden" value=<?php echo $secondarymsisdn; ?> name="secondaryMSISDN" >-->
                                   <!--<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Pilih nomor kartuHalo yang Anda inginkan.</span>-->
                               </div>
                             </div>
@@ -609,7 +613,7 @@ $exxx = explode('-',$tanggallahir);
                                 
                                     
                                     <div class="D1 selected">
-                                        <input class="paketku" type="radio" name="packagetype" value="550" checked="checked">
+                                        <input class="paketku" type="radio" name="packagetype" value="550">
                                         <div class="D2">
                                           <h5>HaloKick</h5>
                                         </div>
@@ -1370,9 +1374,14 @@ $exxx = explode('-',$tanggallahir);
                                   </select>
 
                                   <select id="cities" name="deliverycity" style="font-family:&#39;Titillium Web&#39;,sans-serif;width:100%;height:40px;" required >
-                                    <!--<option value="">Kota</option><option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option><option value="">Kota</option>-->
+                                    <!--<option value="">Kota</option><option value="1">Kota A</option><option value="2">Kota B</option><option value="3">Kota C</option><option value="">Kota</option>
                                     <option value="">Kota</option>
-                                    <option value=<?php echo $kota; ?> <?php echo (isset($kota)&&$kota!="") ? 'selected="selected"':''; ?> ><?php echo $kota; ?></option>
+                                    <option value=<?php echo $kota; ?> <?php echo (isset($kota)&&$kota!="") ? 'selected="selected"':''; ?> ><?php echo $kota; ?></option>-->
+
+                                    <option value="">Kota</option>
+                                    <?php for($z=0 ; $z<count($kotaku);$z++){ ?>
+                                      <option value="<?php echo $kotaku[$z]['kota']; ?>" <?php echo (isset($kota)&&$kota==$kotaku[$z]['kota']) ? 'selected="selected"':''; ?> ><?php echo $kotaku[$z]['kota']; ?> </option>
+                                    <?php } ?>
 
                                   </select>
 
@@ -1518,7 +1527,7 @@ $exxx = explode('-',$tanggallahir);
                                 <option value="2">No. Kantor</option>
                                 <option value="1">No. Rumah</option>
                               </select>-->
-                              <input id="phoneNo" name="phoneno" class="inputCustome" placeholder="Isi dengan nomor yang dapat dihubungi" type="text" value="<?php echo $phone;?>" maxlength="50">
+                              <input id="phoneNo" name="phoneno" class="inputCustome" placeholder="Isi dengan nomor yang dapat dihubungi" type="text" value="<?php echo $phone;?>" maxlength="50" pattern="[0-9]*">
                             </div>
                           </div>
                           
@@ -1540,7 +1549,7 @@ $exxx = explode('-',$tanggallahir);
                               <div style="width: 10%; float: left">:</div>
                             </div>
                             <div class="span6">
-                              <input id="emailRef" name="emailref" class="inputCustome" placeholder="Isi apabila memiliki alamat email pemberi referensi" type="text" value="<?php echo $emailreferensi;?>" maxlength="100">
+                              <input id="emailRef" name="emailref" class="inputCustome" placeholder="Isi apabila memiliki alamat email pemberi referensi" type="email" value="<?php echo $emailreferensi;?>" maxlength="100">
                             </div>
                           </div>
 
@@ -1650,8 +1659,11 @@ $exxx = explode('-',$tanggallahir);
 
 				// Validator
 				$(".nextz").click(function(){
-				    if ($("input[name=alamatkantor]:checked").length == 0){window.alert("Please choose your office address !");}
-					if ($("input[name=packagetype]:checked").length == 0){window.alert("Please choose your package type !");}
+                    if ($("input[name=alamatkantor]:checked").length == 0){$('html, body').animate({scrollTop: $("#alamat_antor").offset().top-300}, 2000);  $('#msisdnParent').animate({"border-width": "2px"}, 500);}
+                    else if ($("input[name=secondaryMSISDN]:checked").length == 0){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
+                    else if ($("input[name=packagetype]:checked").length == 0){window.alert("Please choose your package type !"); $('html, body').animate({scrollTop: $(".package-list").offset().top-200}, 2000); }
+                    //window.alert("Please choose your office address !");
+                    else{
 
 					var form = $("#registerForm");
 					form.validate({
@@ -1670,7 +1682,7 @@ $exxx = explode('-',$tanggallahir);
 								//nomorRegex: true,
 								//minlength: 6,
 							},
-							infogedung : { required: true, },
+							infogedung : { required: false, },
 							noktp:{
 								required: true,
 								//minlength: 16,
@@ -1735,10 +1747,12 @@ $exxx = explode('-',$tanggallahir);
 						//$("#pageNumber").html("halaman 2 dari 2");
 						next_fs.show(); 
 						current_fs.hide();
-						$("html, body").animate({ scrollTop: ($('#scrollHere2').offset().top-500) }, "slow");
+						$("html, body").animate({ scrollTop: ($('#scrollHere2').offset().top-500) }, 2000);
 					}else{
-						$("html, body").animate({ scrollTop: ($('.has-error').offset().top-300 ) }, "slow");
+						$("html, body").animate({ scrollTop: ($('.has-error').offset().top-300 ) }, 2000);
 					}
+
+                   } 
 				});
 				
 				$('.backz').click(function(){

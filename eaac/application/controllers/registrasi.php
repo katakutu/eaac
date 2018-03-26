@@ -21,9 +21,10 @@ class Registrasi extends CI_Controller {
 	
 	public function index()
 	{
-		$data['prov'] = $this->m_select->show_prov()->result();//$data['kot'] = $this->m_select->show_kota()->result_array();
+		$data['prov'] = $this->m_select->show_prov()->result();
 		$this->load->gotoPage('v_registrasiForm',$data);
 		//echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
+		//echo "<script type='text/javascript'>alert('$message');</script>";
 	}
 	    
 	public function submit()
@@ -133,6 +134,8 @@ class Registrasi extends CI_Controller {
 		redirect (base_url());
 	}
 
+	################################ API CIS RENE NGISOR KABEH ######################
+
 	function API($body,$url)
 	{
 		$this->load->library('curl');
@@ -168,82 +171,22 @@ class Registrasi extends CI_Controller {
 		return $qwe;
 	}
 
-	public function API_MSISDN_Get()
-	{
-		#JF1-000231Validation of the unifiedResourceCriteriaInfo input parameter failed. The invalid fields are toValue.type,fromValue.type.064589fa-b0cd-4a41-9802-dfecdd02dabf
-		
-		$wildNumber = $this->input->post('toserverFind');
-
-		/*// do something with wildNumber [for input to the body of API]
-		$body="
-		<soapenv:Envelope
-			xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>
-			<soap:Header
-				xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-				<orac:AuthenticationHeader
-					xmlns:orac='http://www.oracle.com'>
-					<orac:UserName>osb</orac:UserName>
-					<orac:PassWord>welcome1</orac:PassWord>
-				</orac:AuthenticationHeader>
-			</soap:Header>
-			<soapenv:Body>
-				<ns1:NumberRetrieveRq
-					xmlns:ns1='http://www.telkomsel.com/eai/AmdocsSRM/NumberRetrieveRq/v1.0'>
-					<ns1:ApplicationID>T-Care</ns1:ApplicationID>
-					<ns1:UnifiedResourceCriteriaInfo>
-						<ns1:type>MSISDN</ns1:type>
-						<ns1:status>AVAILABLE</ns1:status>
-						<ns1:pattern>%".$wildNumber."%</ns1:pattern>
-						<ns1:AttributesData>
-							<ns1:attrName>DEALER</ns1:attrName>
-							<ns1:attrValue>002SNRSC</ns1:attrValue>		<! -- THIS -->
-						</ns1:AttributesData>
-					</ns1:UnifiedResourceCriteriaInfo>
-					<ns1:PaginationInfo>
-						<ns1:pageSize>5</ns1:pageSize>
-						<ns1:pageNumber>417</ns1:pageNumber>
-					</ns1:PaginationInfo>
-				</ns1:NumberRetrieveRq>
-			</soapenv:Body>
-		</soapenv:Envelope>
-		";
-		$respGet = $this->API($body,API_SRM_MSISDN_LIST);
-		#echo $respGet;
-
-        $objGetEmAll = new DOMDocument();
-        $objGetEmAll->loadXML($respGet);
-        $errCode = $objGetEmAll->getElementsByTagName("errorCode")->item(0)->nodeValue;
-        $errMsg = $objGetEmAll->getElementsByTagName("errorMessage")->item(0)->nodeValue;
-        $isAvailable = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
-        if($errCode == '0000' && $errMsg == 'Success')
-        {
-        	$numbers = $objGetEmAll->getElementsByTagName('value');
-        	foreach ($numbers as $number) {
-			    $listNumber[] = $number->nodeValue;
-			}
-        }*/
-        ##### STUCK ABOVE #####
-        ##### make a condition TIMEOUT #####
-        //echo $errCode."<br>".$errMsg;
-        $listNumber = $this->get_msisdn($wildNumber);
-		#####$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005');
-		/*$content = "";
-		foreach ($listNumber as &$value) {
-			
-			//$content .='<span><input id="secondaryMSISDN" name="secondaryMSISDN" type="radio" value="'.$value.'"><label for="msisdn1">'.$value.'</label></span>';
-			
-			$content .= '<label for="msisdn1">'.$value.'</label>';
-		}*/
-      	//echo $content;
-      	echo json_encode($listNumber);
-	}
-
 	public function API_MSISDN_Reserve()
 	{
 		#0000Success11b0515221-7396-4921-adb0-3d53cfad716b
 		#0000Success117ab7068c-a241-470a-8503-16335c65f200
 	}
 
+	public function API_MSISDN_Get()
+	{
+		$wildNumber = $this->input->post('toserverFind');
+        ##### STUCK ABOVE #####
+        ##### make a condition TIMEOUT #####
+        //echo $errCode."<br>".$errMsg;
+        $listNumber = $this->get_msisdn($wildNumber);
+		#####$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005'
+      	echo json_encode($listNumber);
+	}
 	function get_msisdn($wildNumber)
     {		//<! -- THIS -->
     	$body="
@@ -284,13 +227,13 @@ class Registrasi extends CI_Controller {
         $errCode = $objGetEmAll->getElementsByTagName("errorCode")->item(0)->nodeValue;
         $errMsg = $objGetEmAll->getElementsByTagName("errorMessage")->item(0)->nodeValue;
         //$isAvailable = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
-        if($errCode == '0000' && $errMsg == 'Success')
+        if($errCode == '0000' && $errMsg == 'Success' )
         {
         	$numbers = $objGetEmAll->getElementsByTagName('value');
         	foreach ($numbers as $number) {$listNumber[] = $number->nodeValue;}
         }else if($errCode == '9999' && $errMsg == 'Failed') {
         		$listNumber[] = 'No Response';
-        }
+        }else {$listNumber = array('NO MSISDN FOUNDs');}
 
         if(isset($listNumber)){
         	return $listNumber;
@@ -300,10 +243,15 @@ class Registrasi extends CI_Controller {
         //echo '<pre>';print_r($listNumber);echo '</pre>';
     }
 
+    ################################ FOR SELECT  ######################
+
     function ambil_data()
     {
     	$id=$this->input->post('id');
         $query = $this->m_select->show_kota($id);
+        $dataKota = array( 'kota'     => $query  );
+		$this->session->set_userdata($dataKota);
+
         foreach ($query as $row)	{$data[] = $row['kota'];}
         ##$data = array('a','b','c');
         echo json_encode($data);
