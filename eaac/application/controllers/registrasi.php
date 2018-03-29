@@ -14,8 +14,8 @@ class Registrasi extends CI_Controller {
 		$this->load->library('upload');
 		$this->load->model('m_select');
 
-		if(! $isFirstEmailExistSession = $this->session->userdata('email') )
-        {	redirect(base_url());	}
+		if(! $isFirstEmailExistSession = $this->session->userdata('email')){	redirect(base_url());	}
+		if(!$this->session->userdata('isOTP')){	redirect('otp');	}
         
 	} 
 	
@@ -30,7 +30,8 @@ class Registrasi extends CI_Controller {
 	public function submit()
 	{	//if ($this->input->post('REQUEST_METHOD') == 'POST') {
 		# Halaman 1 Part 1/2
-		$alamatKantor = $this->input->post('alamatkantor');
+		$sepAlamat=explode('|',$this->input->post('alamatkantor'));
+			$alamatKantor=$sepAlamat[1];  $data['ketKantor']=array('account_id'=>$sepAlamat[0],'account_province'=>$sepAlamat[2]);
 		$infoGedung = $this->input->post('infogedung');
 		$primaryMSISDN = $this->input->post('primaryMSISDN');
 		$secondaryMSISDN = $this->input->post('secondaryMSISDN');

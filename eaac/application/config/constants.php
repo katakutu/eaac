@@ -37,6 +37,17 @@ define('God', 'I am number Three');
 /*Developmentdefine('API_DUKCAPIL','http://10.250.195.155:8011/CivilRegistry/service/NIKInfoGet');*/
 /*Production */define('API_DUKCAPIL','http://10.251.38.178:7477/CivilRegistry/service/NIKInfoGet');
 
+#API Checking Domain/Email
+/*Development*/define('API_SRM_CHECK_EMAIL','http://10.250.195.155:8011/CIS/Service/cis_domain_check');
+/*Production define('API_SRM_CHECK_EMAIL','http://??.????.???.???:????/CIS/Service/cis_domain_check');*/
+
+#API Query List Offer
+/*Development*/define('API_SRM_OFFER_LIST','http://10.250.195.155:8011/CIS/Service/cis_product_get');
+/*Production define('API_SRM_OFFER_LIST','http://??.????.???.???:????/CIS/Service/cis_product_get');*/
+
+#API Check Pesanan
+/*Development*/define('API_SRM_CHECK_PESANAN','http://10.250.195.155:8011/CIS/Service/cis_eaac_check');
+/*Production define('API_SRM_CHECK_PESANAN','http://??.????.???.???:????/CIS/Service/cis_eaac_check');*/
 
 
 /*

@@ -11,6 +11,8 @@ class OTP extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->database();
+
+		if(! $this->session->userdata('email')){	redirect(base_url());	}
 	} 
 	
 	public function index()
@@ -32,7 +34,8 @@ class OTP extends CI_Controller {
 			
 			if ($token_input == $token_validate)
 			{
-				# lek token e bener			
+				# lek token e bener
+				$this->session->set_userdata('isOTP', TRUE);			
 				redirect('registrasi');
 				//$this->load->gotoPage('v_regisEnd');
 			}

@@ -28,6 +28,7 @@ Password      :
 CREATE TABLE `eprofile` (
   `id_profile` integer NOT NULL auto_increment ,
   `fullname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `alamatkantor` text NOT NULL,
   `infogedung` varchar(255) NOT NULL,
   `primarymsisdn` varchar(15) NOT NULL,

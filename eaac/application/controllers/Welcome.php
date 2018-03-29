@@ -214,6 +214,46 @@ class Welcome extends CI_Controller {
 
       echo $content;
     }
-	
+
+    function getzzz()
+	{	
+		
+		$json = file_get_contents('http://10.2.117.101/cis-api/check-domain/luwu.co.id');
+
+		$dataJANCUK = json_decode($json,True);echo "<pre>";print_r($dataJANCUK);echo "</pre>";
+		
+		
+		//echo ($dataJANCUK['data'][0]['account_id']);
+
+		foreach ($dataJANCUK['data'] as $sub) {
+			echo $sub['account_id'].'<br>';
+		}
+		
+
+
+		###$ch = curl_init();
+	    ###$headers = array(
+	    ###'Accept: application/json',
+	    ###'Content-Type: application/json',
+
+	    ###);
+	    ###curl_setopt($ch, CURLOPT_URL, 'http://10.2.117.101/cis-api/check-domain/luwu.co.id');
+	    ###curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+	    ###curl_setopt($ch, CURLOPT_HEADER, 0);
+	    //$body = '{}';
+
+	    ###curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET"); 
+	    //curl_setopt($ch, CURLOPT_POSTFIELDS,$body);
+	    ###curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+	    // Timeout in seconds
+	    ###curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+
+	    ###$authToken = curl_exec($ch);
+
+	    #return $authToken;
+	    //echo "<pre>";print_r($authToken);echo "</pre>";
+	    ###echo json_encode($authToken);
+	}
 }
 

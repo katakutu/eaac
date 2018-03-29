@@ -333,7 +333,7 @@
                                     <div class="maxWidth">
 
                                         <!-- Content Left Starts -->
-                                        <div class="span12" style="margin-bottom: 50px">
+                                        <div class="span12" style="margin-bottom: 50px" id="normal">
                                             <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
 
                                                 <!-- Header Starts -->
@@ -353,7 +353,7 @@
                                                             </div>
                                                         </div>
 
-                                                        <a href="#" class="btn-small btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 150px; margin-top: 20px; float: right" role="button">Cek Pesanan</a>
+                                                        <a class="btn-small btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 150px; margin-top: 20px; float: right" role="button" id="kepesanan">Cek Pesanan</a>
                                                     </div>
                                                 </div>
 
@@ -428,6 +428,219 @@
                                             </div> -->
                                             <!-- Button trigger modal -->
                                         </div>
+
+                                        <!-- Content Check Pemesanan -->
+                                        <div class="span12" style="margin-bottom: 50px;display: none;" id="cekpesanan">
+                                            <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
+
+                                                <!-- Header Starts -->
+                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                                                    <span style="font-family:'Titillium Web',sans-serif;font-size:20px;font-weight:500;color:#666">Cek Pesanan <span style="color:#de0300"> kartuHalo </span> - Khusus Karyawan Perusahaan Mitra <span style="color:#de0300"> TELKOMSEL </span>
+                                                    </span>
+                                                </div>
+                                                <!-- Header Ends -->
+
+                                                <div style="padding: 0 7.5%; font-family: 'Titillium Web', sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+
+                                                    <!-- 06 -->
+                                                    <div class="row-fluid" style="margin-bottom: 5px">
+                                                        <div class="span6">
+                                                            <div style="width: 90%; float: left">
+                                                                *Isikan Request Transaksi Pesanan Anda
+                                                            </div>
+                                                        </div>
+
+                                                        <a href="<?php echo base_url(); ?>" class="btn-small btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 150px; margin-top: 20px; float: right" role="button">Registrasi</a>
+                                                    </div>
+                                                </div>
+
+                                                <div style="padding: 1% 2.5%">
+                                                    <!-- FORM CEK EMAIL PERUSAHAAN -->
+                                                    
+                                                        <!-- INPUT DATA DIRI -->
+
+                                                        <div class="row-fluid" style="margin-bottom: 10px">
+                                                            <div style="width: 15%; float: left">
+                                                                <img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_nomor.png" border="0">
+                                                            </div>
+                                                            <div style="width: 85%; float: left">
+                                                                <legend style="text-align: right">
+                                                                    <span style="font-family: 'Titillium Web', sans-serif; font-size: 18px; font-weight: 400; color: #666;">Pengecekan <span style="color:#de0300">Pesanan</span></span>
+                                                                </legend>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Form 02 -->
+                                                        <div style="padding: 0 7.5%; font-family: 'Titillium Web', sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+
+                                                            <!-- 06 -->
+                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left">
+                                                                        Transaksi ID
+                                                                        <span style="color: #de0300"><b>*</b></span>
+                                                                    </div>
+                                                                    <div style="width: 10%; float: left">:</div>
+                                                                </div>
+                                                                <div id="isnull" class="span6">
+                                                                    <input id="pesanan" name="pesanan" class="inputCustome" placeholder="TRXEEAC201803060xxxx" type="text" value="" maxlength="100">
+                                                                    <span style="display:none" class="help-block" id="pesanan-error"></span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row-fluid" style="margin-bottom: 1px;">
+                                                                <div class="span6" style="margin-bottom: 1px;"></div>
+                                                                <div class="span6" style="margin-bottom: 1px;">
+                                                                    <div style="width: 90%; float: left"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row-fluid" style="float: right">
+                                                                <div style="margin-bottom: 1px;"></div>
+                                                                <div style="margin-bottom: 1px;">
+                                                                    <div style="float: right"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--btn-large btn-primary-->
+                                                            <button type="button" id='checkTRX' class="btn btn-info btn-lg" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Loading..." data-toggle="modal" data-target="#myModal" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 250px; margin-top: 20px; float: right">Check Pesanan</button>
+
+                                                                
+                                                        </div>
+
+                                                    <!-- END OF FORM -->
+                                                    <!-- Content Ends -->
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Content Hasil Pemesanan -->
+                                        <div class="span12" style="margin-bottom: 50px;display:none;" id="hasilpesanan">
+                                            <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
+
+                                                <!-- Header Starts -->
+                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                                                    <span style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:20px;font-weight:500;color:#666">Check Pesanan <span style="color:#de0300"> kartuHalo </span>
+                                                    </span>
+                                                    <div id="halo2" style="padding: 0 0%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 0%">
+                                                        <!-- 01 -->
+
+                                                        <div class="row-fluid" style="margin-bottom: 5px">
+                                                            <div class="span6">
+                                                                <div style="width: 90%; float: left">
+                                                                    <span style="color: #de0300"><b></b></span>
+                                                                </div>
+                                                                <div style="width: 10%; float: left"></div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Header Ends -->
+
+                                                <div style="padding: 0 7.5%; font-family: 'Titillium Web', sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+
+                                                    <!-- 06 -->
+                                                    <div class="row-fluid" style="margin-bottom: 5px">
+                                                        <div class="span6">
+                                                            <div style="width: 90%; float: left">
+                                                                *Isikan Request Transaksi Pesanan Anda
+                                                            </div>
+                                                        </div>
+
+                                                        <a href="<?php echo base_url(); ?>" class="btn-small btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 150px; margin-top: 20px; float: right" role="button">Registrasi</a>
+                                                        
+                                                        <a id="ceklagi" class="btn-small btn-primary" style="font-family: 'Titillium Web', sans-serif; text-align: center; font-size: 15px; width: 150px; margin: 20px 5px 0 0; float: right" role="button">Cek Pesanan</a>
+                                                    </div>
+                                                </div>
+
+                                                <div style="padding: 5% 2.5%">
+
+                                                        <!-- Choose your poison -->
+
+                                                        <div class="row-fluid" id="halo" style="margin-bottom: 10px">
+                                                            <div style="width: 15%; float: left">
+                                                                <img src="<?php echo base_url() ?>asset/Customer_Service_Online_files/input_jenis.png" border="0">
+                                                            </div>
+                                                            <div style="width: 85%; float: left">
+                                                                <legend style="text-align: right">
+                                                                    <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;">STATUS <span style="color:#de0300">PEMESANAN</span></span>
+                                                                </legend>
+                                                            </div>
+                                                        </div>
+
+                                                        <div id="halo2" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+                                                            <!-- 01 -->
+
+                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left">
+                                                                        REQUEST ID<span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                    <div style="width: 10%; float: left">:</div>
+                                                                </div>
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left" id="isi1">
+                                                                        
+                                                                        <span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left">
+                                                                        MSISDN<span style="color: #de0300"></span>
+                                                                    </div>
+                                                                    <div style="width: 10%; float: left">:</div>
+                                                                </div>
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left" id="isi2">
+                                                                        
+                                                                        <span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left">
+                                                                        COORPORATE<span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                    <div style="width: 10%; float: left">:</div>
+                                                                </div>
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left" id="isi3">
+                                                                        
+                                                                        <span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left">
+                                                                        STATUS<span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                    <div style="width: 10%; float: left">:</div>
+                                                                </div>
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left" id="isi4">
+                                                                        
+                                                                        <span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <!-- END OF ENCAPS -->
+
+                                                </div>
+                                                <!-- Content Ends -->
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <span id="active-cache" data-cache="440"></span>
@@ -473,4 +686,63 @@
             });
         });
     });
-    </script>
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $("#kepesanan").click(function(){
+      $('#normal').remove();
+      $('#cekpesanan').fadeIn(1000);
+      $('input[name="pesanan"]').focus();
+    });
+
+    $('#ceklagi').click(function(){
+        $('#hasilpesanan').fadeOut(1000);
+        $('#cekpesanan').fadeIn(1000);
+        $('input[name="pesanan"]').val('').focus();
+    });
+  });
+</script>
+
+<!-- JAVASCRIPT FOR PESANAN -->
+<script type="text/javascript">
+   $(document).ready(function(){
+    $('#checkTRX').click(function(){
+      var TRXku = $('#pesanan').val();
+      if(TRXku === "") {
+        $('#isnull').addClass('has-error');
+        $('#pesanan-error').show().html('Request ID Required');
+        //<span class="help-block" id="email-error">Email required !</span>
+        //alert("Please Fill Your Transaksi ID");
+        return false;
+      } 
+
+      var $this = $('#checkTRX');
+      $this.button('loading');
+        $.ajax({
+            type:'POST',
+            data:{TRXku: TRXku},
+            url:'<?php echo base_url('checkEmail/API_Check_Pesanan'); ?>',
+            dataType: "json",
+            success: function(result){
+                if(result) 
+                {
+                    $this.button('reset');
+                    $('#cekpesanan').hide();
+                    $('#hasilpesanan').fadeIn(1000);
+                    $('#isi1').html(result[0]);$('#isi2').html(result[1]);
+                    $('#isi3').html(result[2]);$('#isi4').html("<b>"+result[3]+"</b>");
+                }
+                //setTimeout(function() {$this.button('reset');}, 2000);
+            }
+   });
+  });
+  $('#pesanan').keypress(function(e){
+    if(e.which == 13){//Enter key pressed
+        $('#checkTRX').click();//Trigger search button click event
+    }
+  });
+ });
+</script>
+

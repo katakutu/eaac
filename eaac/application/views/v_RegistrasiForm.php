@@ -445,6 +445,8 @@ $kotaku = $this->session->userdata['kota'];
                                     </div>
                                 -->
                                   <div class="row-fluid" id="paagee">
+
+                                  <!-- LAWAS IKI
                                   <?php foreach ($this->session->userdata['alamat_antor'] as $value) {
                                   $checked = $alamatkantor==$value ? 'checked="checked"' : '';  ?>
                                     <span>
@@ -452,6 +454,17 @@ $kotaku = $this->session->userdata['kota'];
                                       <label for="alamat_antor1"><?php echo $value;?></label>
                                     </span>
                                   <?php } ?>    
+                                  -->
+
+                                  <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
+                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:address'] ? 'checked="checked"' : '';  ?>
+                                    <span>
+                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:address'].'|'.$value['v1:province'];?>" <?php echo $checked; ?>>
+                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:address'].', '.$value['v1:province'];?></label>
+                                    </span>
+                                  <?php } ?>
+
+
                                   </div>
 
                                   <br>
@@ -1823,6 +1836,11 @@ $kotaku = $this->session->userdata['kota'];
 		   $(document).ready(function(){
 		    $('#carimsisdn').click(function(){
 		      var wildNumber = $('#primaryMSISDN').val();
+              if(!$.isNumeric(wildNumber)) {
+                $("#ketpilih").html('Please input only numeric values!').css({ 'color': 'red', 'font-size': '120%' });
+                return false;
+              } 
+
 		      $(".contaRadio").remove();
               $("#currentNo").hide();
 		      var $this = $('#carimsisdn');
@@ -1857,7 +1875,7 @@ $kotaku = $this->session->userdata['kota'];
 						}
 						$this.button('reset');
 						$("hr").show();
-						$("#ketpilih").html('Pilih nomor kartuHalo yang Anda inginkan.');
+						$("#ketpilih").html('Pilih nomor kartuHalo yang Anda inginkan.').css({ 'color': '', 'font-size': '' });
                         }
 						//setTimeout(function() {$this.button('reset');}, 2000);
 			        }
