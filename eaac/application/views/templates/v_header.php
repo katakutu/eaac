@@ -109,7 +109,7 @@
     float:left;               height:500px;           width:100%;
     /*line-height:20px;text-align:center;*/
     background: #ccc;         margin:2px 0;           cursor:pointer;
-    }div.selected {background:#00cc00;}
+    }
 
     .calendar div:hover {
     /*border: 1px solid #23527c;
@@ -121,7 +121,7 @@
    
    /* The container */
    /*_:-ms-lang(x), _:-webkit-full-screen, .contaRadio { background-color: green; } FOR EDGE*/
-   .contaRadio {
+   .contaRadio ,.contaRadio2{
        height: 25px;           position: relative;         padding: 2px 0 2px 35px;
        margin-bottom: 5px;     cursor: pointer;            font-family: "apexBook";
        font-size: 15px;        font-weight: bold;          -webkit-user-select: none;
@@ -129,39 +129,39 @@
    }
 
    /* Hide the browser's default radio button */
-   .contaRadio input {
+   .contaRadio input ,.contaRadio2 input{
        position: absolute;     opacity: 0;                 cursor: pointer;
    }
 
    /* Create a custom radio button */
-   .checkmark {
+   .checkmark ,.checkmark2{
        position: absolute;     top: 0;                     left: 0;
        height: 25px;           width: 25px;                background-color: #eee;
        border-radius: 50%;     /*border: 1px solid #B3D4FC;*/
    }
 
    /* On mouse-over, add a grey background color */
-   .contaRadio:hover input ~ .checkmark {
+   .contaRadio:hover input ~ .checkmark ,.contaRadio2:hover input ~ .checkmark2{
        background-color: #ccc;
    }
 
    /* When the radio button is checked, add a blue background */
-   .contaRadio input:checked ~ .checkmark {
+   .contaRadio input:checked ~ .checkmark ,.contaRadio2 input:checked ~ .checkmark2{
        background-color: #000000;
    }
 
    /* Create the indicator (the dot/circle - hidden when not checked) */
-   .checkmark:after {
+   .checkmark:after ,.checkmark2:after{
        content: "";            position: absolute;         display: none;
    }
 
    /* Show the indicator (dot/circle) when checked */
-   .contaRadio input:checked ~ .checkmark:after {
+   .contaRadio input:checked ~ .checkmark:after ,.contaRadio2 input:checked ~ .checkmark2:after{
        display: block;
    }
 
    /* Style the indicator (dot/circle) */
-   .contaRadio .checkmark:after {
+   .contaRadio .checkmark:after ,.contaRadio2 .checkmark2:after{
        top: 7.4px;             left: 7.6px;                width: 10.3px;
        height: 10.3px;         border-radius: 50%;         background: white;
    }

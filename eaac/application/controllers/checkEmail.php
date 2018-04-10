@@ -157,23 +157,7 @@ class checkEmail extends CI_Controller {
 
 	function API_Check_Email($email)
 	{	
-		$body="
-		<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:orac='http://www.oracle.com' xmlns:v1='http://www.telkomsel.com/eai/CIS/cis_domain_checkRq/v1.0'>
-		   <soapenv:Header>
-		      <orac:AuthenticationHeader>
-		         <orac:UserName>osb</orac:UserName>
-		         <orac:PassWord>welcome1</orac:PassWord>
-		      </orac:AuthenticationHeader>
-		   </soapenv:Header>
-		   <soapenv:Body>
-		      <v1:cis_domain_checkRq>
-		         <v1:domain_name>".$email."</v1:domain_name>
-		         <v1:channel>TC</v1:channel>
-		         <v1:trx_id>test</v1:trx_id>
-		      </v1:cis_domain_checkRq>
-		   </soapenv:Body>
-		</soapenv:Envelope>
-		";
+		$body=sprintf(BODY_SRM_CHECK_EMAIL,$email);
 		$respDukcapil = $this->API($body,API_SRM_CHECK_EMAIL);
 		//echo $respDukcapil;
         $obj = new DOMDocument();
@@ -202,34 +186,19 @@ class checkEmail extends CI_Controller {
 		    //echo "<pre>";print_r($headlines);echo "<pre>";
 		    if(!empty($headlines)) 
 		    {
-		    	echo "123456";
 		    	return $headlines;//foreach($headlines as $headline) {echo $headline['v1:account_id'];}
 
 		    }
 		}
-
-    	else{return $headlines = array('NO RESPONSE FROM SERVER');/*echo "GAGAL";*/}
+		else
+		{echo "<script>alert('Your Coorporate are not Valid');document.location='".base_url()."'</script>";/*return $headlines = array('NO RESPONSE FROM SERVER');echo "GAGAL";*/}
 
     }
 
     public function API_Check_Pesanan()
 	{
 		$TRX = $this->input->post('TRXku');
-		$body="
-		<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:orac='http://www.oracle.com' xmlns:v1='http://www.telkomsel.com/eai/CIS/Resource/wsdlxsde/cis_eaac_checkRq/v1.0'>
-		   <soapenv:Header>
-		      <orac:AuthenticationHeader>
-		         <orac:UserName>osb</orac:UserName>
-		         <orac:PassWord>welcome1</orac:PassWord>
-		      </orac:AuthenticationHeader>
-		   </soapenv:Header>
-		   <soapenv:Body>
-		      <v1:cis_eaac_checkRq>
-		         <v1:request_id>".$TRX."</v1:request_id>
-		      </v1:cis_eaac_checkRq>
-		   </soapenv:Body>
-		</soapenv:Envelope>
-		";
+		$body=sprintf(BODY_SRM_CHECK_PESANAN,$TRX);
 		$respGet = $this->API($body,API_SRM_CHECK_PESANAN);
 		$objGetEmAll = new DOMDocument();
         $objGetEmAll->loadXML($respGet);
@@ -245,7 +214,7 @@ class checkEmail extends CI_Controller {
         	$respSTATUS = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
         	$responze = array($respReqId,$respMSISDN,$respAccName,$respSTATUS);
         	echo json_encode($responze);
-        }else { echo "ERROR at OSB";}
+        }else { echo "NO RESPONSE FROM SERVER";}
 	}
 
 	#################

@@ -439,7 +439,7 @@
                                                                 <div style="width: 10%; float: left">:</div>
                                                             </div>
                                                             <div class="span6">
-                                                                <div style="width: 90%; float: left">
+                                                                <div id="msisdnku" style="width: 90%; float: left">
                                                                     <?php echo $this->session->userdata['insertion']['secondarymsisdn']; ?>
                                                                     <span style="color: #de0300"><b></b></span>
                                                                 </div>
@@ -469,7 +469,7 @@
                                                                 <div style="width: 10%; float: left">:</div>
                                                             </div>
                                                             <div class="span6">
-                                                                <div style="width: 90%; float: left">
+                                                                <div id="k_t_p" style="width: 90%; float: left">
                                                                     <?php echo $this->session->userdata['insertion']['noktp']; ?>
                                                                     <span style="color: #de0300"><b></b></span>
                                                                 </div>
@@ -484,7 +484,7 @@
                                                                 <div style="width: 10%; float: left">:</div>
                                                             </div>
                                                             <div class="span6">
-                                                                <div style="width: 90%; float: left">
+                                                                <div id="k_k" style="width: 90%; float: left">
                                                                     <?php echo $this->session->userdata['insertion']['nokk']; ?>
                                                                     <span style="color: #de0300"><b></b></span>
                                                                 </div>
@@ -710,5 +710,44 @@ $(document).ready(function(){
         if (form.valid() === false)
         {  alert('Please Check the checkbox to continue')      }
     });
+
+    // HIT DUKCAPIL 2nd Checker | Either Success or (NIK/KK) not match still go to CIS
+    /*var ktpku = $('#k_t_p').val();
+    var kkku = $('#k_k').val();
+
+    console.log(ktpku+'-'+kkku);
+    var jqXHR=$.ajax({
+      url: "<?php echo base_url('registrasi/API_Dukcapil'); ?>",
+      type: "POST",
+      data: {ktp: ktpku, kk: kkku},
+      async: false
+    });
+    ////var isCapil = ( jqXHR.responseText.trim() == '0000 - Success' );    
+    ////if( isCapil === false ) {alert(jqXHR.responseText.trim());}
+    var hasilCapil = responseText.trim();
+    hasilCapil = hasilCapil.split('-');
+    hasilCapil = hasilCapil[1].trim();*/
+
+    // HIT RESERVE MESTINYA VIA CONTROLLER AJA KALI YAH ...
+    /*var msisdn_pesanan = $('#msisdnku');
+    $.ajax({
+        url : "<?php echo base_url();?>registrasi/API_MSISDN_Reserve",
+        type : "POST",
+        data : {msisdn: msisdn_pesanan},
+        async : true,
+        dataType : 'html',
+        success: function(resppp){
+            console.log(resppp);
+            if(resppp == '0000 - Success')
+            {
+                alert("RESERVE SUCCESS");
+            }
+             
+        }
+            
+    });*/
+
+    // HIT API INSERT
+
 });
 </script>

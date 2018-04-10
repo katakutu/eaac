@@ -457,10 +457,10 @@ $kotaku = $this->session->userdata['kota'];
                                   -->
 
                                   <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
-                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:address'] ? 'checked="checked"' : '';  ?>
+                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:account_name'] ? 'checked="checked"' : '';  ?>
                                     <span>
-                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:address'].'|'.$value['v1:province'];?>" <?php echo $checked; ?>>
-                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:address'].', '.$value['v1:province'];?></label>
+                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:account_name'].'|'.$value['v1:region'];?>" <?php echo $checked; ?>>
+                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:account_name'].', '.$value['v1:region'];?></label>
                                     </span>
                                   <?php } ?>
 
@@ -623,10 +623,9 @@ $kotaku = $this->session->userdata['kota'];
 
                               <div class="package-list">
 
-                                
-                                    
+                                <!-- 
                                     <div class="D1 selected">
-                                        <input class="paketku" type="radio" name="packagetype" value="550">
+                                        <input class="paketku" type="radio" name="packagetype" value="550" checked="checked">
                                         <div class="D2">
                                           <h5>HaloKick</h5>
                                         </div>
@@ -709,9 +708,6 @@ $kotaku = $this->session->userdata['kota'];
 
                                         </div>
                                     </div>
-                                
-
-                                
                                     
                                     <div class="D1">
                                         <input class="paketku" type="radio" name="packagetype" value="330">
@@ -797,10 +793,7 @@ $kotaku = $this->session->userdata['kota'];
 
                                         </div>
                                     </div>
-                                
 
-                                
-                                    
                                     <div class="D1">
                                         <input class="paketku" type="radio" name="packagetype" value="990">
                                         <div class="D2">
@@ -886,6 +879,431 @@ $kotaku = $this->session->userdata['kota'];
                                         </div>
                                     </div>
                                 
+                                    <div class="D1">
+                                        <input class="paketku" type="radio" name="packagetype" value="330">
+                                        <div class="D2">
+                                          <h5>HaloBro</h5>
+                                        </div>
+
+                                        <div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">330</div>
+
+                                        <div class="table-div">
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                8<sup>GB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet Email</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                600<sup>MB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                    </div>
+                                
+                                    <div class="D1">
+                                        <input class="paketku" type="radio" name="packagetype" value="990">
+                                        <div class="D2">
+                                          <h5>HaloCoy</h5>
+                                        </div>
+
+                                        <div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">990</div>
+
+                                        <div class="table-div">
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                8<sup>GB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet Email</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                600<sup>MB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                    </div>
+                                
+                                    <div class="D1">
+                                        <input class="paketku" type="radio" name="packagetype" value="990">
+                                        <div class="D2">
+                                          <h5>HaloFCKER</h5>
+                                        </div>
+
+                                        <div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">990</div>
+
+                                        <div class="table-div">
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                8<sup>GB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet Email</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                600<sup>MB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                    </div>
+                                
+                                    <div class="D1">
+                                        <input class="paketku" type="radio" name="packagetype" value="330">
+                                        <div class="D2">
+                                          <h5>HaloCUK</h5>
+                                        </div>
+
+                                        <div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">330</div>
+
+                                        <div class="table-div">
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                8<sup>GB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet Email</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                600<sup>MB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                    </div>
+                                
+                                    <div class="D1">
+                                        <input class="paketku" type="radio" name="packagetype" value="990">
+                                        <div class="D2">
+                                          <h5>HaloPal</h5>
+                                        </div>
+
+                                        <div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">990</div>
+
+                                        <div class="table-div">
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                8<sup>GB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Internet Email</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                600<sup>MB</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>Call All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>mins</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS CUG</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                1000<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                          <div class="row row-0">
+                                            <div class="thead">
+                                              <span>SMS All Operator</span>
+                                            </div>
+                                             
+                                            <div class="tbody">
+                                              <div class="numericcc">
+                                                60<sup>SMS</sup>
+                                              </div>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                    </div>
+                                 -->
 
                               </div><!---->
 
@@ -1219,7 +1637,7 @@ $kotaku = $this->session->userdata['kota'];
                                 <input class="span8" type="file" name="imagektp" id="imageKTP">
                               </div>
                               <div class="row-fluid" style="margin-bottom: 5px">
-                                <span class="span8" style="background-color: #fff; padding: 2.5%;">Format: jpg, png, atau gif. Maks.: 5MB</span>
+                                <span class="span8" style="background-color: #fff; padding: 2.5%;">Format: jpg, png, atau gif. Maks.: 3MB</span>
                               </div>
                             </div>
 
@@ -1247,7 +1665,7 @@ $kotaku = $this->session->userdata['kota'];
                                 <input class="span8" type="file" name="imagepeg" id="imagePeg">
                               </div>
                               <div class="row-fluid" style="margin-bottom: 5px">
-                                <span class="span8" style="background-color: #fff; padding: 2.5%;">Format: jpg, png, atau gif. Maks.: 5MB</span>
+                                <span class="span8" style="background-color: #fff; padding: 2.5%;">Format: jpg, png, atau gif. Maks.: 3MB</span>
                               </div>
                             </div>
 
@@ -1620,7 +2038,7 @@ $kotaku = $this->session->userdata['kota'];
 
 
 
-								</div> <!-- END width 100% -->
+				</div> <!-- END width 100% -->
               </div> <!-- END span12 -->
 
 
@@ -1673,10 +2091,63 @@ $kotaku = $this->session->userdata['kota'];
 				// Validator
 				$(".nextz").click(function(){
                     if ($("input[name=alamatkantor]:checked").length == 0){$('html, body').animate({scrollTop: $("#alamat_antor").offset().top-300}, 2000);  $('#msisdnParent').animate({"border-width": "2px"}, 500);}
-                    else if ($("input[name=secondaryMSISDN]:checked").length == 0){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
-                    else if ($("input[name=packagetype]:checked").length == 0){window.alert("Please choose your package type !"); $('html, body').animate({scrollTop: $(".package-list").offset().top-200}, 2000); }
+                    else if($("input[name=secondaryMSISDN]:checked").length == 0){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
+                    else if($("input[name=secondaryMSISDN]").length < 2){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
+                    else if ($("input[name=packagetype]:checked").length == 0){window.alert("Please choose your package type !"); $('html, body').animate({scrollTop: $(".package-list").offset().top}, 2000); }
                     //window.alert("Please choose your office address !");
+
                     else{
+
+                    // Custom method validate DUKCAPIL
+                    if( $('#noKTP').val() && $('#noKK').val() )
+                    { 
+                        var ktp=$('#noKTP').val();   var kk=$('#noKK').val();
+                        /*console.log(ktp+" - "+kk);
+                        $.ajax({
+                              type: "GET",
+                              async: false,
+                              url: "<?php echo base_url('registrasi/API_Dukcapil'); ?>",
+                              data: {ktp: ktp, kk: kk},
+                              dataType:"json",
+                            success: function(resp)
+                            {   
+                                var isCapil = (resp[0] == '0000');
+                                //if(isCapil === false) {alert(resp[0]+" - "+resp[1]);}
+                              // if the user exists, it returns a string "true"
+                              //if(resp == "0000") {return false;} else {return true;}  
+                            }
+                        });*/
+                         var jqXHR=$.ajax({
+                          url: "<?php echo base_url('registrasi/API_Dukcapil'); ?>",
+                          type: "POST",
+                          data: {ktp: ktp, kk: kk},
+                          async: false
+                        }); 
+
+                        /*function getData(callback) {
+                          $.ajax({
+                            url: "<?php echo base_url('registrasi/API_Dukcapil'); ?>",
+                            data: {ktp: ktp, kk: kk},
+                            type: 'GET',
+                            dataType:"json",
+                            success: callback
+                          })
+                        }
+                        getData(function(response) {
+                          var $result = response[0];
+                          var next_load = $result;
+                          console.log(next_load);
+                        });*/
+
+                        console.log(jqXHR.responseText.trim());
+                        var isCapil = ( jqXHR.responseText.trim() == '0000 - Success' );
+                        if( isCapil === false ) {alert(jqXHR.responseText.trim());}
+                    } //END IF AJAX  // MAININ RESPONSE ALERT DAN ISEMPTY
+
+                    
+                    //console.log(jqXHR.responseText);
+                    //console.log(isCapil);
+                    // console.log(next_load+" last");
 
 					var form = $("#registerForm");
 					form.validate({
@@ -1707,12 +2178,12 @@ $kotaku = $this->session->userdata['kota'];
 							imagektp:{
 								required: true,
 								accept: "image/jpg,image/jpeg,image/png,image/gif",
-								filesize: 5000000,
+								filesize: 3145728,
 							},
 							imagepeg:{
 								required: true,
 								accept: "image/jpg,image/jpeg,image/png,image/gif",
-								filesize: 5000000,
+								filesize: 3145728,
 							},
 							fullname: { required: true, },
 							deliveryaddress: { required: true, },
@@ -1751,7 +2222,9 @@ $kotaku = $this->session->userdata['kota'];
 							phoneno: {required: "Phone required !",},
 						}
 					});
-					if (form.valid() === true){
+					
+
+                    if (form.valid() === true && isCapil === true){
 						if ($('#halaman1').is(":visible")){
 							current_fs = $('#halaman1');
 							next_fs = $('#halaman2');
@@ -1896,20 +2369,6 @@ $kotaku = $this->session->userdata['kota'];
 	    </script>
         -->
 
-        <!-- JAVASCRIPT FOR PACKAGE TYPE -->
-        <script type="text/javascript">
-          //$(".paketku").prop("checked", true);
-          //if($('.paketku').attr('checked', 'checked')) { $(".package-list > .D1").addClass("selected"); }
-
-          $(".package-list :radio").hide().click(function(e){
-            e.stopPropagation();
-          });
-          $(".package-list > .D1").click(function(e){
-            $(this).closest(".package-list").find(".D1").removeClass("selected");
-            $(this).addClass("selected").find(":radio").click();
-          });
-        </script>
-
         <!-- AJAX FOR SELECT BOX PROVINSI & KOTA -->
         <script type="text/javascript">
             $(document).ready(function(){
@@ -1935,6 +2394,129 @@ $kotaku = $this->session->userdata['kota'];
                 });
             });
         </script>
+
+        <!-- AJAX FOR GET LIST OFFER FROM RADIO BUTTON CLICK -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('input[name="alamatkantor"]').click(function(){
+                    var theValue=$(this).val();
+                    var accID = theValue.split('|')[0];
+                    $(".D1").remove();
+
+                    $.ajax({
+                        url : "<?php echo base_url();?>registrasi/API_List_Package",
+                        type : "POST",
+                        data : {accID: accID},
+                        dataType : 'json',
+                        success: function(result){
+                            //alert(accID);//alert(result.length);
+                            console.log(result);
+                            
+                            var hasilHTML = '';
+                            var counter=0,header,content,ender;
+                            ////for(var w=0;w<result[0]['v1product_desc'].length;++w){console.log("a - "+w);}
+                            jQuery.each(result, function(index, data) {
+                                // do something with `item` (or `this` is also `item` if you like)
+                                //console.log('indexKe-'+index);
+                            
+                            header=content=ender='';
+
+                            header = '<label class="D1">'+
+                                           //'<label class="contaRadio">'+
+                                           '<input type="radio" name="packagetype" value="'+data['v1product_id']+'">'+
+                                           //'<span class="checkmark"></span></label>'+
+                                           //'<input class="paketku" type="radio" name="packagetype" value="100">'+
+                                           '<div class="D2"><h5>'+data['v1product_name']+'</h5></div>'+
+
+                                           '<div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">'+data['v1price']+'</div>'+
+
+                                           '<div class="table-div">';
+
+                            counter = data['v1product_desc'].length;
+
+                            if(typeof(data['v1product_desc'][0]) === "undefined"){      // jika hanya ada 1 offer per <DATA>
+                                content += '<div class="row row-0">'+
+                                                '<div class="thead">'+
+                                                  '<span>'+data['v1product_desc']['v1name']+'</span>'+
+                                                '</div>'+
+                                                 
+                                                '<div class="tbody">'+
+                                                  '<div class="numericcc">'+data['v1product_desc']['v1value']+
+                                                  '<sup>'+data['v1product_desc']['v1unit']+'</sup></div>'+
+                                                '</div>'+
+                                            '</div>';
+                            }else{
+                            for(var z=0;z<counter;++z){
+                                content += '<div class="row row-0">'+
+                                                '<div class="thead">'+
+                                                  '<span>'+data['v1product_desc'][z]['v1name']+'</span>'+
+                                                '</div>'+
+                                                 
+                                                '<div class="tbody">'+
+                                                  '<div class="numericcc">'+data['v1product_desc'][z]['v1value']+
+                                                  '<sup>'+data['v1product_desc'][z]['v1unit']+'</sup></div>'+
+                                                '</div>'+
+                                            '</div>';
+                            }}
+                            ender ='</div></label>';
+
+                            hasilHTML += header+content+ender;
+                            }); //END JQuery each
+
+                            $(hasilHTML).hide().appendTo('.package-list').fadeIn( "slow" ).css({"display": "inline-block"});
+                            ////var hasilHTMLz = '<label class="D1"><input class="paketku" type="radio" name="packagetype" value="990"><div class="D2"><h5>HaloPal</h5></div><div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">990</div><div class="table-div"><div class="row row-0"><div class="thead"><span>Internet</span></div><div class="tbody"><div class="numericcc">8<sup>GB</sup></div></div></div><div class="row row-0"><div class="thead"><span>Internet Email</span></div><div class="tbody"><div class="numericcc">600<sup>MB</sup></div></div></div><div class="row row-0"><div class="thead"><span>Call CUG</span></div><div class="tbody"><div class="numericcc">1000<sup>mins</sup></div></div></div><div class="row row-0"><div class="thead"><span>Call All Operator</span></div><div class="tbody"><div class="numericcc">60<sup>mins</sup></div></div></div><div class="row row-0"><div class="thead"><span>SMS CUG</span></div><div class="tbody"><div class="numericcc">1000<sup>SMS</sup></div></div></div><div class="row row-0"><div class="thead"><span>SMS All Operator</span></div><div class="tbody"><div class="numericcc">60<sup>SMS</sup></div></div></div></div></label>';
+                            ////var hasilHTMLzz = '<label class="D1"><input class="paketku" type="radio" name="packagetype" value="390"><div class="D2"><h5>HaloPal</h5></div><div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">390</div><div class="table-div"><div class="row row-0"><div class="thead"><span>Internet</span></div><div class="tbody"><div class="numericcc">8<sup>GB</sup></div></div></div><div class="row row-0"><div class="thead"><span>Internet Email</span></div><div class="tbody"><div class="numericcc">600<sup>MB</sup></div></div></div><div class="row row-0"><div class="thead"><span>Call CUG</span></div><div class="tbody"><div class="numericcc">1000<sup>mins</sup></div></div></div><div class="row row-0"><div class="thead"><span>Call All Operator</span></div><div class="tbody"><div class="numericcc">60<sup>mins</sup></div></div></div><div class="row row-0"><div class="thead"><span>SMS CUG</span></div><div class="tbody"><div class="numericcc">1000<sup>SMS</sup></div></div></div><div class="row row-0"><div class="thead"><span>SMS All Operator</span></div><div class="tbody"><div class="numericcc">60<sup>SMS</sup></div></div></div></div></label>';
+                            ////$(hasilHTMLz).hide().appendTo('.package-list').fadeIn( "slow" ).css('display','inline-block');
+                            ////$(hasilHTMLzz).hide().appendTo('.package-list').fadeIn( "slow" ).css('display','inline-block');
+
+                        }   //END success
+                    });
+                });
+            });
+        </script>
+
+        <!-- JAVASCRIPT FOR PACKAGE TYPE 
+        <script type="text/javascript">
+          //$(".paketku").prop("checked", true);
+          //if($('.paketku').attr('checked', 'checked')) { $(".package-list > .D1").addClass("selected"); }
+
+          $(".package-list :radio").hide().click(function(e){
+            e.stopPropagation();
+          });
+          $(".package-list > .D1").click(function(e){
+            $(this).closest(".package-list").find(".D1").removeClass("selected");
+            $(this).addClass("selected").find(":radio").click();
+          });
+        </script>-->
+
+        <!-- <script type="text/javascript">
+            $(document).ready(function () {
+                $('.package-list').on("click", ".D1", function (e) {
+                    //$('.D1').css("background-color","red");
+                    //alert('ell');
+                    e.stopPropagation();
+                });
+                $(".package-list>.D1").click(function(e){
+                    $(this).closest(".package-list").find(".D1").removeClass("selected");
+                    $(this).addClass("selected").find(":radio").click();
+                });
+            });
+        </script> -->
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                
+                $('.package-list').on('change','.D1', function(){
+                
+                    //alert('asd');
+                    var $this = $(this);
+                    $this.closest('.package-list').find('label.highlight').removeClass('highlight');
+                    $this.closest('.D1').addClass('highlight');
+                });
+            });
+        </script>
+
+     
 
 <!--       
 

@@ -329,9 +329,8 @@
     border-width: 0;font-size: inherit;
     box-sizing: inherit;
     line-height: inherit;
-    cursor:pointer;
 }
-.package-list :hover {
+.D1 :hover {
     /*border: 1px solid #23527c;
     transition: all 1s ease;
     -webkit-transition: all 1s ease;*/
@@ -350,10 +349,17 @@
     text-align: left;
     vertical-align: middle;
     transition: all 0.3s linear 0s;
-    font-size: inherit;
+    font-size: inherit;font-weight: normal;
     box-sizing: inherit;
     line-height: inherit;
+    cursor:pointer;
 }
+.D1 > input{  /*HIDE RADIO */
+    visibility: hidden;  /*Makes input not-clickable*/ 
+    position: absolute;  /*Remove input from document flow*/ 
+}
+.D1 > input:checked + div.table-div{ /* (RADIO CHECKED) DIV STYLES */
+    background-color: #ffd6bb;}
 .D2{
     color: rgb(15, 34, 54);
     text-align: left;
@@ -369,3 +375,6 @@
 .D1 > span{
     cursor:pointer;
 }
+
+div.selected {background:#00cc00;}
+.highlight {background: #00cc00 ;}

@@ -14,15 +14,15 @@ class Registrasi extends CI_Controller {
 		$this->load->library('upload');
 		$this->load->model('m_select');
 
-		if(! $isFirstEmailExistSession = $this->session->userdata('email')){	redirect(base_url());	}
-		if(!$this->session->userdata('isOTP')){	redirect('otp');	}
+		if(! $isFirstEmailExistSession = $this->session->userdata('email') )
+        {	redirect(base_url());	}
         
 	} 
 	
 	public function index()
 	{
 		$data['prov'] = $this->m_select->show_prov()->result();
-		$this->load->gotoPage('v_registrasiForm',$data);
+		$this->load->gotoPage('v_RegistrasiForm',$data);
 		//echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
 		//echo "<script type='text/javascript'>alert('$message');</script>";
 	}
@@ -30,8 +30,7 @@ class Registrasi extends CI_Controller {
 	public function submit()
 	{	//if ($this->input->post('REQUEST_METHOD') == 'POST') {
 		# Halaman 1 Part 1/2
-		$sepAlamat=explode('|',$this->input->post('alamatkantor'));
-			$alamatKantor=$sepAlamat[1];  $data['ketKantor']=array('account_id'=>$sepAlamat[0],'account_province'=>$sepAlamat[2]);
+		$alamatKantor = $this->input->post('alamatkantor');
 		$infoGedung = $this->input->post('infogedung');
 		$primaryMSISDN = $this->input->post('primaryMSISDN');
 		$secondaryMSISDN = $this->input->post('secondaryMSISDN');
@@ -67,7 +66,7 @@ class Registrasi extends CI_Controller {
 			'kota' => $kota,							'kodepos' => $kodePos,					'tanggallahir' => $tanggalLahir,'tempatlahir'=>$birthPlace,
 			'namaibu' => $momName,						'phone' => $phoneNo,					'emailreferensi' => $emailRef
 		);
-		//echo "<pre>";print_r($data);echo "</pre>";
+		echo "<pre>";print_r($data);echo "</pre>";
 		//$this->db->insert('eprofile',$data);
 		
 		$this->session->set_userdata($data);
@@ -78,51 +77,32 @@ class Registrasi extends CI_Controller {
 	public function uploadFile($inputTypeName, $fullName, $ket)
 	{
         $config['allowed_types']        = 'gif|jpg|png';
-        $config['file_name'] 			= date("Y-m-d")."_".$fullName;
-        $config['max_size']             = 3072;
-        //$config['uploaxd_path']			= $_SERVER['DOCUMENT_ROOT'];D:/xampp/realFolder/htdocs/eaac/uploads/
+        $config['file_name'] 		= date("Y-m-d")."_".$fullName;
+        $config['max_size']             = 5120;
+        $uploadPath			= "/apps/apache2.4/htdocs/eaac/uploads";
+	$uploadPath			= $_SERVER['DOCUMENT_ROOT']."/eaac/uploads";
 
         if($ket == 'ktp')
         {
-        	$config['upload_path']		= './uploads/KTP';
+        	$config['upload_path']		= $uploadPath.'/KTP';
         	$this->upload->initialize($config);
         	if ( ! $this->upload->do_upload($inputTypeName))
         	{return $this->upload->display_errors();}
-        	else {return $this->upload->data();}
+        	else {chmod($this->session->userdata['insertion']['imagektp'],0755);return $this->upload->data();}
         }
         if($ket == 'nip')
         {
-        	$config['upload_path']		= './uploads/NIP';
+        	$config['upload_path']		= $uploadPath.'/NIP';
         	$this->upload->initialize($config);
         	if ( ! $this->upload->do_upload($inputTypeName))
         	{return $this->upload->display_errors();}
-        	else {return $this->upload->data();}
+        	else {chmod($this->session->userdata['insertion']['imagepeg'],0755);return $this->upload->data();}
         }
 	}
 
 	public function konfirmasi()
-	{
-		if(!array_key_exists('insertion',$this->session->all_userdata() ) ) {redirect('registrasi');}
-		echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
+	{echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
 		$this->load->gotoPage('v_RegisKonfirm');
-
-		// HIT DUKCAPIL the 2nd time | Either Success or (NIK/KK) not match still go to CIS
-		$NIK = $this->session->userdata['insertion']['noktp'];
-		$KK = $this->session->userdata['insertion']['nokk'];
-		$msisdn = '6282162345656';
-
-		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
-		$respDukcapil = $this->API($body,API_DUKCAPIL);
-		//echo $respDukcapil;
-        $objErrCode = new DOMDocument();
-        $objErrCode->loadXML($respDukcapil);
-        $errCode = $objErrCode->getElementsByTagName("errorCode")->item(0)->nodeValue;
-        $errMsg = $objErrCode->getElementsByTagName("errorMessage")->item(0)->nodeValue;
-        //echo json_encode(array('errCode'=>$errCode,'errMsg'=>$errMsg));
-        $isCapil = array( 'iscapil'     => $errMsg  );
-        $this->session->set_userdata($isCapil);
-        echo "<script type='text/javascript'>alert('$errMsg');</script>";
-        ////////////////////////////////////////////////////////////////////////////////
 	}
 
 	public function konfirmBatal()
@@ -136,14 +116,6 @@ class Registrasi extends CI_Controller {
 
 	public function konfirmOK()
 	{
-		// HIT API MSISDN RESERVE
-		$respReser = $this->API_MSISDN_Reserve();
-		echo "<script type='text/javascript'>alert('$respReser');</script>";
-
-		// HIT API INSERT CIS
-
-
-		// INSERT FORM TO DB
 		$DEJA_VU = $this->session->all_userdata();
 		//echo "<pre>";print_r($DEJA_VU['insertion']);echo "</pre>";
 		
@@ -191,57 +163,19 @@ class Registrasi extends CI_Controller {
 		#$str = "false9001Can't reach service providerTesting12345http://10.250.195.155:8011/CivilRegistry/service/NIKInfoGet";
 		#$str = "false0001Error DukcapilTesting12345";
 		#$str = "true1null1true01true01NIK Tidak DitemukanTesting12345";
-		// if 			(strpos($response,'Success') !== false) {$qwe = 'Valid';}
-		// else if 	(strpos($response,'Sesuai' ) !== false) {$qwe = 'Invalid';}
-		// else if 	(strpos($response,'Tidak Ditemukan' ) !== false) {$qwe = 'Tidak Ditemukan';}
-		// else if 	(strpos($response,'9001') !== false) {$qwe = 'Timeout';}
-		// else if 	(strpos($response,'OSB') !== false) {$qwe = 'Error OSB';}
-		// else 												{$qwe = 'Unknown Error';}
-		// return $qwe;
-		$NIK = '6408042001770005';$NIK = $this->input->post('ktp');
-		$KK = '1104111007140002';$KK = $this->input->post('kk');
-		$msisdn = '6282162345656';
-
-		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
-		$respDukcapil = $this->API($body,API_DUKCAPIL);
-		//echo $respDukcapil;
-        $objErrCode = new DOMDocument();
-        $objErrCode->loadXML($respDukcapil);
-        $errCode = $objErrCode->getElementsByTagName("errorCode")->item(0)->nodeValue;
-        $errMsg = $objErrCode->getElementsByTagName("errorMessage")->item(0)->nodeValue;
-        //echo json_encode(array('errCode'=>$errCode,'errMsg'=>$errMsg));
-        $isCapil = array( 'iscapil'     => $errMsg  );
-        $this->session->set_userdata($isCapil);
-        echo $errCode." - ".$errMsg;//."<br>".$errMsg;
+		if 			(strpos($response,'Success') !== false) {$qwe = 'Valid';}
+		else if 	(strpos($response,'Sesuai' ) !== false) {$qwe = 'Invalid';}
+		else if 	(strpos($response,'Tidak Ditemukan' ) !== false) {$qwe = 'Tidak Ditemukan';}
+		else if 	(strpos($response,'9001') !== false) {$qwe = 'Timeout';}
+		else if 	(strpos($response,'OSB') !== false) {$qwe = 'Error OSB';}
+		else 												{$qwe = 'Unknown Error';}
+		return $qwe;
 	}
 
 	public function API_MSISDN_Reserve()
 	{
 		#0000Success11b0515221-7396-4921-adb0-3d53cfad716b
 		#0000Success117ab7068c-a241-470a-8503-16335c65f200
-		//$MSISDN = $this->input->post('msisdn');
-		$MSISDN = '628112014807';//$MSISDN = $this->session->userdata['insertion']['secondarymsisdn'];
-		$body=sprintf(BODY_SRM_MSISDN_RESERVE,$MSISDN);
-		$respGet = $this->API($body,API_SRM_MSISDN_RESERVE);
-		$objGetEmAll = new DOMDocument();
-        $objGetEmAll->loadXML($respGet);
-
-        $errCode = $objGetEmAll->getElementsByTagName("errorCode")->item(0)->nodeValue;
-        $errMsg = $objGetEmAll->getElementsByTagName("errorMessage")->item(0)->nodeValue;
-        $trxReserve = $objGetEmAll->getElementsByTagName("trx_id")->item(0)->nodeValue;
-
-        if($errCode == '0000' && $errMsg == 'Success' ){
-        	$response = $errCode."-".$errMsg."-".$trxReserve;
-        	return $response;
-        }else{
-        	return "FAILED AT RESERVE MSISDN";
-        }
-
-		//$dataFinal = json_decode(json_encode((array)$body), TRUE); 
-		
-		####echo "<pre>";print_r($dataFinal);
-
-		//echo json_encode($dataFinal);
 	}
 
 	public function API_MSISDN_Get()
@@ -256,7 +190,38 @@ class Registrasi extends CI_Controller {
 	}
 	function get_msisdn($wildNumber)
     {		//<! -- THIS -->
-    	$body=sprintf(BODY_SRM_MSISDN_LIST,$wildNumber);
+    	$body="
+		<soapenv:Envelope
+			xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>
+			<soap:Header
+				xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
+				<orac:AuthenticationHeader
+					xmlns:orac='http://www.oracle.com'>
+					<orac:UserName>osb</orac:UserName>
+					<orac:PassWord>welcome1</orac:PassWord>
+				</orac:AuthenticationHeader>
+			</soap:Header>
+			<soapenv:Body>
+				<ns1:NumberRetrieveRq
+					xmlns:ns1='http://www.telkomsel.com/eai/AmdocsSRM/NumberRetrieveRq/v1.0'>
+					<ns1:ApplicationID>T-Care</ns1:ApplicationID>
+					<ns1:UnifiedResourceCriteriaInfo>
+						<ns1:type>MSISDN</ns1:type>
+						<ns1:status>AVAILABLE</ns1:status>
+						<ns1:pattern>%".$wildNumber."%</ns1:pattern>
+						<ns1:AttributesData>
+							<ns1:attrName>DEALER</ns1:attrName>
+							<ns1:attrValue>002SNRSC</ns1:attrValue>
+						</ns1:AttributesData>
+					</ns1:UnifiedResourceCriteriaInfo>
+					<ns1:PaginationInfo>
+						<ns1:pageSize>5</ns1:pageSize>
+						<ns1:pageNumber>1</ns1:pageNumber>
+					</ns1:PaginationInfo>
+				</ns1:NumberRetrieveRq>
+			</soapenv:Body>
+		</soapenv:Envelope>
+		";
 		$respGet = $this->API($body,API_SRM_MSISDN_LIST);
 		$objGetEmAll = new DOMDocument();
         $objGetEmAll->loadXML($respGet);
@@ -279,31 +244,6 @@ class Registrasi extends CI_Controller {
         //echo '<pre>';print_r($listNumber);echo '</pre>';
     }
 
-    public function API_List_Package()
-	{
-		$account_ID = $this->input->post('accID');
-
-        $body=sprintf(BODY_SRM_OFFER_LIST,$account_ID);
-		$respGet = $this->API($body,API_SRM_OFFER_LIST);
-		$objGetEmAll = new DOMDocument();
-        $objGetEmAll->loadXML($respGet);
-
-        $errCode = $objGetEmAll->getElementsByTagName("error_code")->item(0)->nodeValue;
-        $errMsg = $objGetEmAll->getElementsByTagName("error_msg")->item(0)->nodeValue;
-        $totalRow = $objGetEmAll->getElementsByTagName("total")->item(0)->nodeValue;
-
-        $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $respGet);
-		$xml = new SimpleXMLElement($response);
-		$body = $xml->xpath('//v1data');
-		$dataFinal = json_decode(json_encode((array)$body), TRUE); 
-		
-		####echo "<pre>";print_r($dataFinal);
-
-		echo json_encode($dataFinal);
-		#####$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005'
-      	#####echo json_encode($listNumber);
-	}
-
     ################################ FOR SELECT  ######################
 
     function ambil_data()
@@ -318,10 +258,9 @@ class Registrasi extends CI_Controller {
         echo json_encode($data);
         #echo $id.' HOHO';
     }
-
 }
 
-/*	- api insert cis | tambah trxreq | api log | 
+/*
 	#################
 	#YG KURANG
 	# - Nyimpen path file ke MySQL 			X

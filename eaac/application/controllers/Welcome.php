@@ -59,31 +59,10 @@ class Welcome extends CI_Controller {
 		return $output;//echo API_DUKCAPIL;
 	}
 
-	function dukcapil($NIK = '6408042001770008' , $KK = '1104111007140002')
+	function dukcapil($NIK = '6408042001770005' , $KK = '1104111007140002')
 	{	
-		$body="
-		<soapenv:Envelope
-			xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>
-			<soap:Header
-				xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'>
-				<orac:AuthenticationHeader
-					xmlns:orac='http://www.oracle.com'>
-					<orac:UserName>osb</orac:UserName>
-					<orac:PassWord>welcome1</orac:PassWord>
-				</orac:AuthenticationHeader>
-			</soap:Header>
-			<soapenv:Body>
-				<v1:NIKInfoGetRq
-					xmlns:v1='http://www.telkomsel.com/eai/CivilRegistry/NIKInfoGetRq/v1.0'>
-					<v1:NIK>".$NIK."</v1:NIK>
-					<v1:NO_KK>".$KK."</v1:NO_KK>
-					<v1:MSISDN>6282162345656</v1:MSISDN>
-					<v1:channel>TC</v1:channel>
-					<v1:trx_id>Testing12345</v1:trx_id>
-				</v1:NIKInfoGetRq>
-			</soapenv:Body>
-		</soapenv:Envelope>
-		";
+		$msisdn = '6282162345656';
+		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
 		$respDukcapil = $this->API($body,API_DUKCAPIL);
 		//echo $respDukcapil;
         $objErrCode = new DOMDocument();
