@@ -455,7 +455,7 @@
                                                             </div>
                                                             <div class="span6">
                                                                 <div style="width: 90%; float: left">
-                                                                    <?php echo $this->session->userdata['insertion']['packagetype']; ?>
+                                                                    <?php echo $this->session->userdata['ketPaket']['prod_name']; ?>
                                                                     <span style="color: #de0300"><b></b></span>
                                                                 </div>
                                                             </div>

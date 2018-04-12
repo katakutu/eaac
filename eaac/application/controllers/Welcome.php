@@ -197,7 +197,7 @@ class Welcome extends CI_Controller {
     function getzzz()
 	{	
 		
-		$json = file_get_contents('http://10.2.117.101/cis-api/check-domain/luwu.co.id');
+		/*$json = file_get_contents('http://10.2.117.101/cis-api/check-domain/luwu.co.id');
 
 		$dataJANCUK = json_decode($json,True);echo "<pre>";print_r($dataJANCUK);echo "</pre>";
 		
@@ -206,7 +206,10 @@ class Welcome extends CI_Controller {
 
 		foreach ($dataJANCUK['data'] as $sub) {
 			echo $sub['account_id'].'<br>';
-		}
+		}*/
+
+		
+		alert("Line 1\nLine 2");
 		
 
 

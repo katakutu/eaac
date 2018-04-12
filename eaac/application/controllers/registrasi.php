@@ -22,7 +22,8 @@ class Registrasi extends CI_Controller {
 	public function index()
 	{
 		$data['prov'] = $this->m_select->show_prov()->result();
-		$this->load->gotoPage('v_registrasiForm',$data);
+		//$this->session->userdata['insertion']['trx_id'] = $this->session->userdata['trx_id'];
+		$this->load->gotoPage('v_RegistrasiForm',$data);
 		//echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
 		//echo "<script type='text/javascript'>alert('$message');</script>";
 	}
@@ -35,7 +36,8 @@ class Registrasi extends CI_Controller {
 		$infoGedung = $this->input->post('infogedung');
 		$primaryMSISDN = $this->input->post('primaryMSISDN');
 		$secondaryMSISDN = $this->input->post('secondaryMSISDN');
-		$packageType = $this->input->post('packagetype');
+		$sepPackage=explode('|',$this->input->post('packagetype'));
+			$packageType=$sepPackage[0];	$data['ketPaket']=array('prod_id'=>$sepPackage[0],'prod_name'=>$sepPackage[1]);
 		# Halamat 1 Part 2/2
 		$fullName = $this->input->post('fullname');
 		$noKTP = $this->input->post('noktp');
@@ -104,16 +106,16 @@ class Registrasi extends CI_Controller {
 	{
 		if(!array_key_exists('insertion',$this->session->all_userdata() ) ) {redirect('registrasi');}
 		echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";
+
 		$this->load->gotoPage('v_RegisKonfirm');
 
-		// HIT DUKCAPIL the 2nd time | Either Success or (NIK/KK) not match still go to CIS
+		// HIT DUKCAPIL the 2nd time | Either Success or (NIK/KK) dont match still go to CIS
 		$NIK = $this->session->userdata['insertion']['noktp'];
 		$KK = $this->session->userdata['insertion']['nokk'];
 		$msisdn = '6282162345656';
 
 		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
 		$respDukcapil = $this->API($body,API_DUKCAPIL);
-		//echo $respDukcapil;
         $objErrCode = new DOMDocument();
         $objErrCode->loadXML($respDukcapil);
         $errCode = $objErrCode->getElementsByTagName("errorCode")->item(0)->nodeValue;
@@ -121,7 +123,14 @@ class Registrasi extends CI_Controller {
         //echo json_encode(array('errCode'=>$errCode,'errMsg'=>$errMsg));
         $isCapil = array( 'iscapil'     => $errMsg  );
         $this->session->set_userdata($isCapil);
-        echo "<script type='text/javascript'>alert('$errMsg');</script>";
+
+        // INSERT API LOG
+		$toSess = $this->session->userdata;
+		$respCap = "STATUS = %s | DESC = %s";$respCap = sprintf($respCap,$errCode,$errMsg);
+    	$insertLog = "Insert intO api_log (trx_id,email,msisdn,request,response,exec_time,api_name) values (?,?,?,?,?,now(),?)";
+		$req = API_DUKCAPIL;
+		$this->db->query($insertLog,array($toSess['trx_id'],$toSess['email'],"NA",$req,$respCap,"API_DUKCAPIL"));
+        #echo "<script type='text/javascript'>alert('$errMsg');</script>";
         ////////////////////////////////////////////////////////////////////////////////
 	}
 
@@ -135,21 +144,28 @@ class Registrasi extends CI_Controller {
 	}
 
 	public function konfirmOK()
-	{
-		// HIT API MSISDN RESERVE
+	{	$toSess = $this->session->userdata;	$msisdn = $toSess['insertion']['secondarymsisdn'];
+		
+		// HIT API MSISDN RESERVE & INSERT TO API_LOG
 		$respReser = $this->API_MSISDN_Reserve();
-		echo "<script type='text/javascript'>alert('$respReser');</script>";
+		$insertLog = "Insert intO api_log (trx_id,email,msisdn,request,response,exec_time,api_name) values (?,?,?,?,?,now(),?)";
+		$req = API_SRM_MSISDN_RESERVE;
+		$this->db->query($insertLog,array($toSess['trx_id'],$toSess['email'],$msisdn,$req,$respReser,"API_RESERVE_MSISDN"));
 
-		// HIT API INSERT CIS
-
+		// HIT API INSERT CIS & INSERT TO API_LOG
+		$respCIS = $this->API_Add_CIS();
+		$insertLog = "Insert intO api_log (trx_id,email,msisdn,request,response,exec_time,api_name) values (?,?,?,?,?,now(),?)";
+		$req = API_INSERT_CIS;
+		$this->db->query($insertLog,array($toSess['trx_id'],$toSess['email'],$msisdn,$req,$respCIS,"API_INSERT_CIS"));
 
 		// INSERT FORM TO DB
+		$this->session->userdata['insertion']['trx_id'] = $toSess['trx_id'];
 		$DEJA_VU = $this->session->all_userdata();
-		//echo "<pre>";print_r($DEJA_VU['insertion']);echo "</pre>";
-		
+		#echo "<pre>";print_r($DEJA_VU['insertion']);echo "</pre>";
 		$this->db->set($DEJA_VU['insertion']);
 		$this->db->insert('eprofile');
 
+		// CLEAR CACHE/SESSION/ETC
 		$this->load->driver('cache');
 	    $this->session->sess_destroy();
 	    $this->cache->clean();
@@ -186,20 +202,15 @@ class Registrasi extends CI_Controller {
 	
 	public function API_Dukcapil()
 	{
-		#$str = "11041110071400026408042001770005M SADLIISLAMACEH TENGAH0KEBAYAKANWIRASWASTA0LORONG AMALTAKENGONSLTA/SEDERAJATNAIRIAHACEHPINANGANLaki-Laki1977-01-20true1null1true01true0000SuccessTesting12345http://10.250.195.155:8011/CivilRegistry/service/NIKInfoGet";
-		#$str = "true1null1true01true02Data Tidak SesuaiTesting12345http://10.250.195.155:8011/CivilRegistry/service/NIKInfoGet";
-		#$str = "false9001Can't reach service providerTesting12345http://10.250.195.155:8011/CivilRegistry/service/NIKInfoGet";
-		#$str = "false0001Error DukcapilTesting12345";
-		#$str = "true1null1true01true01NIK Tidak DitemukanTesting12345";
-		// if 			(strpos($response,'Success') !== false) {$qwe = 'Valid';}
+		// if 		(strpos($response,'Success') !== false) {$qwe = 'Valid';}
 		// else if 	(strpos($response,'Sesuai' ) !== false) {$qwe = 'Invalid';}
 		// else if 	(strpos($response,'Tidak Ditemukan' ) !== false) {$qwe = 'Tidak Ditemukan';}
 		// else if 	(strpos($response,'9001') !== false) {$qwe = 'Timeout';}
 		// else if 	(strpos($response,'OSB') !== false) {$qwe = 'Error OSB';}
 		// else 												{$qwe = 'Unknown Error';}
 		// return $qwe;
-		$NIK = '6408042001770005';$NIK = $this->input->post('ktp');
-		$KK = '1104111007140002';$KK = $this->input->post('kk');
+		$NIK = $this->input->post('ktp');
+		$KK = $this->input->post('kk');
 		$msisdn = '6282162345656';
 
 		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
@@ -212,15 +223,13 @@ class Registrasi extends CI_Controller {
         //echo json_encode(array('errCode'=>$errCode,'errMsg'=>$errMsg));
         $isCapil = array( 'iscapil'     => $errMsg  );
         $this->session->set_userdata($isCapil);
-        echo $errCode." - ".$errMsg;//."<br>".$errMsg;
+        echo "Invalid KTP or KK\n".$errCode." - ".$errMsg;//."<br>".$errMsg;
 	}
 
 	public function API_MSISDN_Reserve()
 	{
-		#0000Success11b0515221-7396-4921-adb0-3d53cfad716b
-		#0000Success117ab7068c-a241-470a-8503-16335c65f200
-		//$MSISDN = $this->input->post('msisdn');
-		$MSISDN = '628112014807';//$MSISDN = $this->session->userdata['insertion']['secondarymsisdn'];
+		$toSess = $this->session->userdata['insertion'];
+		$MSISDN = '628112014807';$MSISDN = $toSess['secondarymsisdn'];
 		$body=sprintf(BODY_SRM_MSISDN_RESERVE,$MSISDN);
 		$respGet = $this->API($body,API_SRM_MSISDN_RESERVE);
 		$objGetEmAll = new DOMDocument();
@@ -230,17 +239,69 @@ class Registrasi extends CI_Controller {
         $errMsg = $objGetEmAll->getElementsByTagName("errorMessage")->item(0)->nodeValue;
         $trxReserve = $objGetEmAll->getElementsByTagName("trx_id")->item(0)->nodeValue;
 
-        if($errCode == '0000' && $errMsg == 'Success' ){
-        	$response = $errCode."-".$errMsg."-".$trxReserve;
+        if($errCode == '0000' && $errMsg == 'Success' )
+        {
+        	// Response from API
+        	$response = "STATUS = %s | DESC = %s | RESERVE_ID = %s";
+        	$response = sprintf($response,$errCode,$errMsg,$trxReserve);
+        	$this->session->userdata['insertion']['reserve_id'] = $trxReserve;
         	return $response;
         }else{
-        	return "FAILED AT RESERVE MSISDN";
+        	$response = "STATUS = ".$errCode." | DESC = ".$errMsg."";
+        	return $response;
         }
 
 		//$dataFinal = json_decode(json_encode((array)$body), TRUE); 
 		
 		####echo "<pre>";print_r($dataFinal);
 
+		//echo json_encode($dataFinal);
+	}
+
+	public function API_Add_CIS()
+	{
+		$myList = $this->session->userdata['insertion'];
+		$listInsert = array
+		(
+			$myList['packagetype'],$myList['email'],$myList['secondarymsisdn'],$myList['nokk'],$myList['noktp'],
+			$myList['fullname'],$myList['namaibu'],$myList['alamat'],$myList['tanggallahir'],$myList['tempatlahir'],
+			$myList['kota'],$myList['provinsi'],$myList['kodepos'],$myList['phone'],$myList['emailreferensi'],
+		);
+		$body=vsprintf(BODY_INSERT_CIS,$listInsert);
+		$respGet = $this->API($body,API_INSERT_CIS);
+		$objGetEmAll = new DOMDocument();
+        $objGetEmAll->loadXML($respGet);
+
+        $errCode = $objGetEmAll->getElementsByTagName("error_code")->item(0)->nodeValue;
+        $errMsg = $objGetEmAll->getElementsByTagName("error_msg")->item(0)->nodeValue;
+        $trxID = $objGetEmAll->getElementsByTagName("trx_id")->item(0)->nodeValue;
+        $message = $objGetEmAll->getElementsByTagName("message")->item(0)->nodeValue;
+        $request_id = $objGetEmAll->getElementsByTagName("request_id")->item(0)->nodeValue;
+
+        if($errCode == '0000' && $errMsg == 'Success' )
+        {
+        	// SEND EMAIL` REQUEST_ID TO CUSTOMER
+			/*$ip = API_EMAIL_CLAUDIA;
+			$to = $this->session->userdata['email'];
+			$from = "noreply.EAAC@telkomsel.co.id";
+			$cc = "";
+			$subject = "REQUEST_ID";
+			$message = sprintf(MSG_REQ,$to,$request_id);
+			$API = urlencode(sprintf($ip,$to,$from,$cc,$subject,$message));
+			$APIend = file_get_contents($API);*/
+
+			// Response from API
+        	$response = "STATUS = %s | REQ_ID = %s | MESSAGE = %s";
+        	$response = sprintf($response,$errCode,$request_id,$message);
+        	$this->session->userdata['insertion']['req_id'] = $request_id;
+        	return $response;
+        }else{
+        	$response = "STATUS = ".$errCode." | DESC = ".$errMsg."";
+        	return $response;
+        }
+
+		//$dataFinal = json_decode(json_encode((array)$body), TRUE); 
+		####echo "<pre>";print_r($dataFinal);
 		//echo json_encode($dataFinal);
 	}
 
@@ -292,14 +353,26 @@ class Registrasi extends CI_Controller {
         $errMsg = $objGetEmAll->getElementsByTagName("error_msg")->item(0)->nodeValue;
         $totalRow = $objGetEmAll->getElementsByTagName("total")->item(0)->nodeValue;
 
-        $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $respGet);
-		$xml = new SimpleXMLElement($response);
-		$body = $xml->xpath('//v1data');
-		$dataFinal = json_decode(json_encode((array)$body), TRUE); 
-		
-		####echo "<pre>";print_r($dataFinal);
+        if($errCode == '0000' && $errMsg == 'Success' && $totalRow > 0)
+        {
+        	// INSERT API LOG
+			$toSess = $this->session->userdata;
+			$respOff = "STATUS = %s | DESC = %s | ACC_ID = %s | TotalListOffer = %s";$respOff = sprintf($respOff,$errCode,$errMsg,$account_ID,$totalRow);
+	    	$insertLog = "Insert intO api_log (trx_id,email,msisdn,request,response,exec_time,api_name) values (?,?,?,?,?,now(),?)";
+			$req = API_SRM_OFFER_LIST;
+			$this->db->query($insertLog,array($toSess['trx_id'],$toSess['email'],"NA",$req,$respOff,"API_LIST_OFFER"));
 
-		echo json_encode($dataFinal);
+        	// AJAX
+	        $response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $respGet);
+			$xml = new SimpleXMLElement($response);
+			$body = $xml->xpath('//v1data');
+			$dataFinal = json_decode(json_encode((array)$body), TRUE);
+			####echo "<pre>";print_r($dataFinal);
+			echo json_encode($dataFinal);
+		}
+		else{echo json_encode(array("NO LIST OFFER"));}
+
+		// HIT API MSISDN RESERVE
 		#####$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005'
       	#####echo json_encode($listNumber);
 	}

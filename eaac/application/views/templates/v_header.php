@@ -11,8 +11,8 @@
   <meta content="width" name="MobileOptimized">
   <meta content="true" name="HandheldFriendly">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <link href="http://www.telkomsel.com/bisnis" hreflang="id" rel="alternate">
-  <link href="http://www.telkomsel.com/en/business" hreflang="en" rel="alternate">
+  <link href="https://www.telkomsel.com/bisnis" hreflang="id" rel="alternate">
+  <link href="https://www.telkomsel.com/en/business" hreflang="en" rel="alternate">
   <link href="https://www.telkomsel.com/themes/custom/telkomsel/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
   <link href="https://www.telkomsel.com/bisnis" rel="canonical">
   <link href="https://www.telkomsel.com/node/440" rel="shortlink">
@@ -167,11 +167,13 @@
    }
   </style>
   <!--<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.0.min.js"></script> -->
-  <script src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2.js" type="text/javascript"></script>
-  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js" type="text/javascript"></script>
+  <!--<script src="http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.2.js" type="text/javascript"></script> 
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js" type="text/javascript"></script>-->
+  <script src=" <?php echo base_url(); ?>asset/moreCSSnJS/jquery.validate.js"></script>
   <!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.js"></script>
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>-->
+  <script src=" <?php echo base_url(); ?>asset/moreCSSnJS/jquery.min.js"></script>
   <link href="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/packagetype.css" media="all" rel="stylesheet">
   <!-- ~~~~~~~~~~~~~End TAMBAHAN GW~~~~~~~~~~~~~ -->
 
@@ -241,7 +243,7 @@
 
                                 <!-- LI ENTERPRISE-->
                                 <li data-cache="26156edd-6b43-4546-8ee5-4a0ea354b5fc" class="main-nav panel nav-main-menu">
-                                <a href="http://telkomsel.com/business/solution-enterprise" title="Enterprise" class="link" style="height:45px;">Enterprise </a>
+                                <a href="https://www.telkomsel.com/business/solution-enterprise" title="Enterprise" class="link" style="height:45px;">Enterprise </a>
                                     <!--
                                     <a href="https://www.telkomsel.com/bisnis#navSolutions" target="_self" title="Enterprise" data-toggle="collapse" data-parent="#accor1" class="link nav-toggle">
                                         Enterprise

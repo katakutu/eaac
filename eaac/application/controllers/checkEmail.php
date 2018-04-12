@@ -67,7 +67,7 @@ class checkEmail extends CI_Controller {
 			
 		}else{
 			#isFieldNull back to first page
-			echo "<script>alert('ISI EMAIL NY MANA SEMPAK');</script>";
+			echo "<script>alert('Please fill the Email field.');</script>";
 			redirect (base_url());
 		}
 	}
@@ -97,7 +97,7 @@ class checkEmail extends CI_Controller {
 			$updateToken = "UPDATE email_token SET token = ? , update_time=now() WHERE email = ? ";
 			$this->db->query($updateToken,array($Token,$theEmail));
 		}
-		//$this->sendToken($theEmail);	UnComment when deployed
+		//$this->sendToken($theEmail,$Token);	UnComment when deployed
 	}
 	
 	function in_array_r($needle, $haystack, $strict = false) {
@@ -109,9 +109,9 @@ class checkEmail extends CI_Controller {
 		return false;
 	}
 	
-	public function sendToken($theEmail)
+	public function sendToken($theEmail,$Token)
 	{
-		$to = $theEmail;
+		/*$to = $theEmail;
 		$title = "SUBJECT OF EMAIL HERE";
 		$text = "CONTENT OF EMAIL HERE";
 
@@ -131,7 +131,20 @@ class checkEmail extends CI_Controller {
 		$this->email->message($text);
 
 		$result = $this->email->send();
-		var_dump($result);
+		var_dump($result);*/
+		#http://10.54.22.218:8091/sendEmail/submit?to=[to]&from=[from]&cc=[cc]&subject=[subject]&message=[message]
+		#http://10.54.22.218:8091/sendEmail?to=afdhal_b_anugrah@telkomsel.co.id&title=INI_SUBJECT_LO&text=INI-MESSAGE-LO
+
+		$ip = API_EMAIL_CLAUDIA;
+		$to = $theEmail;
+		$from = "noreply.EAAC@telkomsel.co.id";
+		$cc = "";
+		$subject = "TOKEN EMAIL";
+		$message = sprintf(MSG_TOKEN,$theEmail,$Token);
+
+		$API = urlencode(sprintf($ip,$to,$from,$cc,$subject,$message));
+		$APIend = file_get_contents($API);
+
 	}
 
 	################################ API CIS RENE NGISOR KABEH ######################
@@ -157,6 +170,8 @@ class checkEmail extends CI_Controller {
 
 	function API_Check_Email($email)
 	{	
+		$trx_ID = "EA".time().substr(uniqid(mt_rand()),1,9);
+        $this->session->set_userdata(array('trx_id' => $trx_ID));
 		$body=sprintf(BODY_SRM_CHECK_EMAIL,$email);
 		$respDukcapil = $this->API($body,API_SRM_CHECK_EMAIL);
 		//echo $respDukcapil;
@@ -186,12 +201,18 @@ class checkEmail extends CI_Controller {
 		    //echo "<pre>";print_r($headlines);echo "<pre>";
 		    if(!empty($headlines)) 
 		    {
-		    	return $headlines;//foreach($headlines as $headline) {echo $headline['v1:account_id'];}
-
-		    }
+		    	# INSERT API_LOG
+				$respDom = "STATUS = %s | DESC = %s | TotalListAlamat = %s";$respDom = sprintf($respDom,$errCode,$errMsg,$totalRow);
+		    	$insertLog = "Insert intO api_log (trx_id,email,msisdn,request,response,exec_time,api_name) values (?,?,?,?,?,now(),?)";
+				$req = API_SRM_CHECK_EMAIL;
+				$this->db->query($insertLog,array($trx_ID,$email,"NA",$req,$respDom,"API_CHECK_EMAIL"));
+		    	return $headlines;//foreach($headlines as $headline) {echo $headline['v1:account_id		    
+			}
 		}
 		else
 		{echo "<script>alert('Your Coorporate are not Valid');document.location='".base_url()."'</script>";/*return $headlines = array('NO RESPONSE FROM SERVER');echo "GAGAL";*/}
+
+
 
     }
 
@@ -208,11 +229,12 @@ class checkEmail extends CI_Controller {
         if($errCode == '0000' && $errMsg == 'Success')
         {
         	$respReqId = $objGetEmAll->getElementsByTagName("request_id")->item(0)->nodeValue;
-        	$respMSISDN = $objGetEmAll->getElementsByTagName("msisdn")->item(0)->nodeValue;
+        	$respName = $objGetEmAll->getElementsByTagName("name")->item(0)->nodeValue;
+        	$respEmail = $objGetEmAll->getElementsByTagName("email")->item(0)->nodeValue;
         	$respAccId = $objGetEmAll->getElementsByTagName("account_id")->item(0)->nodeValue;
         	$respAccName = $objGetEmAll->getElementsByTagName("account_name")->item(0)->nodeValue;
         	$respSTATUS = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
-        	$responze = array($respReqId,$respMSISDN,$respAccName,$respSTATUS);
+        	$responze = array($respReqId,$respName,$respEmail,$respAccName,$respSTATUS);
         	echo json_encode($responze);
         }else { echo "NO RESPONSE FROM SERVER";}
 	}

@@ -456,11 +456,20 @@ $kotaku = $this->session->userdata['kota'];
                                   <?php } ?>    
                                   -->
 
+                                  <!-- USE THIS WHEN OSB ALREDY FIX THE ADDRESS
                                   <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
-                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:account_name'] ? 'checked="checked"' : '';  ?>
+                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:address'] ? 'checked="checked"' : '';  ?>
                                     <span>
-                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:account_name'].'|'.$value['v1:region'];?>" <?php echo $checked; ?>>
-                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:account_name'].', '.$value['v1:region'];?></label>
+                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:address'].'|'.$value['v1:region'];?>" <?php echo $checked; ?>>
+                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:address'].', '.$value['v1:region'];?></label>
+                                    </span>
+                                  <?php } ?>
+                                  -->
+                                  <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
+                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:account_id'] ? 'checked="checked"' : '';  ?>
+                                    <span>
+                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:account_id'].'|'.$value['v1:region'];?>" <?php echo $checked; ?>>
+                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:account_id'].', '.$value['v1:region'];?></label>
                                     </span>
                                   <?php } ?>
 
@@ -2066,15 +2075,7 @@ $kotaku = $this->session->userdata['kota'];
 
 </div> <!-- END CONTENT CONTAINER -->
 	
-	<!-- MY JQUERY TAMBAHAN 
-		<script type="text/javascript">
-		$(function(){
-			$('#imagePeg').change(function(){
-				var f=this.files[0]
-				alert(f.size||f.fileSize)
-			});
-		});
-		</script>-->
+	<!-- MY JQUERY TAMBAHAN -->
 
         <!-- JAVASCRIPT FOR FORM VALIDATION ALL INPUT TYPES -->
 		<script type="text/javascript">
@@ -2102,52 +2103,18 @@ $kotaku = $this->session->userdata['kota'];
                     if( $('#noKTP').val() && $('#noKK').val() )
                     { 
                         var ktp=$('#noKTP').val();   var kk=$('#noKK').val();
-                        /*console.log(ktp+" - "+kk);
-                        $.ajax({
-                              type: "GET",
-                              async: false,
-                              url: "<?php echo base_url('registrasi/API_Dukcapil'); ?>",
-                              data: {ktp: ktp, kk: kk},
-                              dataType:"json",
-                            success: function(resp)
-                            {   
-                                var isCapil = (resp[0] == '0000');
-                                //if(isCapil === false) {alert(resp[0]+" - "+resp[1]);}
-                              // if the user exists, it returns a string "true"
-                              //if(resp == "0000") {return false;} else {return true;}  
-                            }
-                        });*/
-                         var jqXHR=$.ajax({
+                        
+                        var jqXHR=$.ajax({
                           url: "<?php echo base_url('registrasi/API_Dukcapil'); ?>",
                           type: "POST",
                           data: {ktp: ktp, kk: kk},
                           async: false
                         }); 
 
-                        /*function getData(callback) {
-                          $.ajax({
-                            url: "<?php echo base_url('registrasi/API_Dukcapil'); ?>",
-                            data: {ktp: ktp, kk: kk},
-                            type: 'GET',
-                            dataType:"json",
-                            success: callback
-                          })
-                        }
-                        getData(function(response) {
-                          var $result = response[0];
-                          var next_load = $result;
-                          console.log(next_load);
-                        });*/
-
                         console.log(jqXHR.responseText.trim());
-                        var isCapil = ( jqXHR.responseText.trim() == '0000 - Success' );
+                        var isCapil = ( jqXHR.responseText.trim() == 'Invalid KTP or KK\n0000 - Success' );
                         if( isCapil === false ) {alert(jqXHR.responseText.trim());}
                     } //END IF AJAX  // MAININ RESPONSE ALERT DAN ISEMPTY
-
-                    
-                    //console.log(jqXHR.responseText);
-                    //console.log(isCapil);
-                    // console.log(next_load+" last");
 
 					var form = $("#registerForm");
 					form.validate({
@@ -2289,21 +2256,6 @@ $kotaku = $this->session->userdata['kota'];
          });  
         </script>
 
-        <!--<script>
-		$(document).ready(function(){
-		    $("#carimsisdnx").click(function(){
-		        $.post("demo_test_post.asp",
-		        {
-		          name: "Donald Duck",
-		          city: "Duckburg"
-		        },
-		        function(data,status){
-		            alert("Data: " + data + "\nStatus: " + status);
-		        });
-		    });
-		});
-		</script>-->
-
         <!-- JAVASCRIPT FOR SELECT BOX GET MSISDN FROM API -->
 		<script type="text/javascript">
 		   $(document).ready(function(){
@@ -2423,7 +2375,7 @@ $kotaku = $this->session->userdata['kota'];
 
                             header = '<label class="D1">'+
                                            //'<label class="contaRadio">'+
-                                           '<input type="radio" name="packagetype" value="'+data['v1product_id']+'">'+
+                                           '<input type="radio" name="packagetype" value="'+data['v1product_id']+'|'+data['v1product_name']+'">'+
                                            //'<span class="checkmark"></span></label>'+
                                            //'<input class="paketku" type="radio" name="packagetype" value="100">'+
                                            '<div class="D2"><h5>'+data['v1product_name']+'</h5></div>'+

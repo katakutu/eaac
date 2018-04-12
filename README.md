@@ -26,29 +26,32 @@ Password      :
 ### Tables MAKER
 ```
 CREATE TABLE `eprofile` (
-  `id_profile` integer NOT NULL auto_increment ,
-  `fullname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `alamatkantor` text NOT NULL,
-  `infogedung` varchar(255) NOT NULL,
-  `primarymsisdn` varchar(15) NOT NULL,
-  `secondarymsisdn` varchar(15) NOT NULL,
-  `packagetype` varchar(200) NOT NULL,
-  `nokk` varchar(16) NOT NULL,
-  `noktp` varchar(16) NOT NULL,
-  `alamat` text NOT NULL,
-  `provinsi` varchar(200) NOT NULL,
-  `kota` varchar(200) NOT NULL,
-  `kodepos` varchar(10) NOT NULL,
-  `tanggallahir` date NOT NULL,
-  `tempatlahir` varchar(255) NOT NULL,
-  `namaibu` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `emailreferensi` varchar(255),
-  `imagektp` varchar(255) NOT NULL,
-  `imagepeg` varchar(255) NOT NULL,
-  constraint PK_PROFILE primary key (id_profile)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ `id_profile` int(11) NOT NULL AUTO_INCREMENT,
+ `trx_id` varchar(255) NOT NULL,
+ `req_id` varchar(255) NOT NULL,
+ `reserve_id` varchar(255) NOT NULL,
+ `fullname` varchar(255) NOT NULL,
+ `email` varchar(255) NOT NULL,
+ `alamatkantor` text NOT NULL,
+ `infogedung` varchar(255) NOT NULL,
+ `primarymsisdn` varchar(15) NOT NULL,
+ `secondarymsisdn` varchar(15) NOT NULL,
+ `packagetype` varchar(200) NOT NULL,
+ `noktp` varchar(16) NOT NULL,
+ `nokk` varchar(16) NOT NULL,
+ `alamat` text NOT NULL,
+ `provinsi` varchar(200) NOT NULL,
+ `kota` varchar(200) NOT NULL,
+ `kodepos` varchar(10) NOT NULL,
+ `tanggallahir` date NOT NULL,
+ `tempatlahir` varchar(255) NOT NULL,
+ `namaibu` varchar(255) NOT NULL,
+ `phone` varchar(255) NOT NULL,
+ `emailreferensi` varchar(255) DEFAULT NULL,
+ `imagektp` varchar(255) NOT NULL,
+ `imagepeg` varchar(255) NOT NULL,
+ constraint PK_PROFILE primary key (id_profile)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1
 
 CREATE TABLE `email_token` (
   `email` varchar(200) NOT NULL primary key,
@@ -89,6 +92,18 @@ CREATE TABLE `acuan_nomor_cantik` (
   `status` enum('available','unavailable') NOT NULL  DEFAULT 'unavailable', 
   constraint PK_NOCANTIK primary key (id_no_cantik) 
 ) ENGINE=InnoDB AUTO_INCREMENT=8000 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `api_log` (
+ `id_log` int(11) NOT NULL AUTO_INCREMENT,
+ `trx_id` varchar(255) NOT NULL,
+ `email` varchar(255) NOT NULL,
+ `msisdn` varchar(255) NOT NULL,
+ `request` varchar(255) NOT NULL,
+ `response` varchar(255) NOT NULL,
+ `exec_time` datetime NOT NULL,
+ `api_name` varchar(255) NOT NULL,
+ PRIMARY KEY (`id_log`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ```
 
 

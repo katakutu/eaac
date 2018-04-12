@@ -150,7 +150,7 @@
   <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"19f1c540de","applicationID":"78206581","transactionName":"Y1JQZUcEDURQWhFQWVoYc1JBDAxZHn0XTEZVW25CUAQRVFlmBElfa1ZHRVoGDFpBVQBNU2h0XV9BFwxbXVwXZXdBQ11SWggTW1RNAHpZWkNAXlkJBkUcBwRaVVFEQQ==","queueTime":0,"applicationTime":12819,"atts":"TxVTEw8eHko=","errorBeacon":"bam.nr-data.net","agent":""}</script>
   <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" style="display: none;" tabindex="0"></ul><span aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible" role="status"></span>
   <ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-2" style="display: none;" tabindex="0"></ul><span aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible" role="status"></span> 
-  <script id="" type="text/javascript">var _spapi=_spapi||[];_spapi.push(["_partner","telkomsel"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://":"http://")+"telkomsel.api.sociaplus.com/partner.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script> 
+  <script id="" type="text/javascript">var _spapi=_spapi||[];_spapi.push(["_partner","telkomsel"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://":"https://")+"telkomsel.api.sociaplus.com/partner.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script> 
   <script id="" type="text/javascript">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","1020869594679698");fbq("track","PageView");</script> <noscript>&lt;img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1020869594679698&amp;amp;ev=PageView&amp;amp;noscript=1"&gt;</noscript> <noscript><iframe height="0" src="//d.turn.com/r/dft/id/L21rdC85OTYvcGlkLzg3MjY1Nzc0L3QvMA?ns" style="display:none;visibility:hidden" width="0"></iframe></noscript> 
   <script id="" type="text/javascript">(function(a,b,d){var c=a.getElementsByTagName(b)[0];a=a.createElement(b);a.async=!0;a.src=d;c.parentNode.insertBefore(a,c)})(document,"script","//d.turn.com/r/dft/id/L21rdC85OTYvcGlkLzg3MjY1Nzc0L3QvMA");</script> 
   <script id="" type="text/javascript">
@@ -170,16 +170,24 @@
   <style>#spHeader {background-color:#52B7F1 !important;}#spHeader p span{color:#000 !important;}.spHeaderNav {color:#000 !important;}</style>
 
   <!-- ~~~~~~~~~~~~~~~~TAMBAHAN GW~~~~~~~~~~~~~~~~ -->
-  <!-- button cari msisdn 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+  <!-- button cari msisdn -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- pagination alamat provinsi Kantor-->
+  
+  <!--<link href="<?php echo base_url(); ?>asset/moreCSSnJS/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <script src="<?php echo base_url(); ?>asset/moreCSSnJS/bootstrap.min.js" type="text/javascript"></script>-->
+
+  <!-- PAGINATION alamat provinsi Kantor
   <link href="http://flaviusmatis.github.io/simplePagination.js/simplePagination.css" rel="stylesheet" type="text/css">
-  <script src="http://flaviusmatis.github.io/simplePagination.js/jquery.simplePagination.js" type="text/javascript"></script> 
-  <!-- END TAMBAHAN GW 
-  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>-->
-  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+  <script src="http://flaviusmatis.github.io/simplePagination.js/jquery.simplePagination.js" type="text/javascript"></script>
+  -->
+  <link href="<?php echo base_url(); ?>asset/moreCSSnJS/simplePagination.css" rel="stylesheet" type="text/css">
+  <script src="<?php echo base_url(); ?>asset/moreCSSnJS/jquery.simplePagination.js" type="text/javascript"></script>
+  
+  <!-- JQUERY VALIDATION 
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
+  <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>-->
+  <script src="<?php echo base_url(); ?>asset/moreCSSnJS/additional-methods.min.js" type="text/javascript"></script>
     
   </body>
 </html>

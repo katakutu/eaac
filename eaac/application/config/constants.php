@@ -187,22 +187,22 @@ define('BODY_INSERT_CIS',
 		   </soapenv:Header>
 		   <soapenv:Body>
 		      <v1:cis_eaac_addRq>
-		         <v1:product_id>150c77a0-3ec1-11e7-9985-57711689e9e2</v1:product_id>
-		         <v1:email>testing@oracle.com</v1:email>
-		         <v1:msisdn>628123456789</v1:msisdn>
-		         <v1:kk_number>1234567890123456</v1:kk_number>
-		         <v1:id_number>1234567890123456</v1:id_number>
-		         <v1:name>TEST NAME</v1:name>
-		         <v1:mother_name>TEST MOTHER NAME</v1:mother_name>
-		         <v1:address>JL TEST ADDRESS</v1:address>
-		         <v1:birth_day>19-12-1999</v1:birth_day>
-		         <v1:birth_place>JAKARTA</v1:birth_place>
-		         <v1:city>JAKARTA</v1:city>
-		         <v1:province>DKI JAKARTA</v1:province>
+		         <v1:product_id>%s</v1:product_id>
+		         <v1:email>%s</v1:email>
+		         <v1:msisdn>%s</v1:msisdn>
+		         <v1:kk_number>%s</v1:kk_number>
+		         <v1:id_number>%s</v1:id_number>
+		         <v1:name>%s</v1:name>
+		         <v1:mother_name>%s</v1:mother_name>
+		         <v1:address>%s</v1:address>
+		         <v1:birth_day>%s</v1:birth_day>
+		         <v1:birth_place>%s</v1:birth_place>
+		         <v1:city>%s</v1:city>
+		         <v1:province>%s</v1:province>
 		         <v1:region>DKI JAKARTA</v1:region>
-		         <v1:postal_code>11470</v1:postal_code>
-		         <v1:contact_person>TEST CONTACT PERSON</v1:contact_person>
-		         <v1:email_pic>testingemailpic@oracle.com</v1:email_pic>
+		         <v1:postal_code>%s</v1:postal_code>
+		         <v1:contact_person>%s</v1:contact_person>
+		         <v1:email_pic>%s</v1:email_pic>
 		         <v1:photo_id_number>R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</v1:photo_id_number>
 		         <v1:photo_id_card>R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7</v1:photo_id_card>
 		         <v1:flag_dukcapil>VALID</v1:flag_dukcapil>
@@ -240,6 +240,23 @@ define('BODY_SRM_MSISDN_RESERVE',
 				</ns1:NumberReserveReleaseRq>
 			</soapenv:Body>
 		</soapenv:Envelope>');
+
+
+/*
+|--------------------------------------------------------------------------
+| Content for Email
+|--------------------------------------------------------------------------
+|
+| Configure the content of email when : 
+| 1. Send Token  		--> after user enter their valid email/domain
+| 2. Send REQUEST_ID 	--> after user confirm their form
+|
+*/
+define('API_EMAIL_CLAUDIA','http://10.54.22.218:8091/sendEmail/index.php/welcome/submit?to=%s&from=%s&cc=%s&subject=%s&message=%s');
+
+define('MSG_TOKEN', "<h2>Welcome to Telkomsel EAAC.</h2><br>Your email: <b>%s</b><br>Token code: <strong>%s</strong><br><br>If you have a problem with the email, you can ask customer service:<br><a href='https://www.telkomsel.com/support/contact-us'>https://www.telkomsel.com/support/contact-us</a><br><br><h3>Good luck</h3>With best regards <br><span>Telkomsel Team</span><br><br>");
+
+define('MSG_REQ', "<h2>Thank You for Your Registration</h2><br>Your email: <i>%s</i><br>Request ID: <strong>%s</strong><br><br>You can check your request status:<br><a href='https://www.telkomsel.com'>https://www.telkomsel.com/support/contact-us</a><br><br><h3>Thank You :D</h3>With best regards <br><span>Telkomsel Team</span><br><br>");
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace

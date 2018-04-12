@@ -591,7 +591,7 @@
                                                             <div class="row-fluid" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
-                                                                        MSISDN<span style="color: #de0300"></span>
+                                                                        NAME<span style="color: #de0300"></span>
                                                                     </div>
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
@@ -606,7 +606,7 @@
                                                             <div class="row-fluid" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
-                                                                        COORPORATE<span style="color: #de0300"><b></b></span>
+                                                                        EMAIL<span style="color: #de0300"></span>
                                                                     </div>
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
@@ -621,12 +621,27 @@
                                                             <div class="row-fluid" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
-                                                                        STATUS<span style="color: #de0300"><b></b></span>
+                                                                        COORPORATE<span style="color: #de0300"><b></b></span>
                                                                     </div>
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left" id="isi4">
+                                                                        
+                                                                        <span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left">
+                                                                        STATUS<span style="color: #de0300"><b></b></span>
+                                                                    </div>
+                                                                    <div style="width: 10%; float: left">:</div>
+                                                                </div>
+                                                                <div class="span6">
+                                                                    <div style="width: 90%; float: left" id="isi5">
                                                                         
                                                                         <span style="color: #de0300"><b></b></span>
                                                                     </div>
@@ -731,8 +746,9 @@
                     $this.button('reset');
                     $('#cekpesanan').hide();
                     $('#hasilpesanan').fadeIn(1000);
-                    $('#isi1').html(result[0]);$('#isi2').html(result[1]);
-                    $('#isi3').html(result[2]);$('#isi4').html("<b>"+result[3]+"</b>");
+
+                    $('#isi1').html(result[0]);$('#isi2').html(result[1]);$('#isi3').html(result[2]);
+                    $('#isi4').html(result[3]);$('#isi5').html("<b>"+result[4]+"</b>");
                 }
                 //setTimeout(function() {$this.button('reset');}, 2000);
             }
