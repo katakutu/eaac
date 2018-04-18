@@ -194,6 +194,16 @@ class Welcome extends CI_Controller {
       echo $content;
     }
 
+    function lol($wildNumber = '6281')
+    {
+    	$this->load->model('m_select');
+    	$show5Msis = $this->m_select->show_msisdn($wildNumber);
+    	if($show5Msis){
+    		foreach($show5Msis as $msis){$listNumber[] = $msis['msisdn'];}
+    	}else{$listNumber[] ="NO MSISDN FOUND";}
+    	echo "<pre>";print_r($listNumber);
+    }
+
     function getzzz()
 	{	
 		

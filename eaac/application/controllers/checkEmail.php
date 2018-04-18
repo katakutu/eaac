@@ -41,10 +41,10 @@ class checkEmail extends CI_Controller {
 				$dataEmail = array(
                    #'username'  => 'johndoe','logged_in' => TRUE
 				   'isOTP' => FALSE,
-				   'alamat_antor' => array('alamat1, provinsi A','alamat2, provinsi B','alamat3, provinsi C','alamat4, provinsi A','alamat5, provinsi C','alamat6, provinsi A','alamat7, provinsi D','alamat8, provinsi C','alamat9, provinsi C','alamat10, provinsi E','alamat11, provinsi A','alamat12, provinsi B','alamat13, provinsi D','alamat14, provinsi A','alamat15, provinsi C'),
+				   #'alamat_antor' => array('alamat1, provinsi A','alamat2, provinsi B','alamat3, provinsi C','alamat4, provinsi A','alamat5, provinsi C','alamat6, provinsi A','alamat7, provinsi D','alamat8, provinsi C','alamat9, provinsi C','alamat10, provinsi E','alamat11, provinsi A','alamat12, provinsi B','alamat13, provinsi D','alamat14, provinsi A','alamat15, provinsi C'),
 				   'alamat_antorz' => $responseCheckEmail,
                    'email'     => $email ,
-                   'paketz' => array(
+                   /*'paketz' => array(
 						    array("label"=>"HaloKick", "info"=>"Halo MyPlan", "net"=>"1,5", "netmail"=>"500", 
 							"callCUG"=>"1000", "callAll"=>"60", "SMSCUG"=>"1000", "SMSAll"=>"60")   ,
 							
@@ -53,7 +53,7 @@ class checkEmail extends CI_Controller {
 							
 							array("label"=>"HaloBdg", "info"=>"Halo Bdg", "net"=>"1,5", "netmail"=>"500", 
 							"callCUG"=>"1000", "callAll"=>"60", "SMSCUG"=>"1000", "SMSAll"=>"60")
-						)
+						)*/
                    
 				);
 				$this->session->set_userdata($dataEmail);
@@ -201,12 +201,25 @@ class checkEmail extends CI_Controller {
 		    //echo "<pre>";print_r($headlines);echo "<pre>";
 		    if(!empty($headlines)) 
 		    {
+		    	$Final = array();	$dig = array();
 		    	# INSERT API_LOG
 				$respDom = "STATUS = %s | DESC = %s | TotalListAlamat = %s";$respDom = sprintf($respDom,$errCode,$errMsg,$totalRow);
 		    	$insertLog = "Insert intO api_log (trx_id,email,msisdn,request,response,exec_time,api_name) values (?,?,?,?,?,now(),?)";
 				$req = API_SRM_CHECK_EMAIL;
 				$this->db->query($insertLog,array($trx_ID,$email,"NA",$req,$respDom,"API_CHECK_EMAIL"));
-		    	return $headlines;//foreach($headlines as $headline) {echo $headline['v1:account_id		    
+
+				// Normalisasi Array
+				foreach($headlines as $normal){
+					$dig['account_id'] = (isset($normal['v1:account_id'])) ? $normal['v1:account_id'] :  '';
+					$dig['account_name'] = (isset($normal['v1:account_name'])) ? $normal['v1:account_name'] :  '';
+					$dig['domain_name'] = (isset($normal['v1:domain_name'])) ? $normal['v1:domain_name'] :  '';
+					$dig['address'] = (isset($normal['v1:address'])) ? $normal['v1:address'] :  '';
+					$dig['region'] = (isset($normal['v1:region'])) ? $normal['v1:region'] :  '';
+					$dig['office'] = (isset($normal['v1:office'])) ? $normal['v1:office'] :  '';
+					$Final[] = $dig;
+				}
+				//echo "<pre>";print_r($Final);die();
+		    	return $Final;//foreach($headlines as $headline) {echo $headline['v1:account_id		    
 			}
 		}
 		else

@@ -174,6 +174,7 @@
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>-->
   <script src=" <?php echo base_url(); ?>asset/moreCSSnJS/jquery.min.js"></script>
+  <script src=" <?php echo base_url(); ?>asset/moreCSSnJS/moment.js"></script>
   <link href="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/packagetype.css" media="all" rel="stylesheet">
   <!-- ~~~~~~~~~~~~~End TAMBAHAN GW~~~~~~~~~~~~~ -->
 

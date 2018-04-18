@@ -707,8 +707,8 @@ $(document).ready(function(){
                 },
             }
         });
-        if (form.valid() === false)
-        {  alert('Please Check the checkbox to continue')      }
+        if (form.valid() === false) {  alert('Please Check the checkbox to continue');  }
+        else {  $("#endz").prop('disabled', true);$('#endz').removeClass('btn-large btn-primary backz').addClass('btn btn-default btn-block').css("cursor", "not-allowed"); $("body").css("cursor", "wait"); $(".backz").remove(); }
     });
 
     // HIT DUKCAPIL 2nd Checker | Either Success or (NIK/KK) not match still go to CIS

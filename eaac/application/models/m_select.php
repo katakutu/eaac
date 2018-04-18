@@ -27,4 +27,15 @@ class M_select extends CI_Model{
 
 	}
 
+	function show_msisdn($wildNumber,$region)
+	{
+		// SELECT * FROM acuan_nomor_cantik WHERE region=[$region] AND msisdn like %[$wildNumber]% AND status='available' order by [RANDOM] LIMIT 5
+		$this->db->order_by('msisdn', 'RANDOM');
+		$this->db->where('region', $region);
+		$this->db->like('msisdn', $wildNumber, 'both');
+		$this->db->where('status', 'available');
+		$myMsis = $this->db->get('acuan_nomor_cantik',5);
+		return $myMsis->result_array();
+	}
+
 }

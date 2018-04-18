@@ -2,14 +2,15 @@
 $email          	=	$fullname    	=	$emailreferensi =	$alamatkantor	=		$alamat 			= "";
 $infogedung    		=	$provinsi    	=	$primarymsisdn 	=	$kota 			=		$secondarymsisdn 	= "";
 $kodepos    		=	$noktp 		   	=	$tanggallahir  	=	$nokk  		  	=		$tempatlahir    	= "";
-$imagektp      		=	$namaibu    	=	$imagepeg      	=	$phone    									= "";
-
+$imagektp      		=	$namaibu    	=	$imagepeg      	=	$phone    		=       $packagetype		= "";
+$packagetypez       = "";
 if(array_key_exists('insertion',$this->session->all_userdata())){
 $email          		= $this->session->userdata['insertion']['email'];
 $alamatkantor    		= $this->session->userdata['insertion']['alamatkantor'];
 $infogedung    			= $this->session->userdata['insertion']['infogedung'];
 $primarymsisdn 			= $this->session->userdata['insertion']['primarymsisdn'];
 $secondarymsisdn		= $this->session->userdata['insertion']['secondarymsisdn'];
+$packagetype            = $this->session->userdata['ketPaket']['prod_name'];
 $noktp 		   			= $this->session->userdata['insertion']['noktp'];
 $nokk  		  			= $this->session->userdata['insertion']['nokk'];
 $imagektp      			= $this->session->userdata['insertion']['imagektp'];
@@ -24,6 +25,8 @@ $tempatlahir    		= $this->session->userdata['insertion']['tempatlahir'];
 $namaibu    			= $this->session->userdata['insertion']['namaibu'];
 $phone    				= $this->session->userdata['insertion']['phone'];
 $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
+$alamatkantor=substr($alamatkantor, 0, strpos($alamatkantor, '.  '));
+$packagetypez = $this->session->userdata['ketPaket']['prod_name'];
 $exxx = explode('-',$tanggallahir);
 $kotaku = $this->session->userdata['kota'];
 }
@@ -458,21 +461,21 @@ $kotaku = $this->session->userdata['kota'];
 
                                   <!-- USE THIS WHEN OSB ALREDY FIX THE ADDRESS
                                   <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
-                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:address'] ? 'checked="checked"' : '';  ?>
+                                  $checked = $alamatkantor==$value['account_name'].', '.$value['address'] ? 'checked="checked"' : '';  ?>
                                     <span>
-                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:address'].'|'.$value['v1:region'];?>" <?php echo $checked; ?>>
-                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:address'].', '.$value['v1:region'];?></label>
+                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['account_id'].'|'.$value['account_name'].', '.$value['address'].'|'.$value['region'];?>" <?php echo $checked; ?>>
+                                      <label for="alamat_antor1"><?php echo $value['account_name'].', '.$value['address'].', '.$value['region'];?></label>
                                     </span>
                                   <?php } ?>
                                   -->
                                   <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
-                                  $checked = $alamatkantor==$value['v1:account_name'].', '.$value['v1:account_id'] ? 'checked="checked"' : '';  ?>
+                                  $checked = $alamatkantor==$value['account_name'].', '.$value['account_id'] ? 'checked="checked"' : '';  ?>
                                     <span>
-                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['v1:account_id'].'|'.$value['v1:account_name'].', '.$value['v1:account_id'].'|'.$value['v1:region'];?>" <?php echo $checked; ?>>
-                                      <label for="alamat_antor1"><?php echo $value['v1:account_name'].', '.$value['v1:account_id'].', '.$value['v1:region'];?></label>
+                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['account_id'].'|'.$value['account_name'].', '.$value['account_id'].'|'.$value['region'];?>" <?php echo $checked; ?>>
+                                      <label for="alamat_antor1"><?php echo $value['account_name'].', '.$value['account_id'].', '.$value['region'];?></label>
                                     </span>
                                   <?php } ?>
-
+                                  
 
                                   </div>
 
@@ -523,6 +526,7 @@ $kotaku = $this->session->userdata['kota'];
                           </div>
                           <!-- END INPUT ALAMAT GEDUNG -->
 
+                        <div id="showMeLater"><!-- onClick when alamatKantor checked -->
                           <!-- INPUT CARI NOMOR -->
                           <div class="row-fluid" style="margin-bottom: 5px">
                             <div class="span6">
@@ -602,7 +606,7 @@ $kotaku = $this->session->userdata['kota'];
                                 <span id="ketpilih" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Cari nomor yang mengandung angka cantik yang Anda ketikan</span>
                                 <br>
                                 <?php if($secondarymsisdn !== ""){ ?>
-                                <span id="currentNo" style="font-family: 'Helvetica-Bold', sans-serif; font-size: 13px; line-height: 19px">Nomor yang dipilih <?php echo $secondarymsisdn; ?></span><?php } ?>
+                                <span id="currentNo" style="font-family: 'Helvetica-Bold', sans-serif; font-size: 13px; line-height: 19px">Nomor yang dipilih sekarang <?php echo $secondarymsisdn; ?></span><?php } ?>
                                 <!--<input type="hidden" value=<?php echo $secondarymsisdn; ?> name="secondaryMSISDN" >-->
                                   <!--<span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 19px">Pilih nomor kartuHalo yang Anda inginkan.</span>-->
                               </div>
@@ -626,12 +630,17 @@ $kotaku = $this->session->userdata['kota'];
                               <div style="width: 10%; float: left">:</div>
                             </div>
 
-                            <div class="span6 selectPackage"></div>
+                            <div class="span6" style="background-color: #fff; padding: 1% 1% 1% 2.5%; border-radius: 3px;">
+                                <span id="ketpilihz" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px">Silakan pilih paket untuk kartuHalo Anda</span>
+                                <?php if($packagetype !== ""){ ?>
+                                <p><span id="currentPack" style="font-family: 'Helvetica-Bold', sans-serif; font-size: 13px; line-height: 19px">Paket yang Anda pilih sekarang <?php echo $packagetype; ?></span><?php } ?></p>
+                            </div>
 
                             <div class="span12" style="margin-left: 0;">
 
                               <div class="package-list">
-
+                                <input type="hidden" value="<?php echo $packagetype.'|'.$packagetypez; ?>" name="packagetype" >
+                                <label class="D1" style="display: none; overflow: hidden;"><?php echo $packagetype; ?><input type="radio" name="packagetype"  checked="checked" value="<?php echo $packagetype."|".$packagetypez; ?>"><span class="checkmark"></span></label>
                                 <!-- 
                                     <div class="D1 selected">
                                         <input class="paketku" type="radio" name="packagetype" value="550" checked="checked">
@@ -1611,7 +1620,7 @@ $kotaku = $this->session->userdata['kota'];
                             
                           </div>
                           <!-- END INPUT PACKAGE TYPE -->
-
+                        </div> <!-- END showMeLater -->
                         </div>  <!-- END CONTAINER ALAMAT GEDUNG, CARI NOMOR , TYPE PACKAGE -->
 
 
@@ -1902,7 +1911,7 @@ $kotaku = $this->session->userdata['kota'];
                               
                               <select id="year" name="year" class="selectItemCalendar">
                               <?php
-                                for ($year = 1940; $year <= date("Y"); $year++) 
+                                for ($year = 1960; $year <= date("Y"); $year++) 
                               {?>
                                 <option value=<?php echo $year; ?> <?php echo (isset($exxx[0])&&$exxx[0]==$year) ? 'selected="selected"':''; ?> ><?php echo $year; ?></option>
                               <?php } ?>
@@ -2088,6 +2097,11 @@ $kotaku = $this->session->userdata['kota'];
 				$.validator.addMethod('filesize', function (value, element, param) {
 				    return this.optional(element) || (element.files[0].size <= param)
 				}, 'The file you are trying to upload is too large (max {0}MB)');
+                // Custom method validate BirthDate
+                $.validator.addMethod('validDate', function (value, element) {
+                    var pain = ($('#year').val()+'-'+$('#month').val()+'-'+$('#date').val());
+                    return this.optional(element) || moment(pain, 'YYYY-M-D', true).isValid();
+                }, 'Please pick valid date');
 
 				// Validator
 				$(".nextz").click(function(){
@@ -2160,12 +2174,10 @@ $kotaku = $this->session->userdata['kota'];
 								required: true,
 								//minlength: 5,
 							},
-							birthplace: {
-								required: true, },
-							ibuname: {
-								required: true, },
-							phoneno: {
-								required: true, },
+							birthplace: {required: true, },
+                            year : {validDate:true,},
+							ibuname: {required: true, },
+							phoneno: {required: true, },
 							emailref: { required: false, },
 						},
 						messages: {
@@ -2205,8 +2217,15 @@ $kotaku = $this->session->userdata['kota'];
 						$("html, body").animate({ scrollTop: ($('.has-error').offset().top-300 ) }, 2000);
 					}
 
-                   } 
-				});
+                   }
+
+                    // Store OfferList to Session
+                    var storeMe = $(".package-list").html();
+                    $.ajax({
+                        type: "POST",url: "<?php echo base_url();?>registrasi/storeMe",
+                        data : {storeMe: storeMe},success: function(data){alert(data)},
+                    });
+				}); // END .nextz onclick
 				
 				$('.backz').click(function(){
 					if($('#halaman2').is(":visible")){
@@ -2350,7 +2369,16 @@ $kotaku = $this->session->userdata['kota'];
         <!-- AJAX FOR GET LIST OFFER FROM RADIO BUTTON CLICK -->
         <script type="text/javascript">
             $(document).ready(function(){
+                //$('#showMeLater').hide();
+
                 $('input[name="alamatkantor"]').click(function(){
+                    $('input[name="secondaryMSISDN"]').attr("checked", false);
+                    //$('input[name="packagetype"]').attr("checked", false);
+                    $("#currentNo,#currentPack").hide();
+                    $('.contaRadio').remove();
+                    $("hr").hide();
+                    $('#ketpilih').html("Cari nomor yang mengandung angka cantik yang Anda ketikan");
+                    $('#showMeLater').hide().fadeIn("normal").css({"font-family": "\'Titillium Web\',sans-serif","font-size": "13px"});
                     var theValue=$(this).val();
                     var accID = theValue.split('|')[0];
                     $(".D1").remove();
@@ -2372,41 +2400,47 @@ $kotaku = $this->session->userdata['kota'];
                                 //console.log('indexKe-'+index);
                             
                             header=content=ender='';
+                            var pro_id = data['v1product_id'];
+                            var pro_name = data['v1product_name'];
+                            var pro_price = data['v1price'].slice(0,-3);
+                            var pro_desc = data['v1product_desc'];
 
                             header = '<label class="D1">'+
                                            //'<label class="contaRadio">'+
-                                           '<input type="radio" name="packagetype" value="'+data['v1product_id']+'|'+data['v1product_name']+'">'+
+                                           '<input type="radio" name="packagetype" value="'+pro_id+'|'+pro_name+'">'+
                                            //'<span class="checkmark"></span></label>'+
                                            //'<input class="paketku" type="radio" name="packagetype" value="100">'+
-                                           '<div class="D2"><h5>'+data['v1product_name']+'</h5></div>'+
+                                           '<div class="D2"><h5>'+pro_name+'</h5></div>'+
 
-                                           '<div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">'+data['v1price']+'</div>'+
+                                           '<div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">'+pro_price+'</div>'+
 
                                            '<div class="table-div">';
 
                             counter = data['v1product_desc'].length;
 
                             if(typeof(data['v1product_desc'][0]) === "undefined"){      // jika hanya ada 1 offer per <DATA>
+                                var isUnit = (pro_desc['v1unit']=='null') ? pro_desc['v1name']:data['v1product_desc']['v1unit'];
                                 content += '<div class="row row-0">'+
                                                 '<div class="thead">'+
-                                                  '<span>'+data['v1product_desc']['v1name']+'</span>'+
+                                                  '<span>'+pro_desc['v1name']+'</span>'+
                                                 '</div>'+
                                                  
                                                 '<div class="tbody">'+
-                                                  '<div class="numericcc">'+data['v1product_desc']['v1value']+
-                                                  '<sup>'+data['v1product_desc']['v1unit']+'</sup></div>'+
+                                                  '<div class="numericcc">'+pro_desc['v1value']+
+                                                  '<sup>'+isUnit+'</sup></div>'+
                                                 '</div>'+
                                             '</div>';
                             }else{
                             for(var z=0;z<counter;++z){
+                                var isUnit = (pro_desc[z]['v1unit']=='null') ? pro_desc[z]['v1name']:data['v1product_desc'][z]['v1unit'];
                                 content += '<div class="row row-0">'+
                                                 '<div class="thead">'+
-                                                  '<span>'+data['v1product_desc'][z]['v1name']+'</span>'+
+                                                  '<span>'+pro_desc[z]['v1name']+'</span>'+
                                                 '</div>'+
                                                  
                                                 '<div class="tbody">'+
-                                                  '<div class="numericcc">'+data['v1product_desc'][z]['v1value']+
-                                                  '<sup>'+data['v1product_desc'][z]['v1unit']+'</sup></div>'+
+                                                  '<div class="numericcc">'+pro_desc[z]['v1value']+
+                                                  '<sup>'+isUnit+'</sup></div>'+
                                                 '</div>'+
                                             '</div>';
                             }}
@@ -2420,7 +2454,6 @@ $kotaku = $this->session->userdata['kota'];
                             ////var hasilHTMLzz = '<label class="D1"><input class="paketku" type="radio" name="packagetype" value="390"><div class="D2"><h5>HaloPal</h5></div><div class="numerical price medium" data-currency="Rp" data-decimal=".000" style="margin-top:10px;margin-bottom: 20px;">390</div><div class="table-div"><div class="row row-0"><div class="thead"><span>Internet</span></div><div class="tbody"><div class="numericcc">8<sup>GB</sup></div></div></div><div class="row row-0"><div class="thead"><span>Internet Email</span></div><div class="tbody"><div class="numericcc">600<sup>MB</sup></div></div></div><div class="row row-0"><div class="thead"><span>Call CUG</span></div><div class="tbody"><div class="numericcc">1000<sup>mins</sup></div></div></div><div class="row row-0"><div class="thead"><span>Call All Operator</span></div><div class="tbody"><div class="numericcc">60<sup>mins</sup></div></div></div><div class="row row-0"><div class="thead"><span>SMS CUG</span></div><div class="tbody"><div class="numericcc">1000<sup>SMS</sup></div></div></div><div class="row row-0"><div class="thead"><span>SMS All Operator</span></div><div class="tbody"><div class="numericcc">60<sup>SMS</sup></div></div></div></div></label>';
                             ////$(hasilHTMLz).hide().appendTo('.package-list').fadeIn( "slow" ).css('display','inline-block');
                             ////$(hasilHTMLzz).hide().appendTo('.package-list').fadeIn( "slow" ).css('display','inline-block');
-
                         }   //END success
                     });
                 });

@@ -31,9 +31,10 @@ class Registrasi extends CI_Controller {
 	public function submit()
 	{	//if ($this->input->post('REQUEST_METHOD') == 'POST') {
 		# Halaman 1 Part 1/2
+		$infoGed = $this->input->post('infogedung');
 		$sepAlamat=explode('|',$this->input->post('alamatkantor'));
-			$alamatKantor=$sepAlamat[1];  $data['ketKantor']=array('account_id'=>$sepAlamat[0],'account_province'=>$sepAlamat[2]);
-		$infoGedung = $this->input->post('infogedung');
+		  $alamatKantor=$sepAlamat[1].'.  '.$infoGed;  $data['ketKantor']=array('account_id'=>$sepAlamat[0],'account_province'=>$sepAlamat[2]);
+		
 		$primaryMSISDN = $this->input->post('primaryMSISDN');
 		$secondaryMSISDN = $this->input->post('secondaryMSISDN');
 		$sepPackage=explode('|',$this->input->post('packagetype'));
@@ -61,7 +62,7 @@ class Registrasi extends CI_Controller {
 		$uploadFile_error_list = array($imageKTP,$imageNIP); //error saat upload file (salah format, kegedean , dll)
 		#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~``
 		$data['insertion'] = array(	
-			'alamatkantor' => $alamatKantor,			'infogedung' => $infoGedung,			'primarymsisdn' => $primaryMSISDN,
+			'alamatkantor' => $alamatKantor,			'infogedung' => $infoGed,				'primarymsisdn' => $primaryMSISDN,
 			'secondarymsisdn' => $secondaryMSISDN,		'packagetype' => $packageType,			'noktp' => $noKTP,
 			'imagektp' => $imageKTP["full_path"],		'imagepeg' => $imageNIP["full_path"],	'nokk' => $noKK,
 			'email' => $this->session->userdata['email'],
@@ -112,7 +113,7 @@ class Registrasi extends CI_Controller {
 		// HIT DUKCAPIL the 2nd time | Either Success or (NIK/KK) dont match still go to CIS
 		$NIK = $this->session->userdata['insertion']['noktp'];
 		$KK = $this->session->userdata['insertion']['nokk'];
-		$msisdn = '6282162345656';
+		$msisdn = $this->session->userdata['insertion']['secondarymsisdn'];
 
 		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
 		$respDukcapil = $this->API($body,API_DUKCAPIL);
@@ -261,12 +262,15 @@ class Registrasi extends CI_Controller {
 	public function API_Add_CIS()
 	{
 		$myList = $this->session->userdata['insertion'];
+		$NIK = base64_encode(file_get_contents($this->session->userdata['insertion']['imagektp']));
+		$KK = base64_encode(file_get_contents($this->session->userdata['insertion']['imagepeg']));
 		$listInsert = array
 		(
 			$myList['packagetype'],$myList['email'],$myList['secondarymsisdn'],$myList['nokk'],$myList['noktp'],
-			$myList['fullname'],$myList['namaibu'],$myList['alamat'],$myList['tanggallahir'],$myList['tempatlahir'],
-			$myList['kota'],$myList['provinsi'],$myList['kodepos'],$myList['phone'],$myList['emailreferensi'],
-		);
+			$myList['fullname'],$myList['namaibu'],$myList['alamat'],date('d-m-Y',strtotime($myList['tanggallahir'])),
+			$myList['tempatlahir'],$myList['kota'],$myList['provinsi'],$myList['kodepos'],$myList['phone'],
+			$myList['emailreferensi'],($KK),($NIK)
+		);//echo "<pre>";print_r($listInsert);die();
 		$body=vsprintf(BODY_INSERT_CIS,$listInsert);
 		$respGet = $this->API($body,API_INSERT_CIS);
 		$objGetEmAll = new DOMDocument();
@@ -308,16 +312,26 @@ class Registrasi extends CI_Controller {
 	public function API_MSISDN_Get()
 	{
 		$wildNumber = $this->input->post('toserverFind');
+		$region = 'jateng';
         ##### STUCK ABOVE #####
         ##### make a condition TIMEOUT #####
         //echo $errCode."<br>".$errMsg;
-        $listNumber = $this->get_msisdn($wildNumber);
+        $listNumber = $this->get_msisdn($wildNumber,$region);
+        //$show5Msis = $this->m_select->show_msisdn($wildNumber);
 		#####$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005'
       	echo json_encode($listNumber);
 	}
-	function get_msisdn($wildNumber)
-    {		//<! -- THIS -->
-    	$body=sprintf(BODY_SRM_MSISDN_LIST,$wildNumber);
+	function get_msisdn($wildNumber,$region)
+    {		
+    	# Search MSISDN through DB
+		$show5Msis = $this->m_select->show_msisdn($wildNumber,$region);
+    	if($show5Msis)
+    	{ foreach($show5Msis as $msis){$listNumber[] = $msis['msisdn'];} }
+    	else{$listNumber[] ="NO MSISDN FOUND";}
+    	return $listNumber;
+		
+		# Search MSISDN through SRM
+		/*$body=sprintf(BODY_SRM_MSISDN_LIST,$wildNumber);
 		$respGet = $this->API($body,API_SRM_MSISDN_LIST);
 		$objGetEmAll = new DOMDocument();
         $objGetEmAll->loadXML($respGet);
@@ -336,13 +350,13 @@ class Registrasi extends CI_Controller {
         	return $listNumber;
         } else{
         	return $listNumber = array('NO MSISDN FOUND');
-        }
+        }*/
         //echo '<pre>';print_r($listNumber);echo '</pre>';
     }
 
     public function API_List_Package()
 	{
-		$account_ID = $this->input->post('accID');
+		$account_ID = '5454';//$this->input->post('accID');
 
         $body=sprintf(BODY_SRM_OFFER_LIST,$account_ID);
 		$respGet = $this->API($body,API_SRM_OFFER_LIST);
@@ -367,7 +381,20 @@ class Registrasi extends CI_Controller {
 			$xml = new SimpleXMLElement($response);
 			$body = $xml->xpath('//v1data');
 			$dataFinal = json_decode(json_encode((array)$body), TRUE);
-			####echo "<pre>";print_r($dataFinal);
+
+			// Normalisasi Array jika Hanya ada SATU JENIS PACKAGE (ex:sms saja / voice saja)
+			foreach($dataFinal as $z=>$data){
+				if(!isset($data['v1product_desc'][0]))
+				{$dataFinal[$z]['v1product_desc']= array(array('v1name'=>$dataFinal[$z]['v1product_desc']['v1name'],'v1unit'=>$dataFinal[$z]['v1product_desc']['v1unit'],'v1value'=>$dataFinal[$z]['v1product_desc']['v1value']));}
+			}
+
+			// Normalisasi Array jika tidak ada elemen <v1unit> ATAU elemen <v1unit> bervalue 'null'
+			foreach($dataFinal as $z=>$kill){
+				foreach($kill['v1product_desc'] as $x=>$lol){
+					$dataFinal[$z]['v1product_desc'][$x]['v1unit'] = (!isset($lol['v1value']) || $lol['v1unit']=='null' ) ? '' :  $lol['v1unit'];
+				}
+			}
+			//echo "<pre>";print_r($dataFinal);die();
 			echo json_encode($dataFinal);
 		}
 		else{echo json_encode(array("NO LIST OFFER"));}
@@ -390,6 +417,13 @@ class Registrasi extends CI_Controller {
         ##$data = array('a','b','c');
         echo json_encode($data);
         #echo $id.' HOHO';
+    }
+
+    function storeMe()
+    {
+    	$HTMLOfferList=$this->input->post('storeMe');
+    	$this->session->set_userdata(array('lastOfferList'=>$HTMLOfferList));
+    	echo 'OK';
     }
 
 }

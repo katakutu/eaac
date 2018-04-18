@@ -33,7 +33,7 @@ CREATE TABLE `eprofile` (
  `fullname` varchar(255) NOT NULL,
  `email` varchar(255) NOT NULL,
  `alamatkantor` text NOT NULL,
- `infogedung` varchar(255) NOT NULL,
+ `infogedung` varchar(255) DEFAULT NULL,
  `primarymsisdn` varchar(15) NOT NULL,
  `secondarymsisdn` varchar(15) NOT NULL,
  `packagetype` varchar(200) NOT NULL,
@@ -59,12 +59,6 @@ CREATE TABLE `email_token` (
   `update_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `acuan_alamat_kantor` ( 
-  `id_kantor` integer NOT NULL auto_increment , 
-  `alamat_kantor` text NOT NULL, 
-  constraint PK_KANTOR primary key (id_kantor) 
-) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=latin1;
-
 CREATE TABLE `acuan_provinsi` (
   `id_provinsi` int(11) NOT NULL auto_increment ,
   `provinsi` varchar(255) NOT NULL,
@@ -80,18 +74,13 @@ CREATE TABLE IF NOT EXISTS `acuan_kota` (
   CONSTRAINT FK_KOTA_PROV FOREIGN KEY (`id_provinsi`) REFERENCES `acuan_provinsi` (`id_provinsi`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=latin1;
 
-CREATE TABLE `acuan_tipe_package` ( 
-  `id_package` integer NOT NULL auto_increment , 
-  `nama_package` varchar(255) NOT NULL, 
-  constraint PK_PACKAGE primary key (id_package) 
-) ENGINE=InnoDB AUTO_INCREMENT=3000 DEFAULT CHARSET=latin1;
-
 CREATE TABLE `acuan_nomor_cantik` ( 
   `id_no_cantik` integer NOT NULL auto_increment , 
-   msisdn varchar(25) not null,
-  `status` enum('available','unavailable') NOT NULL  DEFAULT 'unavailable', 
+   msisdn varchar(15) not null,
+   region varchar(25) not null,
+  `status` enum('available','unavailable') NOT NULL  DEFAULT 'available', 
   constraint PK_NOCANTIK primary key (id_no_cantik) 
-) ENGINE=InnoDB AUTO_INCREMENT=8000 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2001 DEFAULT CHARSET=latin1;
 
 CREATE TABLE `api_log` (
  `id_log` int(11) NOT NULL AUTO_INCREMENT,
@@ -103,7 +92,20 @@ CREATE TABLE `api_log` (
  `exec_time` datetime NOT NULL,
  `api_name` varchar(255) NOT NULL,
  PRIMARY KEY (`id_log`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+---- NOT USED ----
+CREATE TABLE `acuan_tipe_package` ( 
+  `id_package` integer NOT NULL auto_increment , 
+  `nama_package` varchar(255) NOT NULL, 
+  constraint PK_PACKAGE primary key (id_package) 
+) ENGINE=InnoDB AUTO_INCREMENT=3000 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `acuan_alamat_kantor` ( 
+  `id_kantor` integer NOT NULL auto_increment , 
+  `alamat_kantor` text NOT NULL, 
+  constraint PK_KANTOR primary key (id_kantor) 
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=latin1;
 ```
 
 

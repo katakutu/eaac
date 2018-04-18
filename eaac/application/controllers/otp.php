@@ -13,6 +13,7 @@ class OTP extends CI_Controller {
 		$this->load->database();
 
 		if(! $this->session->userdata('email')){	redirect(base_url());	}
+		if( $this->session->userdata('isOTP')){	redirect('registrasi');	}
 	} 
 	
 	public function index()

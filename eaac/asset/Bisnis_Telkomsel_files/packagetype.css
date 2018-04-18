@@ -329,6 +329,7 @@
     border-width: 0;font-size: inherit;
     box-sizing: inherit;
     line-height: inherit;
+    margin-top: 5px;
 }
 .D1 :hover {
     /*border: 1px solid #23527c;
@@ -367,7 +368,7 @@
     background: rgba(0, 0, 0, 0) none no-repeat scroll 0% 0% / auto padding-box border-box;
     font: normal normal 400 normal 14px / 20px Helvetica-Light;
     outline: rgb(15, 34, 54) none 0px;
-    display: inline-block;
+    display: block;
 }
 .D2 h5{
     font: normal normal 400 normal 14px / 18.6667px 'Helvetica-Medium';
