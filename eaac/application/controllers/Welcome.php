@@ -13,6 +13,7 @@ class Welcome extends CI_Controller {
 		$this->load->library('curl');
 		$this->load->model('m_select');
 		$this->load->database();
+		date_default_timezone_set('Asia/Jakarta');
 	} 
 	 
 	public function index()
@@ -218,8 +219,8 @@ class Welcome extends CI_Controller {
 			echo $sub['account_id'].'<br>';
 		}*/
 
-		
-		alert("Line 1\nLine 2");
+		echo date('Y-m-d H:i:s');
+		//alert("Line 1\nLine 2");
 		
 
 

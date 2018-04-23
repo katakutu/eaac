@@ -698,17 +698,24 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $("#endz").click(function(){
-        var form = $("#konfirmForm");
-        form.validate({
-            rules: {
-                agree: {
-                    required: true,
+    $( "form" ).submit(function( event ) {
+      var formz = $("#konfirmForm");
+      formz.validate({
+        rules: {
+            agree: {
+                required: true,
                 },
             }
-        });
-        if (form.valid() === false) {  alert('Please Check the checkbox to continue');  }
-        else {  $("#endz").prop('disabled', true);$('#endz').removeClass('btn-large btn-primary backz').addClass('btn btn-default btn-block').css("cursor", "not-allowed"); $("body").css("cursor", "wait"); $(".backz").remove(); }
+      });
+
+
+      if (formz.valid() === true) { 
+        $("#endz").prop('disabled', true).removeClass('btn-large btn-primary backz').addClass('btn btn-default btn-block').css("cursor", "not-allowed"); $("body,#agree").css("cursor", "wait"); $(".backz").remove();
+        return;
+      }
+     
+      alert('Please Check the checkbox to continue');
+      event.preventDefault();
     });
 
     // HIT DUKCAPIL 2nd Checker | Either Success or (NIK/KK) not match still go to CIS

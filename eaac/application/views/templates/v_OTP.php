@@ -69,8 +69,8 @@ String msg = (String)session.getValue("MSGTOKEN");
                                      
                     <tr>
                       <td height="30" valign="bottom"><input type="submit" name="Verify" id="Verify" value="Verify Token" class="submitbutton" /></td>
-                    </tr>                    
-                  </table>                  
+                    </tr>  
+                  </table>
                   </form>
                 </td>		
               </tr>
@@ -79,7 +79,7 @@ String msg = (String)session.getValue("MSGTOKEN");
                 <td height="20" valign="top">
                   <table width="203" border="00" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td align="center"><!--<font color= "ffffff"><%=msg%>--></font></td>
+                      <td align="center"><!-- <font color= "#ffffff">Silakan cek token di Email Anda</font> --></td>
                     </tr>
                   </table>
                 </td>
@@ -95,7 +95,7 @@ String msg = (String)session.getValue("MSGTOKEN");
 		     <table>			 
 			  <tr>
 			    <td align= "center">
-			     <p>“Telah diterapkannya token untuk meningkatkan security aplikasi ini, apabila belum mendaftarkan msisdn untuk menerima token, dapat menghubungi PIC Telkomsel “</p>
+			     <p>“Telah diterapkannya token untuk meningkatkan security aplikasi ini, apabila belum menerima token di email Anda, dapat menghubungi Administrator“</p>
 				</td> 
 			  </tr>
 			 </table>

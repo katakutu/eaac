@@ -384,8 +384,8 @@
 
                                 <!-- LI SME -->
                                 <li data-cache="d1fa6e1e-f446-4b48-9975-8a493494d72d" class="main-nav panel nav-main-menu">
-
-                                    <a href="https://www.telkomsel.com/bisnis#navProducts" target="_self" title="SME" data-toggle="collapse" data-parent="#accor1" class="link nav-toggle" style="height:45px;">SME</a>
+                                    <a href="https://www.telkomsel.com/business/sme" target="_self" title="SME" class="link nav-toggle" style="height:45px;">SME</a>
+                                    <!-- <a href="https://www.telkomsel.com/business/sme" target="_self" title="SME" data-toggle="collapse" data-parent="#accor1" class="link nav-toggle" style="height:45px;">SME</a> -->
 
                                     <!--
                                     <div class="collapse" id="navProducts">

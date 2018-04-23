@@ -199,13 +199,13 @@ define('BODY_INSERT_CIS',
 		         <v1:birth_place>%s</v1:birth_place>
 		         <v1:city>%s</v1:city>
 		         <v1:province>%s</v1:province>
-		         <v1:region>DKI JAKARTA</v1:region>
+		         <v1:region>%s</v1:region>
 		         <v1:postal_code>%s</v1:postal_code>
 		         <v1:contact_person>%s</v1:contact_person>
 		         <v1:email_pic>%s</v1:email_pic>
 		         <v1:photo_id_number>%s</v1:photo_id_number>
 		         <v1:photo_id_card>%s</v1:photo_id_card>
-		         <v1:flag_dukcapil>VALID</v1:flag_dukcapil>
+		         <v1:flag_dukcapil>%s</v1:flag_dukcapil>
 		         <v1:channel>EAAC</v1:channel>
 		         <v1:trx_id>TRXTestingOracle13245</v1:trx_id>
 		      </v1:cis_eaac_addRq>

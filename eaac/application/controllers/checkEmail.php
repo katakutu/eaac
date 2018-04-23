@@ -11,6 +11,7 @@ class checkEmail extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->database();
+		date_default_timezone_set('Asia/Jakarta');
 	} 
 	 
 	public function index()
@@ -88,15 +89,17 @@ class checkEmail extends CI_Controller {
 		$result = $this->db->query($checkAll);
 		$allEmail = $result->result_array();
 		
-		if(!$this->in_array_r($theEmail, $allEmail)){
-			$Token = substr(uniqid(), 7);
-			$insertEmail = "Insert intO email_token (email,token,update_time) values (?,?,now())";
-			$this->db->query($insertEmail,array($theEmail,$Token));
-		}else  {
-			$Token = substr(uniqid(), 7);
-			$updateToken = "UPDATE email_token SET token = ? , update_time=now() WHERE email = ? ";
-			$this->db->query($updateToken,array($Token,$theEmail));
+		try{
+			if(!$this->in_array_r($theEmail, $allEmail)){
+				$Token = substr(uniqid(), 7);
+				$insertEmail = "Insert intO email_token (email,token,update_time) values (?,?,now())";
+				$this->db->query($insertEmail,array($theEmail,$Token));
+			}else  {
+				$Token = substr(uniqid(), 7);
+				$updateToken = "UPDATE email_token SET token = ? , update_time=now() WHERE email = ? ";
+				$this->db->query($updateToken,array($Token,$theEmail));}
 		}
+		catch (Exception $e) {echo 'Caught exception: ',  $e->getMessage();}
 		//$this->sendToken($theEmail,$Token);	UnComment when deployed
 	}
 	
@@ -134,7 +137,7 @@ class checkEmail extends CI_Controller {
 		var_dump($result);*/
 		#http://10.54.22.218:8091/sendEmail/submit?to=[to]&from=[from]&cc=[cc]&subject=[subject]&message=[message]
 		#http://10.54.22.218:8091/sendEmail?to=afdhal_b_anugrah@telkomsel.co.id&title=INI_SUBJECT_LO&text=INI-MESSAGE-LO
-
+		try{
 		$ip = API_EMAIL_CLAUDIA;
 		$to = $theEmail;
 		$from = "noreply.EAAC@telkomsel.co.id";
@@ -143,7 +146,8 @@ class checkEmail extends CI_Controller {
 		$message = sprintf(MSG_TOKEN,$theEmail,$Token);
 
 		$API = urlencode(sprintf($ip,$to,$from,$cc,$subject,$message));
-		$APIend = file_get_contents($API);
+		$APIend = file_get_contents($API);}
+		catch (Exception $e) {echo 'Caught exception: ',  $e->getMessage();}
 
 	}
 

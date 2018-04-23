@@ -11,7 +11,7 @@ class OTP extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$this->load->database();
-
+		date_default_timezone_set('Asia/Jakarta');
 		if(! $this->session->userdata('email')){	redirect(base_url());	}
 		if( $this->session->userdata('isOTP')){	redirect('registrasi');	}
 	} 

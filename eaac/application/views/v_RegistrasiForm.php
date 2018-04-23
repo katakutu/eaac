@@ -26,7 +26,7 @@ $namaibu    			= $this->session->userdata['insertion']['namaibu'];
 $phone    				= $this->session->userdata['insertion']['phone'];
 $emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
 $alamatkantor=substr($alamatkantor, 0, strpos($alamatkantor, '.  '));
-$packagetypez = $this->session->userdata['ketPaket']['prod_name'];
+$packagetypez = $this->session->userdata['ketPaket']['prod_id'];
 $exxx = explode('-',$tanggallahir);
 $kotaku = $this->session->userdata['kota'];
 }
@@ -532,12 +532,15 @@ $kotaku = $this->session->userdata['kota'];
                             <div class="span6">
                               <div style="width: 90%; float: left">
                                   Nomor Kartu<span style="color:#de0300"><b>*</b></span>
+                                  <br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(Nomor kartuHalo disesuaikan sesuai region)</i></span>
                               </div>
                               <div style="width: 10%; float: left">:</div>
                             </div>
                             <div class="span6">
+                                <input type="hidden" value=<?php echo $primarymsisdn; ?> name="primaryMSISDN" >
                                 <input id="primaryMSISDN" name="primaryMSISDN" type="text" placeholder="170845" class="inputCustome" style="font-size: 25px;width:75%;float:left;" maxlength="6" pattern="[0-9]*" value="<?php echo $primarymsisdn; ?>" />
                                 <button id="carimsisdn" type="button" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Mencari..." class="btn btn-primary" style="font-family: &#39;Titillium Web&#39;, sans-serif;margin-top:3px; float: left;width:25%;">Cari</button>
+                                
                                 <!--
                                 <button onclick="#" type="button" class="btn btn-info" style="font-family: &#39;Titillium Web&#39;, sans-serif; float: left;">Sarankan Nomor Cantik</button>
                                 
@@ -626,6 +629,7 @@ $kotaku = $this->session->userdata['kota'];
                             <div class="span6">
                               <div style="width: 90%; float: left">
                                 Pilih Paket<span style="color:#de0300"><b>*</b></span>
+                                <br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(Paket kartuHalo disesuaikan sesuai region)</i></span>
                               </div>
                               <div style="width: 10%; float: left">:</div>
                             </div>
@@ -639,8 +643,8 @@ $kotaku = $this->session->userdata['kota'];
                             <div class="span12" style="margin-left: 0;">
 
                               <div class="package-list">
-                                <input type="hidden" value="<?php echo $packagetype.'|'.$packagetypez; ?>" name="packagetype" >
-                                <label class="D1" style="display: none; overflow: hidden;"><?php echo $packagetype; ?><input type="radio" name="packagetype"  checked="checked" value="<?php echo $packagetype."|".$packagetypez; ?>"><span class="checkmark"></span></label>
+                                <input type="hidden" value="<?php echo $packagetypez.'|'.$packagetype; ?>" name="packagetype" >
+                                <label class="D1" style="display: none; overflow: hidden;"><?php echo $packagetype; ?><input type="radio" name="packagetype"  checked="checked" value="<?php echo $packagetypez."|".$packagetype; ?>"><span class="checkmark"></span></label>
                                 <!-- 
                                     <div class="D1 selected">
                                         <input class="paketku" type="radio" name="packagetype" value="550" checked="checked">
@@ -2107,7 +2111,7 @@ $kotaku = $this->session->userdata['kota'];
 				$(".nextz").click(function(){
                     if ($("input[name=alamatkantor]:checked").length == 0){$('html, body').animate({scrollTop: $("#alamat_antor").offset().top-300}, 2000);  $('#msisdnParent').animate({"border-width": "2px"}, 500);}
                     else if($("input[name=secondaryMSISDN]:checked").length == 0){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
-                    else if($("input[name=secondaryMSISDN]").length < 2){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
+                    //else if($("input[name=secondaryMSISDN]").length < 2){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
                     else if ($("input[name=packagetype]:checked").length == 0){window.alert("Please choose your package type !"); $('html, body').animate({scrollTop: $(".package-list").offset().top}, 2000); }
                     //window.alert("Please choose your office address !");
 
@@ -2223,7 +2227,7 @@ $kotaku = $this->session->userdata['kota'];
                     var storeMe = $(".package-list").html();
                     $.ajax({
                         type: "POST",url: "<?php echo base_url();?>registrasi/storeMe",
-                        data : {storeMe: storeMe},success: function(data){alert(data)},
+                        data : {storeMe: storeMe},success: function(data){console.log(data)},
                     });
 				}); // END .nextz onclick
 				
@@ -2280,6 +2284,7 @@ $kotaku = $this->session->userdata['kota'];
 		   $(document).ready(function(){
 		    $('#carimsisdn').click(function(){
 		      var wildNumber = $('#primaryMSISDN').val();
+              var regionz = ($("input[name=alamatkantor]:checked").val()).split("|")[2];
               if(!$.isNumeric(wildNumber)) {
                 $("#ketpilih").html('Please input only numeric values!').css({ 'color': 'red', 'font-size': '120%' });
                 return false;
@@ -2295,7 +2300,7 @@ $kotaku = $this->session->userdata['kota'];
 
 		        $.ajax({
 		        	type:'POST',
-		        	data:{toserverFind: wildNumber},
+		        	data:{toserverFind: wildNumber,toserverFindz: regionz},
 		        	url:'<?php echo base_url('registrasi/API_MSISDN_Get'); ?>',
 		        	dataType: "json",
 		        	success: function(result){
@@ -2325,6 +2330,11 @@ $kotaku = $this->session->userdata['kota'];
 			        }
 		   });
 		  });
+            $('#primaryMSISDN').keypress(function(e){
+                if(e.which == 13){//Enter key pressed
+                    $('#carimsisdn').click();//Trigger search button click event
+                }
+            });
 		 });
 		</script>
 
@@ -2369,14 +2379,14 @@ $kotaku = $this->session->userdata['kota'];
         <!-- AJAX FOR GET LIST OFFER FROM RADIO BUTTON CLICK -->
         <script type="text/javascript">
             $(document).ready(function(){
-                //$('#showMeLater').hide();
+                $("#primaryMSISDN,#carimsisdn").prop('disabled', true);//$('#showMeLater').hide();
 
                 $('input[name="alamatkantor"]').click(function(){
                     $('input[name="secondaryMSISDN"]').attr("checked", false);
                     //$('input[name="packagetype"]').attr("checked", false);
-                    $("#currentNo,#currentPack").hide();
+                    $("#primaryMSISDN,#carimsisdn").prop('disabled', false);
+                    $("#currentNo,#currentPack,hr").hide();
                     $('.contaRadio').remove();
-                    $("hr").hide();
                     $('#ketpilih').html("Cari nomor yang mengandung angka cantik yang Anda ketikan");
                     $('#showMeLater').hide().fadeIn("normal").css({"font-family": "\'Titillium Web\',sans-serif","font-size": "13px"});
                     var theValue=$(this).val();
