@@ -38,4 +38,13 @@ class M_select extends CI_Model{
 		return $myMsis->result_array();
 	}
 
+	function check_secondTime($msisdn)
+	{	// check kalau ada 2 customer berebut msisdn yang sama
+		// SELECT status,taken_time FROM acuan_nomor_cantik WHERE msisdn=[$msisdn]
+		$this->db->select('status, taken_time');
+		$this->db->where('msisdn', $msisdn);
+		$myLastStatus = $this->db->get('acuan_nomor_cantik');
+		return $myLastStatus->result_array();
+	}
+
 }

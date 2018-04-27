@@ -218,6 +218,16 @@ class Welcome extends CI_Controller {
 		foreach ($dataJANCUK['data'] as $sub) {
 			echo $sub['account_id'].'<br>';
 		}*/
+		$msisdn = '628118222200';
+		/*$isAvai = $this->m_select->check_secondTime($msisdn)[0]['status'];
+		echo "<script>alert('Your ".$msisdn." has been taken');document.location='".base_url()."'</script>";*/
+		foreach($this->m_select->check_secondTime($msisdn) as $rezzz) {$isAvai=$rezzz['status'];$when=$rezzz['taken_time'];}
+		//echo $isAvai.' '.$when;
+		$when = '2018-04-27 11:20:22';
+		$to_time = strtotime(date('Y-m-d H:i:s'));
+		$from_time = strtotime($when);
+		echo round(abs($to_time - $from_time) / 60,2). " minute";
+    	
 
 		echo date('Y-m-d H:i:s');
 		//alert("Line 1\nLine 2");

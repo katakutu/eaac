@@ -30,10 +30,12 @@ CREATE TABLE `eprofile` (
  `trx_id` varchar(255) NOT NULL,
  `req_id` varchar(255) NOT NULL,
  `reserve_id` varchar(255) NOT NULL,
+ `submit_time` datetime NOT NULL,
  `fullname` varchar(255) NOT NULL,
  `email` varchar(255) NOT NULL,
  `alamatkantor` text NOT NULL,
  `infogedung` varchar(255) DEFAULT NULL,
+ `region` varchar(255) NOT NULL,
  `primarymsisdn` varchar(15) NOT NULL,
  `secondarymsisdn` varchar(15) NOT NULL,
  `packagetype` varchar(200) NOT NULL,
@@ -78,7 +80,8 @@ CREATE TABLE `acuan_nomor_cantik` (
   `id_no_cantik` integer NOT NULL auto_increment , 
    msisdn varchar(15) not null,
    region varchar(25) not null,
-  `status` enum('available','unavailable') NOT NULL  DEFAULT 'available', 
+  `status` enum('available','unavailable') NOT NULL  DEFAULT 'available',
+  `taken_time` datetime DEFAULT NULL,
   constraint PK_NOCANTIK primary key (id_no_cantik) 
 ) ENGINE=InnoDB AUTO_INCREMENT=2001 DEFAULT CHARSET=latin1;
 

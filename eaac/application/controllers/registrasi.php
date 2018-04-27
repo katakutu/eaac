@@ -149,7 +149,7 @@ class Registrasi extends CI_Controller {
 
 	public function konfirmOK()
 	{	$toSess = $this->session->userdata;	$msisdn = $toSess['insertion']['secondarymsisdn'];
-		
+		$deleteUploadedKTP = $toSess['insertion']['imagektp'];$deleteUploadedNIP = $toSess['insertion']['imagepeg'];
 		// HIT API MSISDN RESERVE & INSERT TO API_LOG
 		try{
 			$respReser = $this->API_MSISDN_Reserve();
@@ -163,8 +163,21 @@ class Registrasi extends CI_Controller {
 			$req = API_INSERT_CIS;
 			$this->db->query($insertLog,array($toSess['trx_id'],$toSess['email'],$msisdn,$req,$respCIS,"API_INSERT_CIS"));
 
+		// Check if two or more customer pick same msisdn at the same time
+			foreach($this->m_select->check_secondTime($msisdn) as $rezzz) 
+			  {$isAvai=$rezzz['status'];	$when=$rezzz['taken_time'];}
+
+			if($isAvai == 'unavailable') {
+			  unlink($deleteUploadedKTP);	unlink($deleteUploadedNIP);
+			  $minutes = round(abs(strtotime(date('Y-m-d H:i:s')) - strtotime($when)) / 60,0);
+			  $seconds = abs(strtotime(date('Y-m-d H:i:s')) - strtotime($when)) % 60;
+			  $timeDiff = "$minutes minute, $seconds seconds";
+			  //$timeDiff = round(abs(strtotime(date('Y-m-d H:i:s')) - strtotime($when)) / 60,2). " minute";
+			  echo "<script>alert('The number ".$msisdn." has been taken ".$timeDiff." ago\\nYou will be redirected to the registration page');document.location='".base_url('registrasi')."'</script>";
+			die();}
+
 		// UPDATE ACUAN_NOMOR_CANTIK --> update acuan_nomor_cantik set status='unavailable' where msisdn=[$msisdn]
-			$this->db->set('status', 'unavailable');
+			$this->db->set(array('status'=>'unavailable' , 'taken_time'=>date('Y-m-d H:i:s') ) );
 			$this->db->where('msisdn', $msisdn);
 			$this->db->update('acuan_nomor_cantik');
 
@@ -181,7 +194,7 @@ class Registrasi extends CI_Controller {
 		    $this->cache->clean();
 		    ob_clean();
 
-		$this->load->gotoPage('v_RegisEnd');}
+			$this->load->gotoPage('v_RegisEnd');}
 		catch (Exception $e) {echo 'Caught exception: ',  $e->getMessage();}
 	}
 
