@@ -543,7 +543,7 @@
 
                                                     <!-- 06 -->
                                                     <div class="row-fluid" style="margin-bottom: 5px">
-                                                        <div class="span6">
+                                                        <div  id="ketatas" class="span6">
                                                             <div style="width: 90%; float: left">
                                                                 *Isikan Request Transaksi Pesanan Anda
                                                             </div>
@@ -570,8 +570,19 @@
                                                             </div>
                                                         </div>
 
-                                                        <div id="halo2" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
+                                                        <div style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
                                                             <!-- 01 -->
+                                                            <div id="errorOSB" style="padding: 5% 2.5%;display:none;">
+                                                                <div class="row-fluid" style="margin-bottom: 10px">
+                                                                    <div style="width: 100%; float: left"></span>
+                                                                        <legend style="text-align: center">
+                                                                            <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 18px; font-weight: 400; color: #666;"><span style="color:#de0300">PENGECEKAN GAGAL </span>- Mohon maaf atas ketidaknyamanannya. Silakan coba beberapa saat lagi</span>
+                                                                        </legend>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
 
                                                             <div class="row-fluid" style="margin-bottom: 5px">
                                                                 <div class="span6">
@@ -741,12 +752,15 @@
             url:'<?php echo base_url('checkEmail/API_Check_Pesanan'); ?>',
             dataType: "json",
             success: function(result){
-                if(result) 
+                $this.button('reset');
+                $('#cekpesanan,#ketatas').hide();
+                $('#hasilpesanan').fadeIn(1000);
+                if(result === "Error") {
+                    $('#isi1,#isi2,#isi3,#isi4,#isi5').hide();
+                    $('#errorOSB').fadeIn(1000);
+                }
+                else/*if(result)*/ 
                 {
-                    $this.button('reset');
-                    $('#cekpesanan').hide();
-                    $('#hasilpesanan').fadeIn(1000);
-
                     $('#isi1').html(result[0]);$('#isi2').html(result[1]);$('#isi3').html(result[2]);
                     $('#isi4').html(result[3]);$('#isi5').html("<b>"+result[4]+"</b>");
                 }

@@ -20,7 +20,7 @@ class checkEmail extends CI_Controller {
 	}
 	
 	public function isValid()
-	{
+	{	
 		$email = $this->input->post('email');
 		
 		# kodinganCekAPIEmail
@@ -35,7 +35,7 @@ class checkEmail extends CI_Controller {
 		#EmailNullCheck 
 		if ($email)
 		{
-			#isFieldFilled
+			#isFieldFilled isValid
 			if ($responseCheckEmail)
 			{
 				// if VALID SHOW "SEND OTP PAGE"
@@ -253,7 +253,7 @@ class checkEmail extends CI_Controller {
         	$respSTATUS = $objGetEmAll->getElementsByTagName("status")->item(0)->nodeValue;
         	$responze = array($respReqId,$respName,$respEmail,$respAccName,$respSTATUS);
         	echo json_encode($responze);
-        }else { echo "NO RESPONSE FROM SERVER";}
+        }else { echo "Error";}
 	}
 
 	#################
@@ -270,4 +270,11 @@ class checkEmail extends CI_Controller {
 	# - in_array_r		--> only used by firstOTP()
 	# - sendToken		--> Send Token to Email
 	#################
+
+	function my_error_handler($error_no, $error_msg)
+	{
+	    echo "Opps, something went wrong:"."<br>";
+	    echo "Error number: [$error_no]"."<br>";
+	    echo "Error Description: [$error_msg]";
+	}
 }

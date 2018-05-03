@@ -2106,6 +2106,11 @@ $kotaku = $this->session->userdata['kota'];
                     var pain = ($('#year').val()+'-'+$('#month').val()+'-'+$('#date').val());
                     return this.optional(element) || moment(pain, 'YYYY-M-D', true).isValid();
                 }, 'Please pick valid date');
+                $.validator.addMethod("strictemail", function(value, element) {
+                    var valid = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/i.test(value);
+                    if (value == "") return true;
+                        return valid;
+                }, "Please enter a valid email address.");
 
 				// Validator
 				$(".nextz").click(function(){
@@ -2176,13 +2181,13 @@ $kotaku = $this->session->userdata['kota'];
 							deliverycity: { required: true,},
 							kodepos: {
 								required: true,
-								//minlength: 5,
+								minlength: 5,
 							},
 							birthplace: {required: true, },
                             year : {validDate:true,},
 							ibuname: {required: true, },
-							phoneno: {required: true, },
-							emailref: { required: false, },
+							phoneno: {required: true,minlength: 8, },
+							emailref: { required: false,strictemail:'Please enter a valid email address.', },
 						},
 						messages: {
 							primaryMSISDN: {required: "MSISDN required !",},
@@ -2200,7 +2205,7 @@ $kotaku = $this->session->userdata['kota'];
 							deliveryprovince : {required: "Your Province required !",},
 							deliverycity : {required: "Your City required !",},
 							kodepos: {required: "KodePos required !",},
-							birthplace : {required: "Tanggal Lahir required !",},
+							birthplace : {required: "Tempat Lahir required !",},
 							ibuname: {required: "Name IBU required !",},
 							phoneno: {required: "Phone required !",},
 						}
