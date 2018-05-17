@@ -337,7 +337,7 @@
                                             <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
 
                                                 <!-- Header Starts -->
-                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;padding:8px 0 10px 5%">
                                                     <span style="font-family:'Titillium Web',sans-serif;font-size:20px;font-weight:500;color:#666">Registrasi <span style="color:#de0300"> kartuHalo </span> - Khusus Karyawan Perusahaan Mitra <span style="color:#de0300"> TELKOMSEL </span>
                                                     </span>
                                                 </div>
@@ -434,7 +434,7 @@
                                             <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
 
                                                 <!-- Header Starts -->
-                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;padding:8px 0 10px 5%">
                                                     <span style="font-family:'Titillium Web',sans-serif;font-size:20px;font-weight:500;color:#666">Cek Pesanan <span style="color:#de0300"> kartuHalo </span> - Khusus Karyawan Perusahaan Mitra <span style="color:#de0300"> TELKOMSEL </span>
                                                     </span>
                                                 </div>
@@ -477,7 +477,7 @@
                                                             <div class="row-fluid" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
-                                                                        Transaksi ID
+                                                                        Request ID
                                                                         <span style="color: #de0300"><b>*</b></span>
                                                                     </div>
                                                                     <div style="width: 10%; float: left">:</div>
@@ -520,7 +520,7 @@
                                             <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
 
                                                 <!-- Header Starts -->
-                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;padding:8px 0 10px 5%">
                                                     <span style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:20px;font-weight:500;color:#666">Check Pesanan <span style="color:#de0300"> kartuHalo </span>
                                                     </span>
                                                     <div id="halo2" style="padding: 0 0%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 0%">
@@ -584,7 +584,7 @@
 
 
 
-                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                            <div class="row-fluid" id="isi1" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
                                                                         REQUEST ID<span style="color: #de0300"><b></b></span>
@@ -592,14 +592,14 @@
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
                                                                 <div class="span6">
-                                                                    <div style="width: 90%; float: left" id="isi1">
+                                                                    <div style="width: 90%; float: left">
                                                                         
                                                                         <span style="color: #de0300"><b></b></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                            <div class="row-fluid" id="isi2" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
                                                                         NAME<span style="color: #de0300"></span>
@@ -607,14 +607,14 @@
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
                                                                 <div class="span6">
-                                                                    <div style="width: 90%; float: left" id="isi2">
+                                                                    <div style="width: 90%; float: left">
                                                                         
                                                                         <span style="color: #de0300"><b></b></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                            <div class="row-fluid" id="isi3" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
                                                                         EMAIL<span style="color: #de0300"></span>
@@ -622,14 +622,14 @@
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
                                                                 <div class="span6">
-                                                                    <div style="width: 90%; float: left" id="isi3">
+                                                                    <div style="width: 90%; float: left">
                                                                         
                                                                         <span style="color: #de0300"><b></b></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                            <div class="row-fluid" id="isi4" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
                                                                         COORPORATE<span style="color: #de0300"><b></b></span>
@@ -637,14 +637,14 @@
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
                                                                 <div class="span6">
-                                                                    <div style="width: 90%; float: left" id="isi4">
+                                                                    <div style="width: 90%; float: left">
                                                                         
                                                                         <span style="color: #de0300"><b></b></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="row-fluid" style="margin-bottom: 5px">
+                                                            <div class="row-fluid" id="isi5" style="margin-bottom: 5px">
                                                                 <div class="span6">
                                                                     <div style="width: 90%; float: left">
                                                                         STATUS<span style="color: #de0300"><b></b></span>
@@ -652,7 +652,7 @@
                                                                     <div style="width: 10%; float: left">:</div>
                                                                 </div>
                                                                 <div class="span6">
-                                                                    <div style="width: 90%; float: left" id="isi5">
+                                                                    <div style="width: 90%; float: left">
                                                                         
                                                                         <span style="color: #de0300"><b></b></span>
                                                                     </div>
@@ -756,7 +756,7 @@
                 $('#cekpesanan,#ketatas').hide();
                 $('#hasilpesanan').fadeIn(1000);
                 if(result === "Error") {
-                    $('#isi1,#isi2,#isi3,#isi4,#isi5').hide();
+                    $('#isi1,#isi2,#isi3,#isi4,#isi5').parent(".row-fluid").hide();
                     $('#errorOSB').fadeIn(1000);
                 }
                 else/*if(result)*/ 

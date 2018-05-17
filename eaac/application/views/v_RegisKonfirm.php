@@ -340,7 +340,7 @@
                                         <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
 
                                             <!-- Header Starts -->
-                                            <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                                            <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;padding:8px 0 10px 5%">
                                                 <span style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:20px;font-weight:500;color:#666">Registrasi <span style="color:#de0300"> kartuHalo </span>
                                                 </span>
                                                 <div id="halo2" style="padding: 0 0%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 0%">
@@ -626,7 +626,7 @@
                                                         <!-- 01 -->
                                                         <div style="padding: 5%; background: #fff; border-radius: 3px; overflow:auto; height: 336px;">
                                                             <ol style="text-align: justify;text-justify: inter-word;">
-                                                                <p>
+                                                                <!-- <p>
                                                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit egestas velit sit amet scelerisque. Donec dignissim venenatis velit vitae tristique. Sed pharetra lectus auctor nisi dictum efficitur. In ante ligula, mollis ac ligula ut, rutrum
                                                                     pellentesque sapien. Vestibulum lacus nunc, consequat at vestibulum non, maximus non sapien. Donec id orci a tellus rutrum feugiat sed ut turpis. Etiam justo ante, lobortis vehicula libero
                                                                     id, rutrum semper arcu. Nulla molestie, diam gravida placerat posuere, orci neque laoreet sem, et ultricies ipsum magna porta nulla. Suspendisse lacinia ante turpis, eu sollicitudin ex
@@ -639,7 +639,18 @@
                                                                     Pellentesque laoreet posuere enim id vestibulum. Quisque aliquet metus ut elit congue, tincidunt bibendum magna efficitur. Aenean a tortor id ex rutrum auctor a vitae sapien. Sed sagittis
                                                                     justo id libero ultricies consectetur. Proin imperdiet, leo non convallis imperdiet, massa leo consectetur tellus, vitae blandit lorem diam imperdiet sapien. Integer magna felis, tempus
                                                                     non urna non, commodo vehicula risus. Fusce pretium efficitur orci, ac bibendum nisi varius ut. Fusce ut tempor neque. Fusce ac urna a justo efficitur semper.
-                                                                </p>
+                                                                </p> -->
+                                                                <h3><p>Kartu Produk Telkomsel</p></h3>
+                                                                <ul>
+                                                                  <li>Pelanggan yang baru menggunakan Produk Telkomsel akan mendapatkan Kartu Perdana yang berupa Kartu SIM (Subscriber Identify Module).</li>
+                                                                  <li>Dengan menggunakan Kartu Perdana Telkomsel, Pelanggan menyatakan tunduk dan terikat pada Syarat dan Ketentuan Penggunaan ini termasuk perubahannya (apabila ada) yang ditetapkan oleh Telkomsel.</li>
+                                                                  <li>Kartu SIM Telkomsel hanya dapat diaktifkan di Indonesia selama masa berlaku masih aktif sesuai dengan keterangan yang tertera di  Kartu Perdana.</li>
+                                                                  <li>Agar tetap dapat digunakan secara terus menerus oleh pelanggan, maka untuk Kartu Pascabayar yang telah dilakukan aktivasi harus melakukan pembayaran tagihan bulanan sebelum jatuh tempo.</li>
+                                                                  <li>Pada saat aktivasi Kartu Perdana Telkomsel, pelanggan wajib mengisi data diri yang benar dan lengkap serta pelanggan menyatakan bahwa data yang diberikan adalah yang sebenar-benarnya. Telkomsel berhak menon-aktifkan nomor-nomor yang diketahui memberikan data palsu atau tidak benar sebagaimana ketentuan dari Kementerian Komunikasi dan Informatika Indonesia.</li>
+                                                                  <li>Pelanggan yang kehilangan atau kecurian Kartu SIM Telkomsel dapat segera melaporkan pada bagian Pelayanan Pelanggan di GraPARI terdekat dan melakukan penggantian Kartu SIM tanpa perlu melakukan proses pemblokiran terlebih dahulu.</li>
+                                                                  <li>Pelanggan diperbolehkan untuk mengganti Kartu SIM Telkomsel yang hilang atau rusak di kantor layanan Telkomsel (GraPARI) dengan syarat dan ketentuan yang ditetapkan oleh Telkomsel.</li>
+                                                                  <li>Telkomsel tidak bertanggung jawab atas kehilangan pulsa (bagi produk prabayar) pada Kartu Perdana Telkomsel yang telah rusak atau hilang.</li>
+                                                                </ul>
                                                             </ol>
                                                         </div>
                                                         <br> 

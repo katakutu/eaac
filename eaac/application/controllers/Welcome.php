@@ -20,9 +20,9 @@ class Welcome extends CI_Controller {
 	{
 		$this->session->sess_destroy();
 		//echo kill ." - ". the ." - ". God;
-		$data['prov'] = $this->m_select->show_prov()->result_array();
+		//$data['prov'] = $this->m_select->show_prov()->result_array();
 		//$data['kot'] = $this->m_select->show_kota();
-		$this->load->gotoPage('templates/mencoba',$data);//$this->load->view('welcome_message');
+		$this->load->gotoPage('templates/mencoba2');//$this->load->view('welcome_message');
 	}
 
 	function get_subkategori(){

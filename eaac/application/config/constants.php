@@ -78,7 +78,7 @@ define('BODY_SRM_CHECK_EMAIL',
 		      <v1:cis_domain_checkRq>
 		         <v1:domain_name>%s</v1:domain_name>
 		         <v1:channel>EAAC</v1:channel>
-		         <v1:trx_id>TRXTesting12345</v1:trx_id>
+		         <v1:trx_id>%s</v1:trx_id>
 		      </v1:cis_domain_checkRq>
 		   </soapenv:Body>
 		</soapenv:Envelope>");
@@ -102,7 +102,7 @@ define('BODY_DUKCAPIL',
 					<v1:NO_KK>%s</v1:NO_KK>
 					<v1:MSISDN>%s</v1:MSISDN>
 					<v1:channel>EAAC</v1:channel>
-					<v1:trx_id>Testing12345</v1:trx_id>
+					<v1:trx_id>%s</v1:trx_id>
 				</v1:NIKInfoGetRq>
 			</soapenv:Body>
 		</soapenv:Envelope>");
@@ -120,7 +120,7 @@ define('BODY_SRM_CHECK_PESANAN',
 		      <v1:cis_eaac_checkRq>
 		         <v1:request_id>%s</v1:request_id>
 		         <v1:channel>EAAC</v1:channel>
-		         <v1:trx_id>TRXTesting12345</v1:trx_id>
+		         <v1:trx_id>"."EACek".time().substr(uniqid(mt_rand()),1,6)."</v1:trx_id>
 		      </v1:cis_eaac_checkRq>
 		   </soapenv:Body>
 		</soapenv:Envelope>");
@@ -171,7 +171,7 @@ define('BODY_SRM_OFFER_LIST',
 		      <v1:cis_product_getRq>
 		         <v1:account_id>%s</v1:account_id>
 		         <v1:channel>EAAC</v1:channel>
-		         <v1:trx_id>TRXTesting12345</v1:trx_id>
+		         <v1:trx_id>%s</v1:trx_id>
 		      </v1:cis_product_getRq>
 		   </soapenv:Body>
 		</soapenv:Envelope>");
@@ -207,7 +207,7 @@ define('BODY_INSERT_CIS',
 		         <v1:photo_id_card>%s</v1:photo_id_card>
 		         <v1:flag_dukcapil>%s</v1:flag_dukcapil>
 		         <v1:channel>EAAC</v1:channel>
-		         <v1:trx_id>TRXTestingOracle13245</v1:trx_id>
+		         <v1:trx_id>%s</v1:trx_id>
 		      </v1:cis_eaac_addRq>
 		   </soapenv:Body>
 		</soapenv:Envelope>");
@@ -228,7 +228,7 @@ define('BODY_SRM_MSISDN_RESERVE',
 						<ns1:UnifiedResourceActivityInfo>
 							<ns1:ActivityInfo>
 								<ns1:activityName>RESERVE</ns1:activityName>
-								<ns1:activityDate>2017-10-02+07:00</ns1:activityDate>
+								<ns1:activityDate>'.date('Y-m-d+H:i').'</ns1:activityDate>
 							</ns1:ActivityInfo>
 							<ns1:RMEntityIdInfo>
 								<ns1:type>MSISDN</ns1:type>

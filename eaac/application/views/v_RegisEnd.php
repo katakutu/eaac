@@ -337,7 +337,7 @@
                                             <div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
 
                                                 <!-- Header Starts -->
-                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                                                <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;padding:8px 0 10px 5%">
                                                     <span style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:20px;font-weight:500;color:#666"></span>
                                                     <center>
                                                         <span style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:20px;font-weight:500;color:#666"><span style="color:#de0300"></span></span>

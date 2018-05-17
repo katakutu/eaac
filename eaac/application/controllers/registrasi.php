@@ -16,7 +16,6 @@ class Registrasi extends CI_Controller {
 		date_default_timezone_set('Asia/Jakarta');
 		if(! $isFirstEmailExistSession = $this->session->userdata('email')){	redirect(base_url());	}
 		if(!$this->session->userdata('isOTP')){	redirect('otp');	}
-        
 	} 
 	
 	public function index()
@@ -33,7 +32,8 @@ class Registrasi extends CI_Controller {
 		# Halaman 1 Part 1/2
 		$infoGed = $this->input->post('infogedung');
 		$sepAlamat=explode('|',$this->input->post('alamatkantor'));
-		  $alamatKantor=$sepAlamat[1].'.  '.$infoGed;  $data['ketKantor']=array('account_id'=>$sepAlamat[0],'account_province'=>$sepAlamat[2]);
+		  $alamatKantor=$sepAlamat[1].'.  '.$infoGed;  
+		  $data['ketKantor']=array('account_id'=>$sepAlamat[0],'account_address'=>$sepAlamat[1],'office_region'=>$sepAlamat[2],'office_id'=>$sepAlamat[3]);
 		$region = $sepAlamat[2];
 		$primaryMSISDN = $this->input->post('primaryMSISDN');
 		$secondaryMSISDN = $this->input->post('secondaryMSISDN');
@@ -85,11 +85,11 @@ class Registrasi extends CI_Controller {
         $config['allowed_types']        = 'gif|jpg|png';
         $config['file_name'] 			= date("Y-m-d")."_".$fullName;
         $config['max_size']             = 3072;
-        //$config['uploaxd_path']			= $_SERVER['DOCUMENT_ROOT'];D:/xampp/realFolder/htdocs/eaac/uploads/
+        $uploadPath						= $_SERVER['DOCUMENT_ROOT'];#C:/xampp/htdocs
 
         if($ket == 'ktp')
         {
-        	$config['upload_path']		= './uploads/KTP';
+        	$config['upload_path']		= $uploadPath.'/eaac/uploads/KTP';
         	$this->upload->initialize($config);
         	if ( ! $this->upload->do_upload($inputTypeName))
         	{return $this->upload->display_errors();}
@@ -97,7 +97,7 @@ class Registrasi extends CI_Controller {
         }
         if($ket == 'nip')
         {
-        	$config['upload_path']		= './uploads/NIP';
+        	$config['upload_path']		= $uploadPath.'/eaac/uploads/NIP';
         	$this->upload->initialize($config);
         	if ( ! $this->upload->do_upload($inputTypeName))
         	{return $this->upload->display_errors();}
@@ -117,7 +117,7 @@ class Registrasi extends CI_Controller {
 		$KK = $this->session->userdata['insertion']['nokk'];
 		$msisdn = $this->session->userdata['insertion']['secondarymsisdn'];
 
-		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
+		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn,$this->session->userdata['trx_id']);
 		$respDukcapil = $this->API($body,API_DUKCAPIL);
         $objErrCode = new DOMDocument();
         $objErrCode->loadXML($respDukcapil);
@@ -237,7 +237,7 @@ class Registrasi extends CI_Controller {
 		$KK = $this->input->post('kk');
 		$msisdn = '6282162345656';
 
-		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn);
+		$body=sprintf(BODY_DUKCAPIL,$NIK,$KK,$msisdn,$this->session->userdata['trx_id']);
 		$respDukcapil = $this->API($body,API_DUKCAPIL);
 		//echo $respDukcapil;
         $objErrCode = new DOMDocument();
@@ -247,7 +247,7 @@ class Registrasi extends CI_Controller {
         //echo json_encode(array('errCode'=>$errCode,'errMsg'=>$errMsg));
         $isCapil = array( 'iscapil'     => $errMsg  );
         $this->session->set_userdata($isCapil);
-        echo "Invalid KTP or KK\n".$errCode." - ".$errMsg;//."<br>".$errMsg;
+        echo "Something went wrong...\n".$errCode." - ".$errMsg;//."<br>".$errMsg;
 	}
 
 	public function API_MSISDN_Reserve()
@@ -285,18 +285,19 @@ class Registrasi extends CI_Controller {
 	}
 
 	public function API_Add_CIS()
-	{
+	{	$mySess=$this->session->userdata;
 		try{
-			$myList = $this->session->userdata['insertion'];
-			$NIK = base64_encode(file_get_contents($this->session->userdata['insertion']['imagektp']));
-			$KK = base64_encode(file_get_contents($this->session->userdata['insertion']['imagepeg']));
-			$isCapil = ($this->session->userdata['iscapil'] == 'Success' ? 'VALID' : 'INVALID');
+			$myList = $mySess['insertion'];$trxku = $mySess['trx_id'];
+			$NIK = base64_encode(file_get_contents($myList['imagektp']));
+			$KK = base64_encode(file_get_contents($myList['imagepeg']));
+			$accountID=$mySess['ketKantor']['account_id'];	$officeID=$mySess['ketKantor']['office_id'];
+			$isCapil = ($mySess['iscapil'] == 'Success' ? 'VALID' : 'INVALID');
 			$listInsert = array
 			(
 				$myList['packagetype'],$myList['email'],$myList['secondarymsisdn'],$myList['nokk'],$myList['noktp'],
 				$myList['fullname'],$myList['namaibu'],$myList['alamat'],date('d-m-Y',strtotime($myList['tanggallahir'])),
 				$myList['tempatlahir'],$myList['kota'],$myList['provinsi'],$myList['region'],$myList['kodepos'],$myList['phone'],
-				$myList['emailreferensi'],($KK),($NIK),$isCapil
+				$myList['emailreferensi'],($KK),($NIK),$isCapil,$trxku
 			);//echo "<pre>";print_r($listInsert);die();
 			$body=vsprintf(BODY_INSERT_CIS,$listInsert);
 			$respGet = $this->API($body,API_INSERT_CIS);
@@ -322,8 +323,8 @@ class Registrasi extends CI_Controller {
 				$APIend = file_get_contents($API);*/
 
 				// Response from API
-	        	$response = "STATUS = %s | REQ_ID = %s | MESSAGE = %s";
-	        	$response = sprintf($response,$errCode,$request_id,$message);
+	        	$response = "STATUS = %s | REQ_ID = %s | MESSAGE = %s | ACC_ID = %s | OFF_ID = %s";
+	        	$response = sprintf($response,$errCode,$request_id,$message,$accountID,$officeID);
 	        	$this->session->userdata['insertion']['req_id'] = $request_id;
 	        	return $response;
 	        }else{
@@ -339,10 +340,7 @@ class Registrasi extends CI_Controller {
 	public function API_MSISDN_Get()
 	{
 		$wildNumber = $this->input->post('toserverFind');
-		$region = $this->input->post('toserverFindz');//'jateng';
-        ##### STUCK ABOVE #####
-        ##### make a condition TIMEOUT #####
-        //echo $errCode."<br>".$errMsg;
+		$region = $this->input->post('toserverFindz');
         $listNumber = $this->get_msisdn($wildNumber,$region);
         //$show5Msis = $this->m_select->show_msisdn($wildNumber);
 		#####$listNumber = array('62812222001','62812222002','62812222003','62812222004','62812222005'
@@ -382,10 +380,10 @@ class Registrasi extends CI_Controller {
     }
 
     public function API_List_Package()
-	{
+	{	$toSess = $this->session->userdata;
 		$account_ID = $this->input->post('accID');
 
-        $body=sprintf(BODY_SRM_OFFER_LIST,$account_ID);
+        $body=sprintf(BODY_SRM_OFFER_LIST,$account_ID,$toSess['trx_id']);
 		$respGet = $this->API($body,API_SRM_OFFER_LIST);
 		$objGetEmAll = new DOMDocument();
         $objGetEmAll->loadXML($respGet);
@@ -397,7 +395,6 @@ class Registrasi extends CI_Controller {
         if($errCode == '0000' && $errMsg == 'Success' && $totalRow > 0)
         {
         	// INSERT API LOG
-			$toSess = $this->session->userdata;
 			$respOff = "STATUS = %s | DESC = %s | ACC_ID = %s | TotalListOffer = %s";$respOff = sprintf($respOff,$errCode,$errMsg,$account_ID,$totalRow);
 	    	$insertLog = "Insert intO api_log (trx_id,email,msisdn,request,response,exec_time,api_name) values (?,?,?,?,?,now(),?)";
 			$req = API_SRM_OFFER_LIST;

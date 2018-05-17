@@ -3,32 +3,32 @@ $email          	=	$fullname    	=	$emailreferensi =	$alamatkantor	=		$alamat 		
 $infogedung    		=	$provinsi    	=	$primarymsisdn 	=	$kota 			=		$secondarymsisdn 	= "";
 $kodepos    		=	$noktp 		   	=	$tanggallahir  	=	$nokk  		  	=		$tempatlahir    	= "";
 $imagektp      		=	$namaibu    	=	$imagepeg      	=	$phone    		=       $packagetype		= "";
-$packagetypez       = "";
-if(array_key_exists('insertion',$this->session->all_userdata())){
-$email          		= $this->session->userdata['insertion']['email'];
-$alamatkantor    		= $this->session->userdata['insertion']['alamatkantor'];
-$infogedung    			= $this->session->userdata['insertion']['infogedung'];
-$primarymsisdn 			= $this->session->userdata['insertion']['primarymsisdn'];
-$secondarymsisdn		= $this->session->userdata['insertion']['secondarymsisdn'];
-$packagetype            = $this->session->userdata['ketPaket']['prod_name'];
-$noktp 		   			= $this->session->userdata['insertion']['noktp'];
-$nokk  		  			= $this->session->userdata['insertion']['nokk'];
-$imagektp      			= $this->session->userdata['insertion']['imagektp'];
-$imagepeg      			= $this->session->userdata['insertion']['imagepeg'];
-$fullname    			= $this->session->userdata['insertion']['fullname'];
-$alamat    				= $this->session->userdata['insertion']['alamat'];
-$provinsi    			= $this->session->userdata['insertion']['provinsi'];
-$kota    				= $this->session->userdata['insertion']['kota'];
-$kodepos    			= $this->session->userdata['insertion']['kodepos'];
-$tanggallahir    		= $this->session->userdata['insertion']['tanggallahir'];
-$tempatlahir    		= $this->session->userdata['insertion']['tempatlahir'];
-$namaibu    			= $this->session->userdata['insertion']['namaibu'];
-$phone    				= $this->session->userdata['insertion']['phone'];
-$emailreferensi			= $this->session->userdata['insertion']['emailreferensi'];
+$packagetypez       =   $offiaddrVal    =   "";
+if(array_key_exists('insertion',$this->session->all_userdata())){   $mySess = $this->session->userdata;
+$email          		= $mySess['insertion']['email'];
+$alamatkantor    		= $mySess['insertion']['alamatkantor'];
+$infogedung    			= $mySess['insertion']['infogedung'];
+$primarymsisdn 			= $mySess['insertion']['primarymsisdn'];
+$secondarymsisdn		= $mySess['insertion']['secondarymsisdn'];
+$packagetype            = $mySess['ketPaket']['prod_name'];
+$noktp 		   			= $mySess['insertion']['noktp'];
+$nokk  		  			= $mySess['insertion']['nokk'];
+$imagektp      			= $mySess['insertion']['imagektp'];
+$imagepeg      			= $mySess['insertion']['imagepeg'];
+$fullname    			= $mySess['insertion']['fullname'];
+$alamat    				= $mySess['insertion']['alamat'];
+$provinsi    			= $mySess['insertion']['provinsi'];
+$kota    				= $mySess['insertion']['kota'];
+$kodepos    			= $mySess['insertion']['kodepos'];
+$tanggallahir    		= $mySess['insertion']['tanggallahir'];
+$tempatlahir    		= $mySess['insertion']['tempatlahir'];
+$namaibu    			= $mySess['insertion']['namaibu'];
+$phone    				= $mySess['insertion']['phone'];
+$emailreferensi			= $mySess['insertion']['emailreferensi'];
 $alamatkantor=substr($alamatkantor, 0, strpos($alamatkantor, '.  '));
-$packagetypez = $this->session->userdata['ketPaket']['prod_id'];
+$packagetypez = $mySess['ketPaket']['prod_id'];
 $exxx = explode('-',$tanggallahir);
-$kotaku = $this->session->userdata['kota'];
+$kotaku = $mySess['kota']; $offiaddrVal=implode('|', $mySess['ketKantor']);
 }
 ?>
 
@@ -374,7 +374,7 @@ $kotaku = $this->session->userdata['kota'];
 								<div style="width: 100%; border-radius: 3px; background-color: #eee; padding: 0 0 100px 0">
 
                   <!-- TITLE REGISTRASI -->
-                  <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#eee;background-image:url(&#39;images/bg-header.png&#39;);padding:8px 0 10px 5%">
+                  <div style="width:95%;border-top-left-radius:3px;border-top-right-radius:3px;padding:8px 0 10px 5%">
                     <span style="font-family:&#39;Titillium Web&#39;,sans-serif;font-size:20px;font-weight:500;color:#666">Registrasi <span style="color:#de0300"> kartuHalo </span></span>
                     <div id="halo2" style="padding: 0 0%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 0%">
                     <!-- 01 -->
@@ -414,19 +414,19 @@ $kotaku = $this->session->userdata['kota'];
                         <!-- CONTAINER ALAMAT GEDUNG, CARI NOMOR , TYPE PACKAGE -->
                         <div id="halo2" style="padding: 0 7.5%; font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 15px; font-weight: 400; color: #666; margin-bottom: 5%">
 
-                          <div class="row-fluid" style="margin-bottom: 5px">
+                          <!-- <div class="row-fluid" style="margin-bottom: 5px">
                             <div class="span6">
                               <div style="width: 90%; float: left">
                                 Alamat Kantor<span style="color: #de0300"><b>*</b></span>
                                 <br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(Kartu SIM akan dikirim ke alamat ini)</i></span>
                               </div>
                               <div style="width: 10%; float: left">:</div>
-                            </div>
+                            </div> -->
 
                             <!-- INPUT ALAMAT GEDUNG -->
-                            <div class="row-fluid" style="margin-bottom: 5px;">
+                            <!-- <div class="row-fluid" style="margin-bottom: 5px;">
                               <div class="row-fluid" style="margin-bottom: 5px">
-                                <div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent">
+                                <div class="span6" style="background-color: #fff; padding: 2.5%; border-radius: 5px;" id="msisdnParent"> -->
                                 <!--    
                                     <div class="row-fluid" id="msisdnWrap1">
                                         <span>
@@ -447,7 +447,7 @@ $kotaku = $this->session->userdata['kota'];
                                         </span>
                                     </div>
                                 -->
-                                  <div class="row-fluid" id="paagee">
+                                  <!-- <div class="row-fluid" id="paagee"> -->
 
                                   <!-- LAWAS IKI
                                   <?php foreach ($this->session->userdata['alamat_antor'] as $value) {
@@ -468,22 +468,33 @@ $kotaku = $this->session->userdata['kota'];
                                     </span>
                                   <?php } ?>
                                   -->
-                                  <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
+
+                                  <!-- <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
                                   $checked = $alamatkantor==$value['account_name'].', '.$value['account_id'] ? 'checked="checked"' : '';  ?>
                                     <span>
                                       <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['account_id'].'|'.$value['account_name'].', '.$value['account_id'].'|'.$value['region'];?>" <?php echo $checked; ?>>
                                       <label for="alamat_antor1"><?php echo $value['account_name'].', '.$value['account_id'].', '.$value['region'];?></label>
                                     </span>
-                                  <?php } ?>
+                                  <?php } ?> -->
+
+                                  <!--yg Banyak <?php foreach ($this->session->userdata['alamat_antorz'] as $value) {
+                                    foreach($value['office'] as $off){
+                                  $checked = $alamatkantor==$value['account_name'].', '.$value['account_id'] ? 'checked="checked"' : '';  ?>
+                                    <span>
+                                      <input id="alamat_antor" name="alamatkantor" class="radioSelectItemCustom radio-inline radio inline control-label radioSelectItem" type="radio" value="<?php echo $value['account_id'].'|'.$value['account_name'].', '.$value['account_id'].'|'.$value['region'];?>" <?php echo $checked; ?>>
+                                      <label for="alamat_antor1"><?php echo $off['office_name'].', '.$off['office_address'].', '.$off['office_province'];?></label>
+                                    </span>
+                                  <?php }} ?> -->
                                   
 
-                                  </div>
+                                  <!-- </div> -->
 
-                                  <br>
+                                  <!-- <br> -->
                                     
+                                  <!--
                                   <div class="row-fluid">
                                     <div id="paging" ></div> 
-                                    <!--
+                                    
                                       <div class="span6" id="msisdnWrap2" style="display: none;">
                                           <a href="javascript:void(0)" onclick="getSearchNumber(&#39;prev&#39;)">
                                               <div style="float: left; width: 15%; margin-top: 10px">
@@ -506,9 +517,10 @@ $kotaku = $this->session->userdata['kota'];
                                               </div>
                                           </a>
                                       </div>
-                                    -->
+                                    
                                   </div>
-                                  <br>
+                                  -->
+                                 <!--  <br>
                                   <div class="row-fluid" style="margin-bottom: 5px">
                                     <input id="infoGedung" name="infogedung" class="inputCustome" placeholder="Informasi tambahan (gedung, lantai, dll.)" type="text" value="<?php echo $infogedung; ?>" maxlength="100">
                                   </div>
@@ -521,10 +533,88 @@ $kotaku = $this->session->userdata['kota'];
                               <div class="span6" style="margin-bottom: 1px;">
                                 <div style="width: 90%; float: left"></div>
                               </div>
+                            </div> -->
+
+                          <!-- </div> -->
+                          <!-- END INPUT ALAMAT GEDUNG -->
+
+
+                          <!-- INPUT DATABLE LO -->
+                          <div class="row-fluid" style="margin-bottom: 5px">
+                            <div class="span6">
+                              <div style="width: 90%; float: left">
+                                Alamat Kantor
+                                <span style="color: #de0300"><b>*</b></span><br> <span style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px; line-height: 18px;"><i>(Kartu SIM akan dikirim ke alamat ini)</i></span>
+                              </div>
+                              <div style="width: 10%; float: left">:</div>
+                            </div>
+                            <div class="span6" style="background-color: #fff; padding: 1% 1% 1% 2.5%; border-radius: 3px;">
+                              <span id="ketaddoffice" style="font-family: &#39;Titillium Web&#39;, sans-serif; font-size: 13px">Silakan pilih Alamat Kantor Anda</span>
+                            </div>
+
+                            <div>
+
+                              <div id="demo" style="margin-top: 3.5em;">
+                                <table cellpadding="0" style="width:100%" cellspacing="0" border="0" class="display" id="example">
+                                  <thead>
+                                    <tr>
+                                      <th></th>
+                                      <th>Alamat Kantor</th>
+                                      <th>Provinsi</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php foreach($this->session->userdata['alamat_antorz'] as $ix=>$parentData){ 
+                                        foreach($parentData['office'] as $ind=>$data){
+                                            $checked = $alamatkantor==$data['office_address'] ? 'checked="checked"' : '';?>
+
+                                    <tr>
+                                      
+                                      <td>
+                                        <input id="<?php echo 'kantorKe'.$ix.'-'.$ind ?>" name="alamatkantor" type="radio" value="<?php echo $parentData['account_id'].'|'.$data['office_address'].'|'.$data['office_region'].'|'.$data['office_id'];?>" <?php echo $checked; ?>>
+                                      </td>
+                                      <td><?php echo $data['office_address'] ?></td>
+                                      <td><?php echo $data['office_province'] ?></td>
+                                      
+                                    </tr>
+                                    <?php } } ?>
+                                  </tbody>
+                                </table>
+                              </div>
+
                             </div>
 
                           </div>
-                          <!-- END INPUT ALAMAT GEDUNG -->
+
+                          <div class="row-fluid" style="margin-bottom: 1px;">
+                            <div class="span6" style="margin-bottom: 1px;"></div>
+                            <div class="span6" style="margin-bottom: 1px;">
+                              <div style="width: 90%; float: left"></div>
+                            </div>
+                          </div>
+                          <!-- END DATABLE LO -->
+
+                          <!-- INPUT Info Gedung -->
+                          <div class="row-fluid" style="margin-bottom: 5px">
+                            <div class="span6">
+                              <div style="width: 90%; float: left">
+                                Info Gedung
+                              </div>
+                              <div style="width: 10%; float: left">:</div>
+                            </div>
+                            <div class="span6">
+                              <input id="infoGedung" name="infogedung" class="inputCustome" placeholder="Informasi tambahan (gedung, lantai, dll.)" type="text" value="<?php echo $infogedung; ?>" maxlength="100">
+                            </div>
+                          </div>
+
+                          <div class="row-fluid" style="margin-bottom: 1px;">
+                            <div class="span6" style="margin-bottom: 1px;"></div>
+                            <div class="span6" style="margin-bottom: 1px;">
+                              <div style="width: 90%; float: left"> </div>
+                            </div>
+                          </div>
+                          <!-- END INPUT Info Gedung -->
+
 
                         <div id="showMeLater"><!-- onClick when alamatKantor checked -->
                           <!-- INPUT CARI NOMOR -->
@@ -1915,7 +2005,7 @@ $kotaku = $this->session->userdata['kota'];
                               
                               <select id="year" name="year" class="selectItemCalendar">
                               <?php
-                                for ($year = 1960; $year <= date("Y"); $year++) 
+                                for ($year = date('Y')-52; $year <= date("Y"); $year++) 
                               {?>
                                 <option value=<?php echo $year; ?> <?php echo (isset($exxx[0])&&$exxx[0]==$year) ? 'selected="selected"':''; ?> ><?php echo $year; ?></option>
                               <?php } ?>
@@ -2114,7 +2204,7 @@ $kotaku = $this->session->userdata['kota'];
 
 				// Validator
 				$(".nextz").click(function(){
-                    if ($("input[name=alamatkantor]:checked").length == 0){$('html, body').animate({scrollTop: $("#alamat_antor").offset().top-300}, 2000);  $('#msisdnParent').animate({"border-width": "2px"}, 500);}
+                    if ($("input[name=alamatkantor]:checked").length == 0){$('html, body').animate({scrollTop: $("input[name=alamatkantor]").offset().top-300}, 2000);  $('#example_wrapper').animate({"border-width": "2px"}, 500);}
                     else if($("input[name=secondaryMSISDN]:checked").length == 0){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
                     //else if($("input[name=secondaryMSISDN]").length < 2){window.alert("Please choose your Halo Number !"); $('html, body').animate({scrollTop: $("#primaryMSISDN").offset().top-200}, 2000);$('#primaryMSISDN').focus(); }
                     else if ($("input[name=packagetype]:checked").length == 0){window.alert("Please choose your package type !"); $('html, body').animate({scrollTop: $(".package-list").offset().top}, 2000); }
@@ -2135,7 +2225,7 @@ $kotaku = $this->session->userdata['kota'];
                         }); 
 
                         console.log(jqXHR.responseText.trim());
-                        var isCapil = ( jqXHR.responseText.trim() == 'Invalid KTP or KK\n0000 - Success' );
+                        var isCapil = ( jqXHR.responseText.trim() == 'Something went wrong...\n0000 - Success' );
                         if( isCapil === false ) {alert(jqXHR.responseText.trim());}
                     } //END IF AJAX  // MAININ RESPONSE ALERT DAN ISEMPTY
 
@@ -2391,12 +2481,11 @@ $kotaku = $this->session->userdata['kota'];
                     //$('input[name="packagetype"]').attr("checked", false);
                     $("#primaryMSISDN,#carimsisdn").prop('disabled', false);
                     $("#currentNo,#currentPack,hr").hide();
-                    $('.contaRadio').remove();
+                    $('.contaRadio,.D1').remove();
                     $('#ketpilih').html("Cari nomor yang mengandung angka cantik yang Anda ketikan");
                     $('#showMeLater').hide().fadeIn("normal").css({"font-family": "\'Titillium Web\',sans-serif","font-size": "13px"});
                     var theValue=$(this).val();
                     var accID = theValue.split('|')[0];
-                    $(".D1").remove();
 
                     $.ajax({
                         url : "<?php echo base_url();?>registrasi/API_List_Package",
@@ -2516,34 +2605,42 @@ $kotaku = $this->session->userdata['kota'];
             });
         </script>
 
-     
+        <!-- JS FOR DATATABLE ALAMAT KANTOR -->
+        <script type="text/javascript">
+            $(document).ready(function(){
+              //$('#demo').html( '<table cellpadding="0" style="width:100%" cellspacing="0" border="0" class="display" id="example"></table>' );
+              var currAlamat = <?php echo json_encode($alamatkantor) ?>;
+              var curraddrVal = <?php echo json_encode($offiaddrVal) ?>;
 
-<!--       
+              var table = $('#example').DataTable({
+              "bLengthChange": false,
+              "bJQueryUI": true,
+              "info":false,
+              "scrollX": true,
+              "ordering": false,
+              "lengthMenu": [ [5,10, 25], [5,10, 25] ],
+              "sPaginationType": "full_numbers",
 
-	    var itemsOnPage = 4;  
-			       $('#paging2').pagination({  
-			         items: $('#radioMSISDN > span').length,  
-			         itemsOnPage: itemsOnPage, 
-			         nextText: 'Selanjutnya',
-			         prevText: 'Sebelumnya',
-			         hrefTextPrefix: 'javascript:void(0);',
-			         hrefTextSuffix: 'javascript:void(0);',
-			         cssStyle: 'dark-theme',  
-			         onPageClick: function (pageNumber, event) {  
-			           var pageN = pageNumber != 0 ? (pageNumber - 1) : pageNumber;  
-			           var from = (pageN * itemsOnPage) + 1;  
-			           var to = (pageNumber * itemsOnPage);  
-			           //console.log('page :'+pageNumber+' from: ' + from + ' to :' + to);  
-			           $('#radioMSISDN > span').css({ 'display': 'none' });  
-			           for (var i = from; i <= to ; i++) {  
-			             //console.log('loop :'+i);  
-			             $('#radioMSISDN > span:eq(' + (i-1) + ')').css({ 'display': 'block' });  
-			           }  
-			         },  
-			         onInit: function () {  
-			           $('#radioMSISDN > span').css({ 'display': 'none' });  
-			           for (var i = 0; i <itemsOnPage; ++i) {  
-			             $('#radioMSISDN > span:eq('+i+')').css({ 'display': 'block' });  
-			           }  
-			         }  
-			       }); -->
+              // save state of DataTable
+              "bStateSave": true,
+              "fnStateSave": function (oSettings, oData) {localStorage.setItem('offersDataTables', JSON.stringify(oData));},
+              "fnStateLoad": function (oSettings) {return JSON.parse(localStorage.getItem('offersDataTables'));},
+
+              // re-Draw Table when table change , prop "checked"->"false"
+              "fnDrawCallback": function(oSettings) {console.log("RESETCHECKED");$("input[name=alamatkantor]").parent("span").removeClass("jcf-checked")}
+              });
+
+              //var rows = table.rows(0).data();
+              //console.log(rows[0][1]);
+
+              // loop through every rows to checked the last
+              table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+                var d = this.data();
+                if(d[1]==currAlamat){
+                  $('input[type="radio"][value="'+curraddrVal+'"]').parent("span").removeClass("jcf-unchecked").addClass("jcf-checked");
+                  return false;
+                }
+              });
+
+            });
+        </script>

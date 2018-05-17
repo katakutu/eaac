@@ -143,7 +143,7 @@
   <script src="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/js_M9hfFCqQ7zGySD961qXvTY3A3kheCaauKApNA2ihNgs.js.download"></script> 
   <script src="<?php echo base_url(); ?>asset/Customer_Service_Online_files/jquery-1.7.1.js.download" type="text/javascript"></script> 
   <script src="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/loader.js.download" type="text/javascript"></script> 
-  <script src="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/js(1)" type="text/javascript"></script> 
+  <script src="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/js(1)" type="text/javascript"></script>
   <script src="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/jsapi" type="text/javascript"></script> 
   <script src="<?php echo base_url(); ?>asset/Bisnis_Telkomsel_files/js-prod.min.js.download" type="text/javascript"></script> 
   
@@ -181,8 +181,11 @@
   <link href="http://flaviusmatis.github.io/simplePagination.js/simplePagination.css" rel="stylesheet" type="text/css">
   <script src="http://flaviusmatis.github.io/simplePagination.js/jquery.simplePagination.js" type="text/javascript"></script>
   -->
-  <link href="<?php echo base_url(); ?>asset/moreCSSnJS/simplePagination.css" rel="stylesheet" type="text/css">
-  <script src="<?php echo base_url(); ?>asset/moreCSSnJS/jquery.simplePagination.js" type="text/javascript"></script>
+  <!-- <link href="<?php echo base_url(); ?>asset/moreCSSnJS/simplePagination.css" rel="stylesheet" type="text/css">
+  <script src="<?php echo base_url(); ?>asset/moreCSSnJS/jquery.simplePagination.js" type="text/javascript"></script> -->
+  
+  <script src="<?php echo base_url(); ?>asset/moreCSSnJS/jquery.dataTables.min.js"></script>
+  <link href="<?php echo base_url(); ?>asset/moreCSSnJS/jquery.dataTables.min.css" rel="stylesheet">
   
   <!-- JQUERY VALIDATION 
   <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/additional-methods.js"></script>
